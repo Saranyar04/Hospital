@@ -1,19 +1,17 @@
 package org.example.models.hospital;
 
-import org.example.models.hospital.Manufacturers;
-
-public class Medications {
+public class Medication {
 
     private int medicationID;
     private String medicationName;
     private String details;
     private double amount;
-    private Manufacturers manufacturers;
+    private Manufacturer manufacturers;
 
-    public Medications() {
+    public Medication() {
     }
 
-    public Medications(int medicationID, String medicationName, String details, double amount, Manufacturers manufacturers) {
+    public Medication(int medicationID, String medicationName, String details, double amount, Manufacturer manufacturers) {
         this.medicationID = medicationID;
         this.medicationName = medicationName;
         this.details = details;
@@ -53,11 +51,11 @@ public class Medications {
         this.amount = amount;
     }
 
-    public Manufacturers getManufacturers() {
+    public Manufacturer getManufacturers() {
         return manufacturers;
     }
 
-    public void setManufacturers(Manufacturers manufacturers) {
+    public void setManufacturers(Manufacturer manufacturers) {
         this.manufacturers = manufacturers;
     }
 

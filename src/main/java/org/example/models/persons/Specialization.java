@@ -1,14 +1,14 @@
 package org.example.models.persons;
 
-public class Specializations {
+public class Specialization {
 
     private int spcializationID;
     private String name;
 
-    public Specializations() {
+    public Specialization() {
     }
 
-    public Specializations(int spcializationID, String name) {
+    public Specialization(int spcializationID, String name) {
         this.spcializationID = spcializationID;
         this.name = name;
     }

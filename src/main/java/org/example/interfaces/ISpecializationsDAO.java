@@ -1,8 +1,8 @@
 package org.example.interfaces;
 
-import org.example.models.persons.Specializations;
+import org.example.models.persons.Specialization;
 
-public interface ISpecializationsDAO extends IBaseDAO<Specializations> {
+public interface ISpecializationsDAO extends IBaseDAO<Specialization> {
 
     int getCountOfSpecialization();
 }

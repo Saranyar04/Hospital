@@ -1,10 +1,10 @@
 package org.example.interfaces;
 
-import org.example.models.persons.Positions;
+import org.example.models.persons.Position;
 
 import java.util.List;
 
-public interface IPositionsDAO extends IBaseDAO<Positions>{
+public interface IPositionsDAO extends IBaseDAO<Position>{
 
-    List<Positions> getTopThree();
+    List<Position> getTopThree();
 }

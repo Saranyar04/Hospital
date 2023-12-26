@@ -2,7 +2,7 @@ package org.example.jdbc.dao;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
-import org.example.models.hospital.ExaminationRooms;
+import org.example.models.hospital.ExaminationRoom;
 import org.example.interfaces.IExaminationRoomsDAO;
 import org.example.util.ConnectionPool;
 
@@ -20,7 +20,7 @@ public class ExaminationRoomsDAO implements IExaminationRoomsDAO {
     private final ConnectionPool connectionPool = ConnectionPool.getInstance();
 
     @Override
-    public void saveEntity(ExaminationRooms examinationRooms) {
+    public void saveEntity(ExaminationRoom examinationRooms) {
         Connection connection = connectionPool.getConnection();
         String query = "INSERT INTO examination_rooms (examination_room_no, room_type) VALUES ((?), (?))";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
@@ -41,10 +41,10 @@ public class ExaminationRoomsDAO implements IExaminationRoomsDAO {
     }
 
     @Override
-    public ExaminationRooms getEntityByID(int id) {
+    public ExaminationRoom getEntityByID(int id) {
         Connection connection = connectionPool.getConnection();
         String query = "SELECT * FROM examination_rooms WHERE examination_room_no = (?)";
-        ExaminationRooms examinationRooms = new ExaminationRooms();
+        ExaminationRoom examinationRooms = new ExaminationRoom();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, id);
             statement.execute();
@@ -69,7 +69,7 @@ public class ExaminationRoomsDAO implements IExaminationRoomsDAO {
     }
 
     @Override
-    public void updateEntity(ExaminationRooms examinationRooms) {
+    public void updateEntity(ExaminationRoom examinationRooms) {
         Connection connection = connectionPool.getConnection();
         String query = "UPDATE examination_rooms SET room_type = (?) WHERE examination_room_no = (?)";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
@@ -111,15 +111,15 @@ public class ExaminationRoomsDAO implements IExaminationRoomsDAO {
     }
 
     @Override
-    public List<ExaminationRooms> getAll() {
+    public List<ExaminationRoom> getAll() {
         Connection connection = connectionPool.getConnection();
         String query = "SELECT * FROM Examination_rooms";
-        List<ExaminationRooms> examinationRoomsList = new ArrayList<>();
+        List<ExaminationRoom> examinationRoomsList = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.execute();
             try (ResultSet rs = statement.getResultSet()) {
                 while (rs.next()) {
-                    ExaminationRooms examinationRooms = new ExaminationRooms();
+                    ExaminationRoom examinationRooms = new ExaminationRoom();
                     examinationRooms.setExaminationRoomNo(rs.getInt("examination_room_no"));
                     examinationRooms.setRoomType(rs.getString("room_type"));
                     examinationRoomsList.add(examinationRooms);
@@ -139,16 +139,16 @@ public class ExaminationRoomsDAO implements IExaminationRoomsDAO {
         return examinationRoomsList;
     }
     @Override
-    public List<ExaminationRooms> getRoomsbyType(String roomType) {
+    public List<ExaminationRoom> getRoomsbyType(String roomType) {
         Connection connection = connectionPool.getConnection();
         String query = "SELECT * FROM Examination_rooms WHERE room_type = (?)";
-        List<ExaminationRooms> examinationRoomsList = new ArrayList<>();
+        List<ExaminationRoom> examinationRoomsList = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, roomType);
             statement.execute();
             try (ResultSet rs = statement.getResultSet()) {
                 while (rs.next()) {
-                    ExaminationRooms examinationRooms = new ExaminationRooms();
+                    ExaminationRoom examinationRooms = new ExaminationRoom();
                     examinationRooms.setExaminationRoomNo(rs.getInt("examination_room_no"));
                     examinationRooms.setRoomType(rs.getString("room_type"));
                     examinationRoomsList.add(examinationRooms);

@@ -3,7 +3,7 @@ package org.example.jdbc.dao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 import org.example.interfaces.ISpecializationsDAO;
-import org.example.models.persons.Specializations;
+import org.example.models.persons.Specialization;
 import org.example.util.ConnectionPool;
 
 import java.lang.invoke.MethodHandles;
@@ -20,7 +20,7 @@ public class SpecializationsDAO implements ISpecializationsDAO {
     private final ConnectionPool connectionPool = ConnectionPool.getInstance( );
 
     @Override
-    public void saveEntity(Specializations specializations) {
+    public void saveEntity(Specialization specializations) {
         Connection connection = connectionPool.getConnection( );
         String query = "INSERT INTO specializations (name) VALUES (?)";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
@@ -40,10 +40,10 @@ public class SpecializationsDAO implements ISpecializationsDAO {
     }
 
     @Override
-    public Specializations getEntityByID(int id) {
+    public Specialization getEntityByID(int id) {
         Connection connection = connectionPool.getConnection( );
         String query = "SELECT * FROM specializations WHERE specialization_id = (?)";
-        Specializations specializations = new Specializations( );
+        Specialization specializations = new Specialization( );
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, id);
             statement.execute( );
@@ -68,7 +68,7 @@ public class SpecializationsDAO implements ISpecializationsDAO {
     }
 
     @Override
-    public void updateEntity(Specializations specializations) {
+    public void updateEntity(Specialization specializations) {
         Connection connection = connectionPool.getConnection( );
         String query = "UPDATE specializations SET name = (?) WHERE specialization_id = (?)";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
@@ -109,15 +109,15 @@ public class SpecializationsDAO implements ISpecializationsDAO {
     }
 
     @Override
-    public List<Specializations> getAll() {
+    public List<Specialization> getAll() {
         Connection connection = connectionPool.getConnection();
         String query = "SELECT * FROM specializations";
-        List<Specializations> specializationsList = new ArrayList<>();
+        List<Specialization> specializationsList = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.execute( );
             try (ResultSet rs = statement.getResultSet()) {
                 while (rs.next()) {
-                    Specializations specializations = new Specializations();
+                    Specialization specializations = new Specialization();
                     specializations.setSpcializationID(rs.getInt("specialization_id"));
                     specializations.setName(rs.getString("name"));
                     specializationsList.add(specializations);

@@ -3,7 +3,7 @@ package org.example.jdbc.dao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 import org.example.interfaces.IPatientsDAO;
-import org.example.models.persons.Patients;
+import org.example.models.persons.Patient;
 import org.example.util.ConnectionPool;
 
 import java.lang.invoke.MethodHandles;
@@ -22,7 +22,7 @@ public class PatientsDAO implements IPatientsDAO {
     private final PhysiciansDAO physiciansDAO = new PhysiciansDAO();
 
     @Override
-    public void saveEntity(Patients patients) {
+    public void saveEntity(Patient patients) {
         Connection connection = connectionPool.getConnection();
         physiciansDAO.saveEntity(patients.getPhysicians());
         String query = "INSERT INTO patients (first_name, last_name, date_of_birth, address, physician_id) VALUES ((?), (?), (?), (?), (?))";
@@ -48,10 +48,10 @@ public class PatientsDAO implements IPatientsDAO {
 
 
     @Override
-    public Patients getEntityByID(int id) {
+    public Patient getEntityByID(int id) {
         Connection connection = connectionPool.getConnection();
         String query = "SELECT * FROM patients WHERE patient_id = (?)";
-        Patients patients = new Patients();
+        Patient patients = new Patient();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, id);
             statement.execute();
@@ -80,7 +80,7 @@ public class PatientsDAO implements IPatientsDAO {
     }
 
     @Override
-    public void updateEntity(Patients patients) {
+    public void updateEntity(Patient patients) {
         Connection connection = connectionPool.getConnection();
         String query = "UPDATE patients SET first_name = (?), last_name = (?) WHERE patient_id = (?)";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
@@ -123,15 +123,15 @@ public class PatientsDAO implements IPatientsDAO {
     }
 
     @Override
-    public List<Patients> getAll() {
+    public List<Patient> getAll() {
         Connection connection = connectionPool.getConnection();
         String query = "SELECT * FROM patients";
-        List<Patients> patientsList = new ArrayList<>();
+        List<Patient> patientsList = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.execute();
             try (ResultSet rs = statement.getResultSet()) {
                 while (rs.next()) {
-                    Patients patients = new Patients();
+                    Patient patients = new Patient();
                     patients.setPatientID(rs.getInt("patients_id"));
                     patients.setFirstName(rs.getString("first_name"));
                     patients.setLastName(rs.getString("last_name"));
@@ -154,16 +154,16 @@ public class PatientsDAO implements IPatientsDAO {
     }
 
     @Override
-    public List<Patients> getPatientbyPysician(int patientID) {
+    public List<Patient> getPatientbyPysician(int patientID) {
         Connection connection = connectionPool.getConnection();
         String query = "SELECT * FROM patients WHERE physician_id = (?)";
-        List<Patients> patientsList = new ArrayList<>();
+        List<Patient> patientsList = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, patientID);
             statement.execute();
             try (ResultSet rs = statement.getResultSet()) {
                 while (rs.next()) {
-                    Patients patients = new Patients();
+                    Patient patients = new Patient();
                     patients.setPatientID(rs.getInt("patients_id"));
                     patients.setFirstName(rs.getString("first_name"));
                     patients.setLastName(rs.getString("last_name"));

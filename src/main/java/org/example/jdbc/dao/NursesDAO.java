@@ -3,7 +3,7 @@ package org.example.jdbc.dao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 import org.example.interfaces.INursesDAO;
-import org.example.models.persons.Nurses;
+import org.example.models.persons.Nurse;
 import org.example.util.ConnectionPool;
 
 import java.lang.invoke.MethodHandles;
@@ -21,7 +21,7 @@ public class NursesDAO implements INursesDAO {
     private final PositionsDAO positionsDAO = new PositionsDAO();
 
     @Override
-    public void saveEntity(Nurses nurses) {
+    public void saveEntity(Nurse nurses) {
         Connection connection = connectionPool.getConnection();
         positionsDAO.saveEntity(nurses.getPositions());
         String query = "INSERT INTO nurses (first_name, last_name, position_id) VALUES ((?), (?), (?))";
@@ -45,10 +45,10 @@ public class NursesDAO implements INursesDAO {
 
 
     @Override
-    public Nurses getEntityByID(int id) {
+    public Nurse getEntityByID(int id) {
         Connection connection = connectionPool.getConnection();
         String query = "SELECT * FROM nurses WHERE nurse_id = (?)";
-        Nurses nurses = new Nurses();
+        Nurse nurses = new Nurse();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, id);
             statement.execute();
@@ -75,7 +75,7 @@ public class NursesDAO implements INursesDAO {
     }
 
     @Override
-    public void updateEntity(Nurses nurses) {
+    public void updateEntity(Nurse nurses) {
         Connection connection = connectionPool.getConnection();
         String query = "UPDATE nurses SET first_name = (?), last_name = (?) WHERE nurse_id = (?)";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
@@ -117,15 +117,15 @@ public class NursesDAO implements INursesDAO {
     }
 
     @Override
-    public List<Nurses> getAll() {
+    public List<Nurse> getAll() {
         Connection connection = connectionPool.getConnection();
         String query = "SELECT * FROM nurses";
-        List<Nurses> nurseList = new ArrayList<>();
+        List<Nurse> nurseList = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.execute();
             try (ResultSet rs = statement.getResultSet()) {
                 while (rs.next()) {
-                    Nurses nurse = new Nurses();
+                    Nurse nurse = new Nurse();
                     nurse.setNurseID(rs.getInt("nurse_id"));
                     nurse.setFirstName(rs.getString("first_name"));
                     nurse.setLastName(rs.getString("last_name"));
@@ -148,16 +148,16 @@ public class NursesDAO implements INursesDAO {
     }
 
     @Override
-    public List<Nurses> getNurseByPositions(int positionID) {
+    public List<Nurse> getNurseByPositions(int positionID) {
         Connection connection = connectionPool.getConnection();
         String query = "SELECT * FROM nurses WHERE position_id = (?)";
-        List<Nurses> nurseList = new ArrayList<>();
+        List<Nurse> nurseList = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, positionID);
             statement.execute();
             try (ResultSet rs = statement.getResultSet()) {
                 while(rs.next()) {
-                    Nurses nurse = new Nurses();
+                    Nurse nurse = new Nurse();
                     nurse.setNurseID(rs.getInt("nurse_id"));
                     nurse.setFirstName(rs.getString("first_name"));
                     nurse.setLastName(rs.getString("last_name"));

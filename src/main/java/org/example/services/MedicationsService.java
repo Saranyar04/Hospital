@@ -2,7 +2,7 @@ package org.example.services;
 
 import org.example.interfaces.IMedicationsDAO;
 import org.example.jdbc.dao.MedicationsDAO;
-import org.example.models.hospital.Medications;
+import org.example.models.hospital.Medication;
 
 import java.util.List;
 
@@ -11,32 +11,32 @@ public class MedicationsService implements IMedicationsDAO {
     private final MedicationsDAO medicationsDAO = new MedicationsDAO();
 
     @Override
-    public void saveEntity(Medications medications) {
+    public void saveEntity(Medication medications) {
         medicationsDAO.saveEntity(medications);
     }
 
     @Override
-    public Medications getEntityByID(int id) {
+    public Medication getEntityByID(int id) {
         return medicationsDAO.getEntityByID(id);
     }
 
     @Override
-    public void updateEntity(Medications medications) {
+    public void updateEntity(Medication medications) {
         medicationsDAO.updateEntity(medications);
     }
 
     @Override
     public void removeEntityByID(int id) {
-        medicationsDAO.removeEntityByID(4);
+        medicationsDAO.removeEntityByID(id);
     }
 
     @Override
-    public List<Medications> getAll() {
+    public List<Medication> getAll() {
         return medicationsDAO.getAll();
     }
 
     @Override
-    public List<Medications> getMedicationsByManufacturer(int manufacturerID) {
+    public List<Medication> getMedicationsByManufacturer(int manufacturerID) {
         return medicationsDAO.getMedicationsByManufacturer(manufacturerID);
     }
 }

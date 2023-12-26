@@ -2,7 +2,7 @@ package org.example.jdbc.dao;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
-import org.example.models.hospital.Medications;
+import org.example.models.hospital.Medication;
 import org.example.interfaces.IMedicationsDAO;
 import org.example.util.ConnectionPool;
 
@@ -21,7 +21,7 @@ public class MedicationsDAO implements IMedicationsDAO {
     private final ManufacturersDAO manufacturersDAO = new ManufacturersDAO();
 
     @Override
-    public void saveEntity(Medications medications) {
+    public void saveEntity(Medication medications) {
         Connection connection = connectionPool.getConnection();
         manufacturersDAO.saveEntity(medications.getManufacturers());
         String query = "INSERT INTO manufacturers (medication_name, details, amount, manufacturer_id) VALUES ((?), (?), (?), (?))";
@@ -46,10 +46,10 @@ public class MedicationsDAO implements IMedicationsDAO {
 
 
     @Override
-    public Medications getEntityByID(int id) {
+    public Medication getEntityByID(int id) {
         Connection connection = connectionPool.getConnection();
         String query = "SELECT * FROM medications WHERE medication_id = (?)";
-        Medications medications = new Medications();
+        Medication medications = new Medication();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, id);
             statement.execute();
@@ -77,7 +77,7 @@ public class MedicationsDAO implements IMedicationsDAO {
     }
 
     @Override
-    public void updateEntity(Medications medications) {
+    public void updateEntity(Medication medications) {
         Connection connection = connectionPool.getConnection();
         String query = "UPDATE medications SET medication_name = (?), details = (?), amount = (?), manufacturer_id = (?)";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
@@ -120,15 +120,15 @@ public class MedicationsDAO implements IMedicationsDAO {
     }
 
     @Override
-    public List<Medications> getAll() {
+    public List<Medication> getAll() {
         Connection connection = connectionPool.getConnection();
         String query = "SELECT * FROM medications";
-        List<Medications> medicationsList = new ArrayList<>();
+        List<Medication> medicationsList = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.execute();
             try (ResultSet rs = statement.getResultSet()) {
                 while (rs.next()) {
-                    Medications medications = new Medications();
+                    Medication medications = new Medication();
                     medications.setMedicationID(rs.getInt("medication_id"));
                     medications.setMedicationName(rs.getString("medication_name"));
                     medications.setDetails(rs.getString("details"));
@@ -152,16 +152,16 @@ public class MedicationsDAO implements IMedicationsDAO {
     }
 
     @Override
-    public List<Medications> getMedicationsByManufacturer(int manufacturerID) {
+    public List<Medication> getMedicationsByManufacturer(int manufacturerID) {
         Connection connection = connectionPool.getConnection();
         String query = "SELECT * FROM medications WHERE medication_id = (?)";
-        List<Medications> medicationsList = new ArrayList<>();
+        List<Medication> medicationsList = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, manufacturerID);
             statement.execute();
             try (ResultSet rs = statement.getResultSet()) {
                 while(rs.next()) {
-                    Medications medications = new Medications();
+                    Medication medications = new Medication();
                     medications.setMedicationID(rs.getInt("medication_id"));
                     medications.setMedicationName(rs.getString("medication_name"));
                     medications.setDetails(rs.getString("details"));

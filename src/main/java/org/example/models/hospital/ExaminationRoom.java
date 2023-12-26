@@ -1,14 +1,14 @@
 package org.example.models.hospital;
 
-public class ExaminationRooms {
+public class ExaminationRoom {
 
     private int examinationRoomNo;
     private String roomType;
 
-    public ExaminationRooms() {
+    public ExaminationRoom() {
     }
 
-    public ExaminationRooms(int examinationRoomNo, String roomType) {
+    public ExaminationRoom(int examinationRoomNo, String roomType) {
         this.examinationRoomNo = examinationRoomNo;
         this.roomType = roomType;
     }

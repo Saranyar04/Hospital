@@ -1,10 +1,8 @@
 package org.example.interfaces;
 
-import org.example.models.persons.Physicians;
+import org.example.models.persons.Physician;
 
-import java.util.List;
-
-public interface IPhysiciansDAO extends IBaseDAO<Physicians> {
+public interface IPhysiciansDAO extends IBaseDAO<Physician> {
 
     String getAddressByID(int departmentID);
 }

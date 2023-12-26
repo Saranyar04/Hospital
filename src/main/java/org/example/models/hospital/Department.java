@@ -1,16 +1,14 @@
 package org.example.models.hospital;
 
-import org.example.models.persons.Physicians;
-
-public class Departments {
+public class Department {
 
     private int departmentID;
     private String name;
 
-    public Departments() {
+    public Department() {
     }
 
-    public Departments(int departmentID, String name) {
+    public Department(int departmentID, String name) {
         this.departmentID = departmentID;
         this.name = name;
     }

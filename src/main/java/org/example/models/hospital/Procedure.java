@@ -1,16 +1,16 @@
 package org.example.models.hospital;
 
-public class Procedures {
+public class Procedure {
 
     private int procedureID;
     private String name;
     private Double cost;
     private String description;
 
-    public Procedures() {
+    public Procedure() {
     }
 
-    public Procedures(int procedureID, String name, Double cost, String description) {
+    public Procedure(int procedureID, String name, Double cost, String description) {
         this.procedureID = procedureID;
         this.name = name;
         this.cost = cost;

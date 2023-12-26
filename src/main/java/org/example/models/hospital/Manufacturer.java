@@ -1,15 +1,15 @@
 package org.example.models.hospital;
 
-public class Manufacturers {
+public class Manufacturer {
 
     private int manufacturerID;
     private String name;
     private String address;
 
-    public Manufacturers() {
+    public Manufacturer() {
     }
 
-    public Manufacturers(int manufacturerID, String name, String address) {
+    public Manufacturer(int manufacturerID, String name, String address) {
         this.manufacturerID = manufacturerID;
         this.name = name;
         this.address = address;

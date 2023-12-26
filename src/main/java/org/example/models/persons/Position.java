@@ -1,14 +1,14 @@
 package org.example.models.persons;
 
-public class Positions {
+public class Position {
 
     private int positionID;
     private String name;
 
-    public Positions() {
+    public Position() {
     }
 
-    public Positions(int positionID, String name) {
+    public Position(int positionID, String name) {
         this.positionID = positionID;
         this.name = name;
     }

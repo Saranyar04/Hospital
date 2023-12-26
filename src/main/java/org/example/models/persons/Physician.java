@@ -1,21 +1,21 @@
 package org.example.models.persons;
 
-import org.example.models.hospital.Departments;
+import org.example.models.hospital.Department;
 
-public class Physicians {
+public class Physician {
 
     private int physicianID;
     private String firstName;
     private String lastName;
     private String address;
-    private Departments departments;
-    private Positions positions;
-    private Specializations specializations;
+    private Department departments;
+    private Position positions;
+    private Specialization specializations;
 
-    public Physicians() {
+    public Physician() {
     }
 
-    public Physicians(int physicianID, String firstName, String lastName, String address, Departments departments, Positions positions, Specializations specializations) {
+    public Physician(int physicianID, String firstName, String lastName, String address, Department departments, Position positions, Specialization specializations) {
         this.physicianID = physicianID;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -57,27 +57,27 @@ public class Physicians {
         this.address = address;
     }
 
-    public Departments getDepartments() {
+    public Department getDepartments() {
         return departments;
     }
 
-    public void setDepartments(Departments departments) {
+    public void setDepartments(Department departments) {
         this.departments = departments;
     }
 
-    public Positions getPositions() {
+    public Position getPositions() {
         return positions;
     }
 
-    public void setPositions(Positions positions) {
+    public void setPositions(Position positions) {
         this.positions = positions;
     }
 
-    public Specializations getSpecializations() {
+    public Specialization getSpecializations() {
         return specializations;
     }
 
-    public void setSpecializations(Specializations specializations) {
+    public void setSpecializations(Specialization specializations) {
         this.specializations = specializations;
     }
 

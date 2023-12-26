@@ -2,7 +2,7 @@ package org.example.jdbc.dao;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
-import org.example.models.hospital.Departments;
+import org.example.models.hospital.Department;
 import org.example.interfaces.IDepartmentsDAO;
 import org.example.util.ConnectionPool;
 
@@ -20,7 +20,7 @@ public class DepartmentsDAO implements IDepartmentsDAO {
     private final ConnectionPool connectionPool = ConnectionPool.getInstance();
 
     @Override
-    public void saveEntity(Departments departments) {
+    public void saveEntity(Department departments) {
         Connection connection = connectionPool.getConnection();
         String query = "INSERT INTO departments (name) VALUES ((?))";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
@@ -40,10 +40,10 @@ public class DepartmentsDAO implements IDepartmentsDAO {
     }
 
     @Override
-    public Departments getEntityByID(int id) {
+    public Department getEntityByID(int id) {
         Connection connection = connectionPool.getConnection();
         String query = "SELECT * FROM departments WHERE department_id = (?)";
-        Departments departments = new Departments();
+        Department departments = new Department();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, id);
             statement.execute();
@@ -68,7 +68,7 @@ public class DepartmentsDAO implements IDepartmentsDAO {
     }
 
     @Override
-    public void updateEntity(Departments departments) {
+    public void updateEntity(Department departments) {
         Connection connection = connectionPool.getConnection();
         String query = "UPDATE departments SET name = (?) WHERE department_id = (?)";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
@@ -110,15 +110,15 @@ public class DepartmentsDAO implements IDepartmentsDAO {
     }
 
     @Override
-    public List<Departments> getAll() {
+    public List<Department> getAll() {
         Connection connection = connectionPool.getConnection();
         String query = "SELECT * FROM departments";
-        List<Departments> departmentsList = new ArrayList<>();
+        List<Department> departmentsList = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.execute();
             try (ResultSet rs = statement.getResultSet()) {
                 while (rs.next()) {
-                    Departments departments = new Departments();
+                    Department departments = new Department();
                     departments.setDepartmentID(rs.getInt("department_id"));
                     departments.setName(rs.getString("name"));
                     departmentsList.add(departments);
@@ -139,15 +139,15 @@ public class DepartmentsDAO implements IDepartmentsDAO {
     }
 
     @Override
-    public List<Departments> getDepartmentOrderByName() {
+    public List<Department> getDepartmentOrderByName() {
         Connection connection = connectionPool.getConnection();
         String query = "SELECT * FROM departments ORDER BY name";
-        List<Departments> departmentsList = new ArrayList<>();
+        List<Department> departmentsList = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.execute();
             try (ResultSet rs = statement.getResultSet()) {
                 while (rs.next()) {
-                    Departments departments = new Departments();
+                    Department departments = new Department();
                     departments.setDepartmentID(rs.getInt("department_id"));
                     departments.setName(rs.getString("name"));
                     departmentsList.add(departments);

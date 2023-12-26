@@ -1,22 +1,22 @@
 package org.example.models.hospital;
 
-import org.example.models.persons.Patients;
-import org.example.models.persons.Physicians;
+import org.example.models.persons.Patient;
+import org.example.models.persons.Physician;
 
 import java.util.Date;
 
-public class Prescriptions {
+public class Prescription {
 
     private int prescriptionID;
     private Date date;
-    private Physicians physicians;
-    private Patients patients;
-    private Medications medications;
+    private Physician physicians;
+    private Patient patients;
+    private Medication medications;
 
-    public Prescriptions() {
+    public Prescription() {
     }
 
-    public Prescriptions(int prescriptionID, Date date, Physicians physicians, Patients patients, Medications medications) {
+    public Prescription(int prescriptionID, Date date, Physician physicians, Patient patients, Medication medications) {
         this.prescriptionID = prescriptionID;
         this.date = date;
         this.physicians = physicians;
@@ -40,27 +40,27 @@ public class Prescriptions {
         this.date = date;
     }
 
-    public Physicians getPhysicians() {
+    public Physician getPhysicians() {
         return physicians;
     }
 
-    public void setPhysicians(Physicians physicians) {
+    public void setPhysicians(Physician physicians) {
         this.physicians = physicians;
     }
 
-    public Patients getPatients() {
+    public Patient getPatients() {
         return patients;
     }
 
-    public void setPatients(Patients patients) {
+    public void setPatients(Patient patients) {
         this.patients = patients;
     }
 
-    public Medications getMedications() {
+    public Medication getMedications() {
         return medications;
     }
 
-    public void setMedications(Medications medications) {
+    public void setMedications(Medication medications) {
         this.medications = medications;
     }
 

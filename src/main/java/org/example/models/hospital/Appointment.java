@@ -1,24 +1,24 @@
 package org.example.models.hospital;
 
-import org.example.models.persons.Nurses;
-import org.example.models.persons.Patients;
-import org.example.models.persons.Physicians;
+import org.example.models.persons.Nurse;
+import org.example.models.persons.Patient;
+import org.example.models.persons.Physician;
 
-public class Appointments {
+public class Appointment {
 
     private int appointmantID;
     private String startTime;
     private String EndTime;
-    private Patients patients;
-    private Physicians physicians;
-    private Nurses nurses;
-    private ExaminationRooms examinationRooms;
-    private Procedures procedures;
+    private Patient patients;
+    private Physician physicians;
+    private Nurse nurses;
+    private ExaminationRoom examinationRooms;
+    private Procedure procedures;
 
-    public Appointments() {
+    public Appointment() {
     }
 
-    public Appointments(int appointmantID, String startTime, String endTime, Patients patients, Physicians physicians, Nurses nurses, ExaminationRooms examinationRooms, Procedures procedures) {
+    public Appointment(int appointmantID, String startTime, String endTime, Patient patients, Physician physicians, Nurse nurses, ExaminationRoom examinationRooms, Procedure procedures) {
         this.appointmantID = appointmantID;
         this.startTime = startTime;
         EndTime = endTime;
@@ -53,43 +53,43 @@ public class Appointments {
         EndTime = endTime;
     }
 
-    public Patients getPatients() {
+    public Patient getPatients() {
         return patients;
     }
 
-    public void setPatients(Patients patients) {
+    public void setPatients(Patient patients) {
         this.patients = patients;
     }
 
-    public Physicians getPhysicians() {
+    public Physician getPhysicians() {
         return physicians;
     }
 
-    public void setPhysicians(Physicians physicians) {
+    public void setPhysicians(Physician physicians) {
         this.physicians = physicians;
     }
 
-    public Nurses getNurses() {
+    public Nurse getNurses() {
         return nurses;
     }
 
-    public void setNurses(Nurses nurses) {
+    public void setNurses(Nurse nurses) {
         this.nurses = nurses;
     }
 
-    public ExaminationRooms getExaminationRooms() {
+    public ExaminationRoom getExaminationRooms() {
         return examinationRooms;
     }
 
-    public void setExaminationRooms(ExaminationRooms examinationRooms) {
+    public void setExaminationRooms(ExaminationRoom examinationRooms) {
         this.examinationRooms = examinationRooms;
     }
 
-    public Procedures getProcedures() {
+    public Procedure getProcedures() {
         return procedures;
     }
 
-    public void setProcedures(Procedures procedures) {
+    public void setProcedures(Procedure procedures) {
         this.procedures = procedures;
     }
 

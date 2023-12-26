@@ -2,7 +2,7 @@ package org.example.services;
 
 import org.example.interfaces.IPositionsDAO;
 import org.example.jdbc.dao.PositionsDAO;
-import org.example.models.persons.Positions;
+import org.example.models.persons.Position;
 
 import java.util.List;
 
@@ -10,17 +10,17 @@ public class PositionsService implements IPositionsDAO {
 
     private final PositionsDAO positionsDAO = new PositionsDAO();
     @Override
-    public void saveEntity(Positions positions) {
+    public void saveEntity(Position positions) {
         positionsDAO.saveEntity(positions);
     }
 
     @Override
-    public Positions getEntityByID(int id) {
+    public Position getEntityByID(int id) {
         return positionsDAO.getEntityByID(id);
     }
 
     @Override
-    public void updateEntity(Positions positions) {
+    public void updateEntity(Position positions) {
         positionsDAO.updateEntity(positions);
     }
 
@@ -30,12 +30,12 @@ public class PositionsService implements IPositionsDAO {
     }
 
     @Override
-    public List<Positions> getAll() {
+    public List<Position> getAll() {
         return positionsDAO.getAll();
     }
 
     @Override
-    public List<Positions> getTopThree() {
+    public List<Position> getTopThree() {
         return positionsDAO.getTopThree();
     }
 }

@@ -2,7 +2,7 @@ package org.example.jdbc.dao;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
-import org.example.models.hospital.Appointments;
+import org.example.models.hospital.Appointment;
 import org.example.interfaces.IAppointmentDAO;
 import org.example.util.ConnectionPool;
 
@@ -25,16 +25,16 @@ public class AppointmentsDAO implements IAppointmentDAO {
     private final ProceduresDAO proceduresDAO = new ProceduresDAO();
 
     @Override
-    public List<Appointments> getAppointmentByPhysician(int id) {
+    public List<Appointment> getAppointmentByPhysician(int id) {
         Connection connection = connectionPool.getConnection();
         String query = "SELECT * FROM appointments WHERE physician_id = (?)";
-        List<Appointments> appointmentList = new ArrayList<>();
+        List<Appointment> appointmentList = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, id);
             statement.execute();
             try (ResultSet rs = statement.getResultSet()) {
                 while (rs.next()) {
-                    Appointments appointments = new Appointments();
+                    Appointment appointments = new Appointment();
                     appointments.setAppointmantID(rs.getInt("appointment_id"));
                     appointments.setStartTime(rs.getString("start_time"));
                     appointments.setEndTime(rs.getString("end_time"));
@@ -61,7 +61,7 @@ public class AppointmentsDAO implements IAppointmentDAO {
     }
 
     @Override
-    public void saveEntity(Appointments appointments) {
+    public void saveEntity(Appointment appointments) {
         Connection connection = connectionPool.getConnection();
         patientsDAO.saveEntity(appointments.getPatients());
         physiciansDAO.saveEntity(appointments.getPhysicians());
@@ -90,10 +90,10 @@ public class AppointmentsDAO implements IAppointmentDAO {
     }
 
     @Override
-    public Appointments getEntityByID(int id) {
+    public Appointment getEntityByID(int id) {
         Connection connection = connectionPool.getConnection();
         String query = "SELECT * FROM appointments WHERE apointment_id = (?)";
-        Appointments appointments = new Appointments();
+        Appointment appointments = new Appointment();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, id);
             statement.execute();
@@ -124,7 +124,7 @@ public class AppointmentsDAO implements IAppointmentDAO {
     }
 
     @Override
-    public void updateEntity(Appointments appointments) {
+    public void updateEntity(Appointment appointments) {
         Connection connection = connectionPool.getConnection();
         String query = "UPDATE appointments SET start_time = (?), end_time = (?), patient_id = (?), physician_id = (?), nurse_id = (?), examination_room_no = (?), procedure_id = (?) WHERE appointment_id = (?)";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
@@ -170,15 +170,15 @@ public class AppointmentsDAO implements IAppointmentDAO {
     }
 
     @Override
-    public List<Appointments> getAll() {
+    public List<Appointment> getAll() {
         Connection connection = connectionPool.getConnection();
         String query = "SELECT * FROM appointments";
-        List<Appointments> appointmentList = new ArrayList<>();
+        List<Appointment> appointmentList = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.execute();
             try (ResultSet rs = statement.getResultSet()) {
                 while (rs.next()) {
-                    Appointments appointments = new Appointments();
+                    Appointment appointments = new Appointment();
                     appointments.setAppointmantID(rs.getInt("appointment_id"));
                     appointments.setStartTime(rs.getString("start_time"));
                     appointments.setEndTime(rs.getString("end_time"));

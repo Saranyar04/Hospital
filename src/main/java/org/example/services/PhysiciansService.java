@@ -2,7 +2,7 @@ package org.example.services;
 
 import org.example.interfaces.IPhysiciansDAO;
 import org.example.jdbc.dao.PhysiciansDAO;
-import org.example.models.persons.Physicians;
+import org.example.models.persons.Physician;
 
 import java.util.List;
 
@@ -11,17 +11,17 @@ public class PhysiciansService implements IPhysiciansDAO {
     private final PhysiciansDAO physiciansDAO = new PhysiciansDAO();
 
     @Override
-    public void saveEntity(Physicians physicians) {
+    public void saveEntity(Physician physicians) {
         physiciansDAO.saveEntity(physicians);
     }
 
     @Override
-    public Physicians getEntityByID(int id) {
+    public Physician getEntityByID(int id) {
         return physiciansDAO.getEntityByID(id);
     }
 
     @Override
-    public void updateEntity(Physicians physicians) {
+    public void updateEntity(Physician physicians) {
         physiciansDAO.updateEntity(physicians);
     }
 
@@ -31,12 +31,12 @@ public class PhysiciansService implements IPhysiciansDAO {
     }
 
     @Override
-    public List<Physicians> getAll() {
+    public List<Physician> getAll() {
         return physiciansDAO.getAll();
     }
 
     @Override
     public String getAddressByID(int departmentID) {
-        return physiciansDAO.getAddressByID(5);
+        return physiciansDAO.getAddressByID(departmentID);
     }
 }

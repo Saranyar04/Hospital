@@ -2,7 +2,7 @@ package org.example.services;
 
 import org.example.interfaces.ISpecializationsDAO;
 import org.example.jdbc.dao.SpecializationsDAO;
-import org.example.models.persons.Specializations;
+import org.example.models.persons.Specialization;
 
 import java.util.List;
 
@@ -11,17 +11,17 @@ public class SpecializationsService implements ISpecializationsDAO {
     private final SpecializationsDAO specializationsDAO = new SpecializationsDAO();
 
     @Override
-    public void saveEntity(Specializations specializations) {
+    public void saveEntity(Specialization specializations) {
         specializationsDAO.saveEntity(specializations);
     }
 
     @Override
-    public Specializations getEntityByID(int id) {
+    public Specialization getEntityByID(int id) {
         return specializationsDAO.getEntityByID(id);
     }
 
     @Override
-    public void updateEntity(Specializations specializations) {
+    public void updateEntity(Specialization specializations) {
         specializationsDAO.updateEntity(specializations);
     }
 
@@ -31,7 +31,7 @@ public class SpecializationsService implements ISpecializationsDAO {
     }
 
     @Override
-    public List<Specializations> getAll() {
+    public List<Specialization> getAll() {
         return specializationsDAO.getAll();
     }
 

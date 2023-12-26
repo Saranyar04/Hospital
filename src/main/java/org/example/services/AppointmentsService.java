@@ -2,7 +2,7 @@ package org.example.services;
 
 import org.example.interfaces.IAppointmentDAO;
 import org.example.jdbc.dao.AppointmentsDAO;
-import org.example.models.hospital.Appointments;
+import org.example.models.hospital.Appointment;
 
 import java.util.List;
 
@@ -11,22 +11,22 @@ public class AppointmentsService implements IAppointmentDAO {
     private final AppointmentsDAO appointmentsDAO = new AppointmentsDAO();
 
     @Override
-    public List<Appointments> getAppointmentByPhysician(int id) {
+    public List<Appointment> getAppointmentByPhysician(int id) {
         return appointmentsDAO.getAppointmentByPhysician(id);
     }
 
     @Override
-    public void saveEntity(Appointments appointments) {
+    public void saveEntity(Appointment appointments) {
         appointmentsDAO.saveEntity(appointments);
     }
 
     @Override
-    public Appointments getEntityByID(int id) {
+    public Appointment getEntityByID(int id) {
         return appointmentsDAO.getEntityByID(id);
     }
 
     @Override
-    public void updateEntity(Appointments appointments) {
+    public void updateEntity(Appointment appointments) {
         appointmentsDAO.updateEntity(appointments);
     }
 
@@ -36,7 +36,7 @@ public class AppointmentsService implements IAppointmentDAO {
     }
 
     @Override
-    public List<Appointments> getAll() {
+    public List<Appointment> getAll() {
         return appointmentsDAO.getAll();
     }
 }

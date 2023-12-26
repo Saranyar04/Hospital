@@ -1,10 +1,10 @@
 package org.example.interfaces;
 
-import org.example.models.hospital.ExaminationRooms;
+import org.example.models.hospital.ExaminationRoom;
 
 import java.util.List;
 
-public interface IExaminationRoomsDAO extends IBaseDAO<ExaminationRooms> {
+public interface IExaminationRoomsDAO extends IBaseDAO<ExaminationRoom> {
 
-    List<ExaminationRooms> getRoomsbyType(String roomType);
+    List<ExaminationRoom> getRoomsbyType(String roomType);
 }

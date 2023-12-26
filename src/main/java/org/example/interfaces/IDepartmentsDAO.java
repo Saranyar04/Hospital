@@ -1,10 +1,10 @@
 package org.example.interfaces;
 
-import org.example.models.hospital.Departments;
+import org.example.models.hospital.Department;
 
 import java.util.List;
 
-public interface IDepartmentsDAO extends IBaseDAO<Departments> {
+public interface IDepartmentsDAO extends IBaseDAO<Department> {
 
-    public List<Departments> getDepartmentOrderByName();
+    public List<Department> getDepartmentOrderByName();
 }

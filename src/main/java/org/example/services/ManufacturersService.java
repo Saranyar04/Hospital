@@ -2,7 +2,7 @@ package org.example.services;
 
 import org.example.interfaces.IManufacturersDAO;
 import org.example.jdbc.dao.ManufacturersDAO;
-import org.example.models.hospital.Manufacturers;
+import org.example.models.hospital.Manufacturer;
 
 import java.util.List;
 
@@ -11,17 +11,17 @@ public class ManufacturersService implements IManufacturersDAO {
     private final ManufacturersDAO manufacturersDAO = new ManufacturersDAO();
 
     @Override
-    public void saveEntity(Manufacturers manufacturers) {
+    public void saveEntity(Manufacturer manufacturers) {
         manufacturersDAO.saveEntity(manufacturers);
     }
 
     @Override
-    public Manufacturers getEntityByID(int id) {
-        return manufacturersDAO.getEntityByID(5);
+    public Manufacturer getEntityByID(int id) {
+        return manufacturersDAO.getEntityByID(id);
     }
 
     @Override
-    public void updateEntity(Manufacturers manufacturers) {
+    public void updateEntity(Manufacturer manufacturers) {
         manufacturersDAO.updateEntity(manufacturers);
     }
 
@@ -31,7 +31,7 @@ public class ManufacturersService implements IManufacturersDAO {
     }
 
     @Override
-    public List<Manufacturers> getAll() {
+    public List<Manufacturer> getAll() {
         return manufacturersDAO.getAll();
     }
 

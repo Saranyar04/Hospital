@@ -2,7 +2,7 @@ package org.example.jdbc.dao;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
-import org.example.models.hospital.Manufacturers;
+import org.example.models.hospital.Manufacturer;
 import org.example.interfaces.IManufacturersDAO;
 import org.example.util.ConnectionPool;
 
@@ -20,7 +20,7 @@ public class ManufacturersDAO implements IManufacturersDAO {
     private final ConnectionPool connectionPool = ConnectionPool.getInstance();
 
     @Override
-    public void saveEntity(Manufacturers manufacturers) {
+    public void saveEntity(Manufacturer manufacturers) {
         Connection connection = connectionPool.getConnection();
         String query = "INSERT INTO manufacturers (name, address) VALUES ((?), (?))";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
@@ -41,10 +41,10 @@ public class ManufacturersDAO implements IManufacturersDAO {
     }
 
     @Override
-    public Manufacturers getEntityByID(int id) {
+    public Manufacturer getEntityByID(int id) {
         Connection connection = connectionPool.getConnection();
         String query = "SELECT * FROM manufacturers WHERE manufacturer_id = (?)";
-        Manufacturers manufacturers = new Manufacturers();
+        Manufacturer manufacturers = new Manufacturer();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, id);
             statement.execute();
@@ -70,7 +70,7 @@ public class ManufacturersDAO implements IManufacturersDAO {
     }
 
     @Override
-    public void updateEntity(Manufacturers manufacturers) {
+    public void updateEntity(Manufacturer manufacturers) {
         Connection connection = connectionPool.getConnection();
         String query = "UPDATE manufacturers SET name = (?), address = (?) WHERE manufacturer_id = (?)";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
@@ -111,15 +111,15 @@ public class ManufacturersDAO implements IManufacturersDAO {
     }
 
     @Override
-    public List<Manufacturers> getAll() {
+    public List<Manufacturer> getAll() {
         Connection connection = connectionPool.getConnection();
         String query = "SELECT * FROM manufacturers";
-        List<Manufacturers> manufacturersList = new ArrayList<>();
+        List<Manufacturer> manufacturersList = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.execute();
             try (ResultSet rs = statement.getResultSet()) {
                 while (rs.next()) {
-                    Manufacturers manufacturers = new Manufacturers();
+                    Manufacturer manufacturers = new Manufacturer();
                     manufacturers.setManufacturerID(rs.getInt("manufacturer_id"));
                     manufacturers.setName(rs.getString("name"));
                     manufacturers.setAddress(rs.getString("address"));

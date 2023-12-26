@@ -1,8 +1,8 @@
 package org.example.interfaces;
 
-import org.example.models.hospital.Procedures;
+import org.example.models.hospital.Procedure;
 
-public interface IProceduresDAO extends IBaseDAO<Procedures>{
+public interface IProceduresDAO extends IBaseDAO<Procedure>{
 
-    Procedures getTopProcedure();
+    Procedure getTopProcedure();
 }

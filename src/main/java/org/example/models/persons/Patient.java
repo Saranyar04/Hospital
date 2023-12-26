@@ -2,19 +2,19 @@ package org.example.models.persons;
 
 import java.util.Date;
 
-public class Patients {
+public class Patient {
 
     private int patientID;
     private String firstName;
     private String lastName;
     private Date dateOfBirth;
     private String address;
-    private Physicians physicians;
+    private Physician physicians;
 
-    public Patients() {
+    public Patient() {
     }
 
-    public Patients(int patientID, String firstName, String lastName, Date dateOfBirth, String address, Physicians physicians) {
+    public Patient(int patientID, String firstName, String lastName, Date dateOfBirth, String address, Physician physicians) {
         this.patientID = patientID;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -63,11 +63,11 @@ public class Patients {
         this.address = address;
     }
 
-    public Physicians getPhysicians() {
+    public Physician getPhysicians() {
         return physicians;
     }
 
-    public void setPhysicians(Physicians physicians) {
+    public void setPhysicians(Physician physicians) {
         this.physicians = physicians;
     }
 

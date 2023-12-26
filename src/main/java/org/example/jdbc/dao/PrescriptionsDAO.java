@@ -2,7 +2,7 @@ package org.example.jdbc.dao;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
-import org.example.models.hospital.Prescriptions;
+import org.example.models.hospital.Prescription;
 import org.example.interfaces.IPrescriptionsDAO;
 import org.example.util.ConnectionPool;
 
@@ -23,7 +23,7 @@ public class PrescriptionsDAO implements IPrescriptionsDAO {
     private final MedicationsDAO medicationsDAO = new MedicationsDAO();
 
     @Override
-    public void saveEntity(Prescriptions prescriptions) {
+    public void saveEntity(Prescription prescriptions) {
         Connection connection = connectionPool.getConnection();
         physiciansDAO.saveEntity(prescriptions.getPhysicians());
         patientsDAO.saveEntity(prescriptions.getPatients());
@@ -50,10 +50,10 @@ public class PrescriptionsDAO implements IPrescriptionsDAO {
 
 
     @Override
-    public Prescriptions getEntityByID(int id) {
+    public Prescription getEntityByID(int id) {
         Connection connection = connectionPool.getConnection();
         String query = "SELECT * FROM prescriptions WHERE prescription_id = (?)";
-        Prescriptions prescriptions = new Prescriptions();
+        Prescription prescriptions = new Prescription();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, id);
             statement.execute();
@@ -81,7 +81,7 @@ public class PrescriptionsDAO implements IPrescriptionsDAO {
     }
 
     @Override
-    public void updateEntity(Prescriptions prescriptions) {
+    public void updateEntity(Prescription prescriptions) {
         Connection connection = connectionPool.getConnection();
         String query = "UPDATE prescriptions SET medication_id = (?) WHERE prescription_id = (?)";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
@@ -123,15 +123,15 @@ public class PrescriptionsDAO implements IPrescriptionsDAO {
     }
 
     @Override
-    public List<Prescriptions> getAll() {
+    public List<Prescription> getAll() {
         Connection connection = connectionPool.getConnection();
         String query = "SELECT * FROM prescriptions";
-        List<Prescriptions> prescriptionsList = new ArrayList<>();
+        List<Prescription> prescriptionsList = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.execute();
             try (ResultSet rs = statement.getResultSet()) {
                 while (rs.next()) {
-                    Prescriptions prescriptions = new Prescriptions();
+                    Prescription prescriptions = new Prescription();
                     prescriptions.setPrescriptionID(rs.getInt("prescription_id"));
                     prescriptions.setDate(rs.getDate("date"));
                     prescriptions.setPhysicians(physiciansDAO.getEntityByID(rs.getInt("physician_id")));
@@ -155,16 +155,16 @@ public class PrescriptionsDAO implements IPrescriptionsDAO {
     }
 
     @Override
-    public List<Prescriptions> getPrescriptionByPatient(int patientID) {
+    public List<Prescription> getPrescriptionByPatient(int patientID) {
         Connection connection = connectionPool.getConnection();
         String query = "SELECT * FROM prescriptions WHERE patient_id = (?)";
-        List<Prescriptions> prescriptionsList = new ArrayList<>();
+        List<Prescription> prescriptionsList = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, patientID);
             statement.execute();
             try (ResultSet rs = statement.getResultSet()) {
                 while (rs.next()) {
-                    Prescriptions prescriptions = new Prescriptions();
+                    Prescription prescriptions = new Prescription();
                     prescriptions.setPrescriptionID(rs.getInt("prescription_id"));
                     prescriptions.setDate(rs.getDate("date"));
                     prescriptions.setPhysicians(physiciansDAO.getEntityByID(rs.getInt("physician_id")));

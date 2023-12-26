@@ -1,10 +1,10 @@
 package org.example.interfaces;
 
-import org.example.models.hospital.Medications;
+import org.example.models.hospital.Medication;
 
 import java.util.List;
 
-public interface IMedicationsDAO extends IBaseDAO<Medications>{
+public interface IMedicationsDAO extends IBaseDAO<Medication>{
 
-    List<Medications> getMedicationsByManufacturer(int manufacturerID);
+    List<Medication> getMedicationsByManufacturer(int manufacturerID);
 }

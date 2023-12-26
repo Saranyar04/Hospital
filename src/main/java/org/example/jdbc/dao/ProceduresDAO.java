@@ -2,7 +2,7 @@ package org.example.jdbc.dao;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
-import org.example.models.hospital.Procedures;
+import org.example.models.hospital.Procedure;
 import org.example.interfaces.IProceduresDAO;
 import org.example.util.ConnectionPool;
 
@@ -20,7 +20,7 @@ public class ProceduresDAO implements IProceduresDAO {
     private final ConnectionPool connectionPool = ConnectionPool.getInstance();
 
     @Override
-    public void saveEntity(Procedures procedures) {
+    public void saveEntity(Procedure procedures) {
         Connection connection = connectionPool.getConnection();
         String query = "INSERT INTO procedures (name, cost, description) VALUES ((?), (?), (?))";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
@@ -42,10 +42,10 @@ public class ProceduresDAO implements IProceduresDAO {
     }
 
     @Override
-    public Procedures getEntityByID(int id) {
+    public Procedure getEntityByID(int id) {
         Connection connection = connectionPool.getConnection();
         String query = "SELECT * FROM procedures WHERE procedure_id = (?)";
-        Procedures procedures = new Procedures();
+        Procedure procedures = new Procedure();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, id);
             statement.execute();
@@ -72,7 +72,7 @@ public class ProceduresDAO implements IProceduresDAO {
     }
 
     @Override
-    public void updateEntity(Procedures procedures) {
+    public void updateEntity(Procedure procedures) {
         Connection connection = connectionPool.getConnection();
         String query = "UPDATE procedures SET cost = (?) WHERE procedure_id = (?)";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
@@ -113,15 +113,15 @@ public class ProceduresDAO implements IProceduresDAO {
     }
 
     @Override
-    public List<Procedures> getAll() {
+    public List<Procedure> getAll() {
         Connection connection = connectionPool.getConnection();
         String query = "SELECT * FROM procedures";
-        List<Procedures> proceduresList = new ArrayList<>();
+        List<Procedure> proceduresList = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.execute();
             try (ResultSet rs = statement.getResultSet()) {
                 while (rs.next()) {
-                    Procedures procedures = new Procedures();
+                    Procedure procedures = new Procedure();
                     procedures.setProcedureID(rs.getInt("procedure_id"));
                     procedures.setName(rs.getString("name"));
                     procedures.setCost(rs.getDouble("cost"));
@@ -143,10 +143,10 @@ public class ProceduresDAO implements IProceduresDAO {
         return proceduresList;
     }
     @Override
-    public Procedures getTopProcedure() {
+    public Procedure getTopProcedure() {
         Connection connection = connectionPool.getConnection();
         String query = "SELECT * FROM procedures ORDER BY cost DESC LIMIT 1";
-        Procedures procedures = new Procedures();
+        Procedure procedures = new Procedure();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.execute();
             try (ResultSet rs = statement.getResultSet()) {

@@ -3,7 +3,7 @@ package org.example.jdbc.dao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 import org.example.interfaces.IPhysiciansDAO;
-import org.example.models.persons.Physicians;
+import org.example.models.persons.Physician;
 import org.example.util.ConnectionPool;
 
 import java.lang.invoke.MethodHandles;
@@ -23,7 +23,7 @@ public class PhysiciansDAO implements IPhysiciansDAO {
     private final SpecializationsDAO specializationsDAO = new SpecializationsDAO();
 
     @Override
-    public void saveEntity(Physicians physicians) {
+    public void saveEntity(Physician physicians) {
         Connection connection = connectionPool.getConnection();
         departmentsDAO.saveEntity(physicians.getDepartments());
         positionsDAO.saveEntity(physicians.getPositions());
@@ -52,10 +52,10 @@ public class PhysiciansDAO implements IPhysiciansDAO {
 
 
     @Override
-    public Physicians getEntityByID(int id) {
+    public Physician getEntityByID(int id) {
         Connection connection = connectionPool.getConnection();
         String query = "SELECT * FROM physicians WHERE physician_id = (?)";
-        Physicians physicians = new Physicians();
+        Physician physicians = new Physician();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, id);
             statement.execute();
@@ -85,7 +85,7 @@ public class PhysiciansDAO implements IPhysiciansDAO {
     }
 
     @Override
-    public void updateEntity(Physicians physicians) {
+    public void updateEntity(Physician physicians) {
         Connection connection = connectionPool.getConnection();
         String query = "UPDATE physicians SET first_name = (?), last_name = (?) WHERE physician_id = (?)";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
@@ -128,15 +128,15 @@ public class PhysiciansDAO implements IPhysiciansDAO {
     }
 
     @Override
-    public List<Physicians> getAll() {
+    public List<Physician> getAll() {
         Connection connection = connectionPool.getConnection();
         String query = "SELECT * FROM physicians";
-        List<Physicians> physiciansList = new ArrayList<>();
+        List<Physician> physiciansList = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.execute();
             try (ResultSet rs = statement.getResultSet()) {
                 while (rs.next()) {
-                    Physicians physicians = new Physicians();
+                    Physician physicians = new Physician();
                     physicians.setPhysicianID(rs.getInt("physician_id"));
                     physicians.setFirstName(rs.getString("first_name"));
                     physicians.setLastName(rs.getString("last_name"));

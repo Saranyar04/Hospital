@@ -3,7 +3,7 @@ package org.example.jdbc.dao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 import org.example.interfaces.IPositionsDAO;
-import org.example.models.persons.Positions;
+import org.example.models.persons.Position;
 import org.example.util.ConnectionPool;
 
 import java.lang.invoke.MethodHandles;
@@ -20,7 +20,7 @@ public class PositionsDAO implements IPositionsDAO {
     private final ConnectionPool connectionPool = ConnectionPool.getInstance();
 
     @Override
-    public void saveEntity(Positions positions) {
+    public void saveEntity(Position positions) {
         Connection connection = connectionPool.getConnection();
         String query = "INSERT INTO positions (name) VALUES (?)";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
@@ -40,10 +40,10 @@ public class PositionsDAO implements IPositionsDAO {
     }
 
     @Override
-    public Positions getEntityByID(int id) {
+    public Position getEntityByID(int id) {
         Connection connection = connectionPool.getConnection();
         String query = "SELECT * FROM positions WHERE position_id = (?)";
-        Positions position = new Positions();
+        Position position = new Position();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, id);
             statement.execute();
@@ -68,7 +68,7 @@ public class PositionsDAO implements IPositionsDAO {
     }
 
     @Override
-    public void updateEntity(Positions positions) {
+    public void updateEntity(Position positions) {
         Connection connection = connectionPool.getConnection();
         String query = "UPDATE positions SET name = (?) WHERE position_id = (?)";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
@@ -110,15 +110,15 @@ public class PositionsDAO implements IPositionsDAO {
     }
 
     @Override
-    public List<Positions> getAll() {
+    public List<Position> getAll() {
         Connection connection = connectionPool.getConnection();
         String query = "SELECT * FROM positions";
-        List<Positions> positionsList = new ArrayList<>();
+        List<Position> positionsList = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.execute();
             try (ResultSet rs = statement.getResultSet()) {
                 while (rs.next()) {
-                    Positions positions = new Positions();
+                    Position positions = new Position();
                     positions.setPositionID(rs.getInt("position_id"));
                     positions.setName(rs.getString("name"));
                     positionsList.add(positions);
@@ -139,15 +139,15 @@ public class PositionsDAO implements IPositionsDAO {
     }
 
     @Override
-    public List<Positions> getTopThree() {
+    public List<Position> getTopThree() {
         Connection connection = connectionPool.getConnection();
         String query = "SELECT * FROM positions LIMIT 3";
-        List<Positions> positionsList = new ArrayList<>();
+        List<Position> positionsList = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.execute();
             try (ResultSet rs = statement.getResultSet()) {
                 while (rs.next()) {
-                    Positions positions = new Positions();
+                    Position positions = new Position();
                     positions.setPositionID(rs.getInt("position_id"));
                     positions.setName(rs.getString("name"));
                     positionsList.add(positions);

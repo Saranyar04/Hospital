@@ -1,16 +1,16 @@
 package org.example.models.persons;
 
-public class Nurses {
+public class Nurse {
 
     private int nurseID;
     private String firstName;
     private String lastName;
-    private Positions positions;
+    private Position positions;
 
-    public Nurses() {
+    public Nurse() {
     }
 
-    public Nurses(int nurseID, String firstName, String lastName, Positions positions) {
+    public Nurse(int nurseID, String firstName, String lastName, Position positions) {
         this.nurseID = nurseID;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -41,11 +41,11 @@ public class Nurses {
         this.lastName = lastName;
     }
 
-    public Positions getPositions() {
+    public Position getPositions() {
         return positions;
     }
 
-    public void setPositions(Positions positions) {
+    public void setPositions(Position positions) {
         this.positions = positions;
     }
 

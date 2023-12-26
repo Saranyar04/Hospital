@@ -1,10 +1,10 @@
 package org.example.interfaces;
 
-import org.example.models.persons.Nurses;
+import org.example.models.persons.Nurse;
 
 import java.util.List;
 
-public interface INursesDAO extends IBaseDAO<Nurses>{
+public interface INursesDAO extends IBaseDAO<Nurse>{
 
-    List<Nurses> getNurseByPositions(int positionID);
+    List<Nurse> getNurseByPositions(int positionID);
 }
