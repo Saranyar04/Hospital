@@ -3,6 +3,7 @@ package org.example;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 import org.example.models.hospital.*;
+import org.example.models.persons.Positions;
 import org.example.services.*;
 
 import java.util.List;
@@ -41,5 +42,8 @@ public class Main {
 
         PositionsService positionsService = new PositionsService();
         LOGGER.info("Top 3 positions : " + positionsService.getTopThree());
+        Positions positions = positionsService.getEntityByID(4);
+        positions.setName("Mid-Level");
+        positionsService.updateEntity(positions);
     }
 }

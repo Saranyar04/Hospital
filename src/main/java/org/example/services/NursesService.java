@@ -7,6 +7,7 @@ import org.example.models.persons.Nurses;
 import java.util.List;
 
 public class NursesService implements INursesDAO {
+
     private final NursesDAO nursesDAO = new NursesDAO();
 
     @Override

@@ -10,7 +10,6 @@ public class Departments {
     public Departments() {
     }
 
-
     public Departments(int departmentID, String name) {
         this.departmentID = departmentID;
         this.name = name;
@@ -31,7 +30,6 @@ public class Departments {
     public void setName(String name) {
         this.name = name;
     }
-
 
     @Override
     public String toString() {
