@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface IPositionsDAO extends IBaseDAO<Position>{
 
-    List<Position> getTopThree();
+    List<Position> getTopPosition(int limit);
 }

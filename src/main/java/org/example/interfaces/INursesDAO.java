@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface INursesDAO extends IBaseDAO<Nurse>{
 
-    List<Nurse> getNurseByPositions(int positionID);
+    List<Nurse> getNurseByPositionID(int positionID);
 }

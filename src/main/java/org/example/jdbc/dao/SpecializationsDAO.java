@@ -49,7 +49,7 @@ public class SpecializationsDAO implements ISpecializationsDAO {
             statement.execute( );
             try (ResultSet rs = statement.getResultSet( )) {
                 while (rs.next( )) {
-                    specializations.setSpcializationID(rs.getInt("specialization_id"));
+                    specializations.setSpecializationID(rs.getInt("specialization_id"));
                     specializations.setName(rs.getString("name"));
                 }
             }
@@ -73,7 +73,7 @@ public class SpecializationsDAO implements ISpecializationsDAO {
         String query = "UPDATE specializations SET name = (?) WHERE specialization_id = (?)";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, specializations.getName( ));
-            statement.setInt(2, specializations.getSpcializationID( ));
+            statement.setInt(2, specializations.getSpecializationID( ));
         } catch (SQLException e) {
             LOGGER.error(e);
         } finally {
@@ -118,7 +118,7 @@ public class SpecializationsDAO implements ISpecializationsDAO {
             try (ResultSet rs = statement.getResultSet()) {
                 while (rs.next()) {
                     Specialization specializations = new Specialization();
-                    specializations.setSpcializationID(rs.getInt("specialization_id"));
+                    specializations.setSpecializationID(rs.getInt("specialization_id"));
                     specializations.setName(rs.getString("name"));
                     specializationsList.add(specializations);
                 }

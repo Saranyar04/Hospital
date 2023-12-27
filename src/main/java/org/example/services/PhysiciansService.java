@@ -11,8 +11,8 @@ public class PhysiciansService implements IPhysiciansDAO {
     private final PhysiciansDAO physiciansDAO = new PhysiciansDAO();
 
     @Override
-    public void saveEntity(Physician physicians) {
-        physiciansDAO.saveEntity(physicians);
+    public void saveEntity(Physician physician) {
+        physiciansDAO.saveEntity(physician);
     }
 
     @Override
@@ -21,8 +21,8 @@ public class PhysiciansService implements IPhysiciansDAO {
     }
 
     @Override
-    public void updateEntity(Physician physicians) {
-        physiciansDAO.updateEntity(physicians);
+    public void updateEntity(Physician physician) {
+        physiciansDAO.updateEntity(physician);
     }
 
     @Override

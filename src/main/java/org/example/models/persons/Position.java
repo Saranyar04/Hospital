@@ -31,7 +31,7 @@ public class Position {
 
     @Override
     public String toString() {
-        return "Positions{" +
+        return "Position{" +
                 "positionID=" + positionID +
                 ", name='" + name + '\'' +
                 '}';

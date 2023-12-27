@@ -25,17 +25,17 @@ public class PhysiciansDAO implements IPhysiciansDAO {
     @Override
     public void saveEntity(Physician physicians) {
         Connection connection = connectionPool.getConnection();
-        departmentsDAO.saveEntity(physicians.getDepartments());
-        positionsDAO.saveEntity(physicians.getPositions());
-        specializationsDAO.saveEntity(physicians.getSpecializations());
+        departmentsDAO.saveEntity(physicians.getDepartment());
+        positionsDAO.saveEntity(physicians.getPosition());
+        specializationsDAO.saveEntity(physicians.getSpecialization());
         String query = "INSERT INTO physicians (first_name, last_name, address, department_id, position_id, specialization_id) VALUES ((?), (?), (?), (?), (?), (?))";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, physicians.getFirstName());
             statement.setString(2, physicians.getLastName());
             statement.setString(3, physicians.getAddress());
-            statement.setInt(4, physicians.getDepartments().getDepartmentID());
-            statement.setInt(5, physicians.getPositions().getPositionID());
-            statement.setInt(6, physicians.getSpecializations().getSpcializationID());
+            statement.setInt(4, physicians.getDepartment().getDepartmentID());
+            statement.setInt(5, physicians.getPosition().getPositionID());
+            statement.setInt(6, physicians.getSpecialization().getSpecializationID());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.error(e);
@@ -65,9 +65,9 @@ public class PhysiciansDAO implements IPhysiciansDAO {
                     physicians.setFirstName(rs.getString("first_name"));
                     physicians.setLastName(rs.getString("last_name"));
                     physicians.setAddress(rs.getString("address"));
-                    physicians.setDepartments(departmentsDAO.getEntityByID(rs.getInt("department_id")));
-                    physicians.setPositions(positionsDAO.getEntityByID(rs.getInt("position_id")));
-                    physicians.setSpecializations(specializationsDAO.getEntityByID(rs.getInt("specialization_id")));
+                    physicians.setDepartment(departmentsDAO.getEntityByID(rs.getInt("department_id")));
+                    physicians.setPosition(positionsDAO.getEntityByID(rs.getInt("position_id")));
+                    physicians.setSpecialization(specializationsDAO.getEntityByID(rs.getInt("specialization_id")));
                 }
             }
         } catch(SQLException e){
@@ -141,9 +141,9 @@ public class PhysiciansDAO implements IPhysiciansDAO {
                     physicians.setFirstName(rs.getString("first_name"));
                     physicians.setLastName(rs.getString("last_name"));
                     physicians.setAddress(rs.getString("address"));
-                    physicians.setDepartments(departmentsDAO.getEntityByID(rs.getInt("department_id")));
-                    physicians.setPositions(positionsDAO.getEntityByID(rs.getInt("position_id")));
-                    physicians.setSpecializations(specializationsDAO.getEntityByID(rs.getInt("specilization_id")));
+                    physicians.setDepartment(departmentsDAO.getEntityByID(rs.getInt("department_id")));
+                    physicians.setPosition(positionsDAO.getEntityByID(rs.getInt("position_id")));
+                    physicians.setSpecialization(specializationsDAO.getEntityByID(rs.getInt("specilization_id")));
                     physiciansList.add(physicians);
                 }
             }

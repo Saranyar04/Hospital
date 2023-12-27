@@ -11,8 +11,8 @@ public class ProceduresService implements IProceduresDAO {
     private final ProceduresDAO proceduresDAO = new ProceduresDAO();
 
     @Override
-    public void saveEntity(Procedure procedures) {
-        proceduresDAO.saveEntity(procedures);
+    public void saveEntity(Procedure procedure) {
+        proceduresDAO.saveEntity(procedure);
     }
 
     @Override
@@ -21,8 +21,8 @@ public class ProceduresService implements IProceduresDAO {
     }
 
     @Override
-    public void updateEntity(Procedure procedures) {
-        proceduresDAO.updateEntity(procedures);
+    public void updateEntity(Procedure procedure) {
+        proceduresDAO.updateEntity(procedure);
     }
 
     @Override

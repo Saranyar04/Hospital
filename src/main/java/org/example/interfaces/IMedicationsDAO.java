@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface IMedicationsDAO extends IBaseDAO<Medication>{
 
-    List<Medication> getMedicationsByManufacturer(int manufacturerID);
+    List<Medication> getMedicationsByManufacturerID(int manufacturerID);
 }

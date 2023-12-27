@@ -13,19 +13,22 @@ public class Main {
 
     public static void main(String[] args) {
         AppointmentsService appointmentsService = new AppointmentsService();
-        List<Appointment> appointmentsList = appointmentsService.getAppointmentByPhysician(14);
+        List<Appointment> appointmentsList = appointmentsService.getAppointmentByPhysicianID(14);
         LOGGER.info(appointmentsList);
 
-        DepartmentHasNurseSrevice departmentHasNurseSrevice = new DepartmentHasNurseSrevice();
-        DepartmentsHasNurse departmentsHasNurse = departmentHasNurseSrevice.getEntityByID(3);
+        DepartmentHasNurseService departmentHasNurseService = new DepartmentHasNurseService();
+        DepartmentsHasNurse departmentsHasNurse = departmentHasNurseService.getEntityByID(3);
         LOGGER.info(departmentsHasNurse);
 
         DepartmentsService departmentsService = new DepartmentsService();
-        List<Department> departmentsList = departmentsService.getDepartmentOrderByName();
+        List<Department> departmentsList = departmentsService.getDepartmentSortedByName();
         LOGGER.info(departmentsList);
+        Department department = departmentsService.getEntityByID(3);
+        department.setNursesList(departmentHasNurseService.addNursesToDepartment(department));
+        LOGGER.info(department.getNursesList());
 
         ExaminationRoomsService examinationRoomsService = new ExaminationRoomsService();
-        List<ExaminationRoom> examinationRoomsList = examinationRoomsService.getRoomsbyType("private");
+        List<ExaminationRoom> examinationRoomsList = examinationRoomsService.getRoomsByType("private");
         LOGGER.info(examinationRoomsList);
 
         ManufacturersService manufacturersService = new ManufacturersService();
@@ -33,17 +36,18 @@ public class Main {
         LOGGER.info(address);
 
         ProceduresService proceduresService = new ProceduresService();
-        Procedure procedures = proceduresService.getTopProcedure();
-        LOGGER.info("Top Procedure : " + procedures);
+        Procedure procedure = proceduresService.getTopProcedure();
+        LOGGER.info("Top Procedure : " + procedure);
 
         SpecializationsService specializationsService = new SpecializationsService();
         int count = specializationsService.getCountOfSpecialization();
         LOGGER.info("No of Specializations : " + count);
 
         PositionsService positionsService = new PositionsService();
-        LOGGER.info("Top 3 positions : " + positionsService.getTopThree());
-        Position positions = positionsService.getEntityByID(4);
-        positions.setName("Mid-Level");
-        positionsService.updateEntity(positions);
+        LOGGER.info("Top positions : " + positionsService.getTopPosition(3));
+        Position position = positionsService.getEntityByID(4);
+        position.setName("Mid-Level");
+        positionsService.updateEntity(position);
+
     }
 }

@@ -11,8 +11,8 @@ public class SpecializationsService implements ISpecializationsDAO {
     private final SpecializationsDAO specializationsDAO = new SpecializationsDAO();
 
     @Override
-    public void saveEntity(Specialization specializations) {
-        specializationsDAO.saveEntity(specializations);
+    public void saveEntity(Specialization specialization) {
+        specializationsDAO.saveEntity(specialization);
     }
 
     @Override
@@ -21,8 +21,8 @@ public class SpecializationsService implements ISpecializationsDAO {
     }
 
     @Override
-    public void updateEntity(Specialization specializations) {
-        specializationsDAO.updateEntity(specializations);
+    public void updateEntity(Specialization specialization) {
+        specializationsDAO.updateEntity(specialization);
     }
 
     @Override

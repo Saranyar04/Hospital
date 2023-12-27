@@ -1,16 +1,31 @@
 package org.example.models.hospital;
 
+import org.example.models.persons.Nurse;
+
+import java.util.List;
+
 public class Department {
 
     private int departmentID;
     private String name;
 
+    public List<Nurse> getNursesList() {
+        return nursesList;
+    }
+
+    public void setNursesList(List<Nurse> nursesList) {
+        this.nursesList = nursesList;
+    }
+
+    private List<Nurse> nursesList;
+
     public Department() {
     }
 
-    public Department(int departmentID, String name) {
+    public Department(int departmentID, String name, List<Nurse> nursesList) {
         this.departmentID = departmentID;
         this.name = name;
+        this.nursesList = nursesList;
     }
 
     public int getDepartmentID() {
@@ -31,7 +46,7 @@ public class Department {
 
     @Override
     public String toString() {
-        return "Departments{" +
+        return "Department{" +
                 "departmentID=" + departmentID +
                 ", name='" + name + '\'' +
                 '}';

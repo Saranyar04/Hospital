@@ -11,13 +11,13 @@ public class AppointmentsService implements IAppointmentDAO {
     private final AppointmentsDAO appointmentsDAO = new AppointmentsDAO();
 
     @Override
-    public List<Appointment> getAppointmentByPhysician(int id) {
-        return appointmentsDAO.getAppointmentByPhysician(id);
+    public List<Appointment> getAppointmentByPhysicianID(int id) {
+        return appointmentsDAO.getAppointmentByPhysicianID(id);
     }
 
     @Override
-    public void saveEntity(Appointment appointments) {
-        appointmentsDAO.saveEntity(appointments);
+    public void saveEntity(Appointment appointment) {
+        appointmentsDAO.saveEntity(appointment);
     }
 
     @Override
@@ -26,8 +26,8 @@ public class AppointmentsService implements IAppointmentDAO {
     }
 
     @Override
-    public void updateEntity(Appointment appointments) {
-        appointmentsDAO.updateEntity(appointments);
+    public void updateEntity(Appointment appointment) {
+        appointmentsDAO.updateEntity(appointment);
     }
 
     @Override

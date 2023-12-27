@@ -4,38 +4,38 @@ import org.example.models.persons.Nurse;
 
 public class DepartmentsHasNurse {
 
-    private Department departments;
-    private Nurse nurses;
+    private Department department;
+    private Nurse nurse;
 
     public DepartmentsHasNurse() {
     }
 
     public DepartmentsHasNurse(Department departments, Nurse nurses) {
-        this.departments = departments;
-        this.nurses = nurses;
+        this.department = departments;
+        this.nurse = nurses;
     }
 
-    public Department getDepartments() {
-        return departments;
+    public Department getDepartment() {
+        return department;
     }
 
-    public void setDepartments(Department departments) {
-        this.departments = departments;
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
-    public Nurse getNurses() {
-        return nurses;
+    public Nurse getNurse() {
+        return nurse;
     }
 
-    public void setNurses(Nurse nurses) {
-        this.nurses = nurses;
+    public void setNurse(Nurse nurse) {
+        this.nurse = nurse;
     }
 
     @Override
     public String toString() {
         return "DepartmentsHasNurse{" +
-                "departments=" + departments +
-                ", nurses=" + nurses +
+                "department=" + department +
+                ", nurse=" + nurse +
                 '}';
     }
 }

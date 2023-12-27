@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface IAppointmentDAO extends IBaseDAO<Appointment> {
 
-    List<Appointment> getAppointmentByPhysician(int id);
+    List<Appointment> getAppointmentByPhysicianID(int id);
 }

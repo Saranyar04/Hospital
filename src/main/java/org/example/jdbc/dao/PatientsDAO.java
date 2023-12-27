@@ -24,14 +24,14 @@ public class PatientsDAO implements IPatientsDAO {
     @Override
     public void saveEntity(Patient patients) {
         Connection connection = connectionPool.getConnection();
-        physiciansDAO.saveEntity(patients.getPhysicians());
+        physiciansDAO.saveEntity(patients.getPhysician());
         String query = "INSERT INTO patients (first_name, last_name, date_of_birth, address, physician_id) VALUES ((?), (?), (?), (?), (?))";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, patients.getFirstName());
             statement.setString(2, patients.getLastName());
             statement.setDate(3, patients.getDateOfBirth());
             statement.setString(4, patients.getAddress());
-            statement.setInt(5, patients.getPhysicians().getPhysicianID());
+            statement.setInt(5, patients.getPhysician().getPhysicianID());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.error(e);
@@ -62,7 +62,7 @@ public class PatientsDAO implements IPatientsDAO {
                     patients.setLastName(rs.getString("last_name"));
                     patients.setDateOfBirth(rs.getDate("date_of_birth"));
                     patients.setAddress(rs.getString("address"));
-                    patients.setPhysicians(physiciansDAO.getEntityByID(rs.getInt("physician_id")));
+                    patients.setPhysician(physiciansDAO.getEntityByID(rs.getInt("physician_id")));
                 }
             }
         } catch(SQLException e){
@@ -135,7 +135,7 @@ public class PatientsDAO implements IPatientsDAO {
                     patients.setPatientID(rs.getInt("patients_id"));
                     patients.setFirstName(rs.getString("first_name"));
                     patients.setLastName(rs.getString("last_name"));
-                    patients.setPhysicians(physiciansDAO.getEntityByID(rs.getInt("physician_id")));
+                    patients.setPhysician(physiciansDAO.getEntityByID(rs.getInt("physician_id")));
                     patientsList.add(patients);
                 }
             }
@@ -154,12 +154,12 @@ public class PatientsDAO implements IPatientsDAO {
     }
 
     @Override
-    public List<Patient> getPatientbyPysician(int patientID) {
+    public List<Patient> getPatientByPhysicianID(int physicianID) {
         Connection connection = connectionPool.getConnection();
         String query = "SELECT * FROM patients WHERE physician_id = (?)";
         List<Patient> patientsList = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setInt(1, patientID);
+            statement.setInt(1, physicianID);
             statement.execute();
             try (ResultSet rs = statement.getResultSet()) {
                 while (rs.next()) {
@@ -167,7 +167,7 @@ public class PatientsDAO implements IPatientsDAO {
                     patients.setPatientID(rs.getInt("patients_id"));
                     patients.setFirstName(rs.getString("first_name"));
                     patients.setLastName(rs.getString("last_name"));
-                    patients.setPhysicians(physiciansDAO.getEntityByID(rs.getInt("physician_id")));
+                    patients.setPhysician(physiciansDAO.getEntityByID(rs.getInt("physician_id")));
                     patientsList.add(patients);
                 }
             }

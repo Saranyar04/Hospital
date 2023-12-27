@@ -10,8 +10,8 @@ public class PositionsService implements IPositionsDAO {
 
     private final PositionsDAO positionsDAO = new PositionsDAO();
     @Override
-    public void saveEntity(Position positions) {
-        positionsDAO.saveEntity(positions);
+    public void saveEntity(Position position) {
+        positionsDAO.saveEntity(position);
     }
 
     @Override
@@ -20,8 +20,8 @@ public class PositionsService implements IPositionsDAO {
     }
 
     @Override
-    public void updateEntity(Position positions) {
-        positionsDAO.updateEntity(positions);
+    public void updateEntity(Position position) {
+        positionsDAO.updateEntity(position);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class PositionsService implements IPositionsDAO {
     }
 
     @Override
-    public List<Position> getTopThree() {
-        return positionsDAO.getTopThree();
+    public List<Position> getTopPosition(int limit) {
+        return positionsDAO.getTopPosition(limit);
     }
 }

@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface IExaminationRoomsDAO extends IBaseDAO<ExaminationRoom> {
 
-    List<ExaminationRoom> getRoomsbyType(String roomType);
+    List<ExaminationRoom> getRoomsByType(String roomType);
 }

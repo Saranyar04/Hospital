@@ -2,11 +2,13 @@ package org.example.services;
 
 import org.example.interfaces.IDepartmentHasNurseDAO;
 import org.example.jdbc.dao.DepartmentHasNurseDAO;
+import org.example.models.hospital.Department;
 import org.example.models.hospital.DepartmentsHasNurse;
+import org.example.models.persons.Nurse;
 
 import java.util.List;
 
-public class DepartmentHasNurseSrevice implements IDepartmentHasNurseDAO {
+public class DepartmentHasNurseService implements IDepartmentHasNurseDAO {
 
     private final DepartmentHasNurseDAO departmentHasNurseDAO = new DepartmentHasNurseDAO();
 
@@ -36,7 +38,12 @@ public class DepartmentHasNurseSrevice implements IDepartmentHasNurseDAO {
     }
 
     @Override
-    public List<DepartmentsHasNurse> getDepartmentByNurse(int nurseID) {
-        return departmentHasNurseDAO.getDepartmentByNurse(nurseID);
+    public List<DepartmentsHasNurse> getDepartmentByNurseID(int nurseID) {
+        return departmentHasNurseDAO.getDepartmentByNurseID(nurseID);
+    }
+
+    @Override
+    public List<Nurse> addNursesToDepartment(Department department) {
+        return departmentHasNurseDAO.addNursesToDepartment(department);
     }
 }

@@ -139,7 +139,7 @@ public class DepartmentsDAO implements IDepartmentsDAO {
     }
 
     @Override
-    public List<Department> getDepartmentOrderByName() {
+    public List<Department> getDepartmentSortedByName() {
         Connection connection = connectionPool.getConnection();
         String query = "SELECT * FROM departments ORDER BY name";
         List<Department> departmentsList = new ArrayList<>();

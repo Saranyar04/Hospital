@@ -11,8 +11,8 @@ public class PatientsService implements IPatientsDAO {
     private final PatientsDAO patientsDAO = new PatientsDAO();
 
     @Override
-    public void saveEntity(Patient patients) {
-        patientsDAO.saveEntity(patients);
+    public void saveEntity(Patient patient) {
+        patientsDAO.saveEntity(patient);
     }
 
     @Override
@@ -21,8 +21,8 @@ public class PatientsService implements IPatientsDAO {
     }
 
     @Override
-    public void updateEntity(Patient patients) {
-        patientsDAO.updateEntity(patients);
+    public void updateEntity(Patient patient) {
+        patientsDAO.updateEntity(patient);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class PatientsService implements IPatientsDAO {
     }
 
     @Override
-    public List<Patient> getPatientbyPysician(int patientID) {
-        return patientsDAO.getPatientbyPysician(patientID);
+    public List<Patient> getPatientByPhysicianID(int physicianID) {
+        return patientsDAO.getPatientByPhysicianID(physicianID);
     }
 }

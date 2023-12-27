@@ -139,7 +139,7 @@ public class ExaminationRoomsDAO implements IExaminationRoomsDAO {
         return examinationRoomsList;
     }
     @Override
-    public List<ExaminationRoom> getRoomsbyType(String roomType) {
+    public List<ExaminationRoom> getRoomsByType(String roomType) {
         Connection connection = connectionPool.getConnection();
         String query = "SELECT * FROM Examination_rooms WHERE room_type = (?)";
         List<ExaminationRoom> examinationRoomsList = new ArrayList<>();

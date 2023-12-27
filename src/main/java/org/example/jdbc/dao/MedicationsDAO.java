@@ -23,13 +23,13 @@ public class MedicationsDAO implements IMedicationsDAO {
     @Override
     public void saveEntity(Medication medications) {
         Connection connection = connectionPool.getConnection();
-        manufacturersDAO.saveEntity(medications.getManufacturers());
+        manufacturersDAO.saveEntity(medications.getManufacturer());
         String query = "INSERT INTO manufacturers (medication_name, details, amount, manufacturer_id) VALUES ((?), (?), (?), (?))";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, medications.getMedicationName());
             statement.setString(2, medications.getDetails());
             statement.setDouble(3, medications.getAmount());
-            statement.setInt(4, medications.getManufacturers().getManufacturerID());
+            statement.setInt(4, medications.getManufacturer().getManufacturerID());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.error(e);
@@ -59,7 +59,7 @@ public class MedicationsDAO implements IMedicationsDAO {
                     medications.setMedicationName(rs.getString("medication_name"));
                     medications.setDetails(rs.getString("details"));
                     medications.setAmount(rs.getDouble("amount"));
-                    medications.setManufacturers(manufacturersDAO.getEntityByID(rs.getInt("manufacturer_id")));
+                    medications.setManufacturer(manufacturersDAO.getEntityByID(rs.getInt("manufacturer_id")));
                 }
             }
         } catch(SQLException e){
@@ -84,7 +84,7 @@ public class MedicationsDAO implements IMedicationsDAO {
             statement.setString(1, medications.getMedicationName());
             statement.setString(2, medications.getDetails());
             statement.setDouble(3, medications.getAmount());
-            statement.setInt(4, medications.getManufacturers().getManufacturerID());
+            statement.setInt(4, medications.getManufacturer().getManufacturerID());
         } catch(SQLException e){
             LOGGER.error(e);
         } finally {
@@ -133,7 +133,7 @@ public class MedicationsDAO implements IMedicationsDAO {
                     medications.setMedicationName(rs.getString("medication_name"));
                     medications.setDetails(rs.getString("details"));
                     medications.setAmount(rs.getDouble("amount"));
-                    medications.setManufacturers(manufacturersDAO.getEntityByID(rs.getInt("manufacturer_id")));
+                    medications.setManufacturer(manufacturersDAO.getEntityByID(rs.getInt("manufacturer_id")));
                     medicationsList.add(medications);
                 }
             }
@@ -152,7 +152,7 @@ public class MedicationsDAO implements IMedicationsDAO {
     }
 
     @Override
-    public List<Medication> getMedicationsByManufacturer(int manufacturerID) {
+    public List<Medication> getMedicationsByManufacturerID(int manufacturerID) {
         Connection connection = connectionPool.getConnection();
         String query = "SELECT * FROM medications WHERE medication_id = (?)";
         List<Medication> medicationsList = new ArrayList<>();
@@ -166,7 +166,7 @@ public class MedicationsDAO implements IMedicationsDAO {
                     medications.setMedicationName(rs.getString("medication_name"));
                     medications.setDetails(rs.getString("details"));
                     medications.setAmount(rs.getDouble("amount"));
-                    medications.setManufacturers(manufacturersDAO.getEntityByID(rs.getInt("manufacturer_id")));
+                    medications.setManufacturer(manufacturersDAO.getEntityByID(rs.getInt("manufacturer_id")));
                     medicationsList.add(medications);
                 }
             }

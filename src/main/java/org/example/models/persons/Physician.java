@@ -8,21 +8,21 @@ public class Physician {
     private String firstName;
     private String lastName;
     private String address;
-    private Department departments;
-    private Position positions;
-    private Specialization specializations;
+    private Department department;
+    private Position position;
+    private Specialization specialization;
 
     public Physician() {
     }
 
-    public Physician(int physicianID, String firstName, String lastName, String address, Department departments, Position positions, Specialization specializations) {
+    public Physician(int physicianID, String firstName, String lastName, String address, Department department, Position position, Specialization specialization) {
         this.physicianID = physicianID;
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
-        this.departments = departments;
-        this.positions = positions;
-        this.specializations = specializations;
+        this.department = department;
+        this.position = position;
+        this.specialization = specialization;
     }
 
     public int getPhysicianID() {
@@ -57,28 +57,28 @@ public class Physician {
         this.address = address;
     }
 
-    public Department getDepartments() {
-        return departments;
+    public Department getDepartment() {
+        return department;
     }
 
-    public void setDepartments(Department departments) {
-        this.departments = departments;
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
-    public Position getPositions() {
-        return positions;
+    public Position getPosition() {
+        return position;
     }
 
-    public void setPositions(Position positions) {
-        this.positions = positions;
+    public void setPosition(Position position) {
+        this.position = position;
     }
 
-    public Specialization getSpecializations() {
-        return specializations;
+    public Specialization getSpecialization() {
+        return specialization;
     }
 
-    public void setSpecializations(Specialization specializations) {
-        this.specializations = specializations;
+    public void setSpecialization(Specialization specialization) {
+        this.specialization = specialization;
     }
 
     @Override
@@ -88,9 +88,9 @@ public class Physician {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", address='" + address + '\'' +
-                ", departments=" + departments +
-                ", positions=" + positions +
-                ", specializations=" + specializations +
+                ", department=" + department +
+                ", position=" + position +
+                ", specialization=" + specialization +
                 '}';
     }
 }

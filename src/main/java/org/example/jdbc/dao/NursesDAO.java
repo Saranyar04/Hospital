@@ -23,12 +23,12 @@ public class NursesDAO implements INursesDAO {
     @Override
     public void saveEntity(Nurse nurses) {
         Connection connection = connectionPool.getConnection();
-        positionsDAO.saveEntity(nurses.getPositions());
+        positionsDAO.saveEntity(nurses.getPosition());
         String query = "INSERT INTO nurses (first_name, last_name, position_id) VALUES ((?), (?), (?))";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, nurses.getFirstName());
             statement.setString(2, nurses.getLastName());
-            statement.setInt(3, nurses.getPositions().getPositionID());
+            statement.setInt(3, nurses.getPosition().getPositionID());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.error(e);
@@ -57,7 +57,7 @@ public class NursesDAO implements INursesDAO {
                     nurses.setNurseID(rs.getInt("nurse_id"));
                     nurses.setFirstName(rs.getString("first_name"));
                     nurses.setLastName(rs.getString("last_name"));
-                    nurses.setPositions(positionsDAO.getEntityByID(rs.getInt("position_id")));
+                    nurses.setPosition(positionsDAO.getEntityByID(rs.getInt("position_id")));
                 }
             }
         } catch(SQLException e){
@@ -129,7 +129,7 @@ public class NursesDAO implements INursesDAO {
                     nurse.setNurseID(rs.getInt("nurse_id"));
                     nurse.setFirstName(rs.getString("first_name"));
                     nurse.setLastName(rs.getString("last_name"));
-                    nurse.setPositions(positionsDAO.getEntityByID(rs.getInt("position_id")));
+                    nurse.setPosition(positionsDAO.getEntityByID(rs.getInt("position_id")));
                     nurseList.add(nurse);
                 }
             }
@@ -148,7 +148,7 @@ public class NursesDAO implements INursesDAO {
     }
 
     @Override
-    public List<Nurse> getNurseByPositions(int positionID) {
+    public List<Nurse> getNurseByPositionID(int positionID) {
         Connection connection = connectionPool.getConnection();
         String query = "SELECT * FROM nurses WHERE position_id = (?)";
         List<Nurse> nurseList = new ArrayList<>();
@@ -161,7 +161,7 @@ public class NursesDAO implements INursesDAO {
                     nurse.setNurseID(rs.getInt("nurse_id"));
                     nurse.setFirstName(rs.getString("first_name"));
                     nurse.setLastName(rs.getString("last_name"));
-                    nurse.setPositions(positionsDAO.getEntityByID(rs.getInt("position_id")));
+                    nurse.setPosition(positionsDAO.getEntityByID(rs.getInt("position_id")));
                     nurseList.add(nurse);
                 }
             }

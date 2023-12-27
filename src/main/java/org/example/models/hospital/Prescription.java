@@ -9,19 +9,19 @@ public class Prescription {
 
     private int prescriptionID;
     private Date date;
-    private Physician physicians;
-    private Patient patients;
-    private Medication medications;
+    private Physician physician;
+    private Patient patient;
+    private Medication medication;
 
     public Prescription() {
     }
 
-    public Prescription(int prescriptionID, Date date, Physician physicians, Patient patients, Medication medications) {
+    public Prescription(int prescriptionID, Date date, Physician physician, Patient patient, Medication medication) {
         this.prescriptionID = prescriptionID;
         this.date = date;
-        this.physicians = physicians;
-        this.patients = patients;
-        this.medications = medications;
+        this.physician = physician;
+        this.patient = patient;
+        this.medication = medication;
     }
 
     public int getPrescriptionID() {
@@ -40,38 +40,38 @@ public class Prescription {
         this.date = date;
     }
 
-    public Physician getPhysicians() {
-        return physicians;
+    public Physician getPhysician() {
+        return physician;
     }
 
-    public void setPhysicians(Physician physicians) {
-        this.physicians = physicians;
+    public void setPhysician(Physician physician) {
+        this.physician = physician;
     }
 
-    public Patient getPatients() {
-        return patients;
+    public Patient getPatient() {
+        return patient;
     }
 
-    public void setPatients(Patient patients) {
-        this.patients = patients;
+    public void setPatient(Patient patient) {
+        this.patient = patient;
     }
 
-    public Medication getMedications() {
-        return medications;
+    public Medication getMedication() {
+        return medication;
     }
 
-    public void setMedications(Medication medications) {
-        this.medications = medications;
+    public void setMedication(Medication medication) {
+        this.medication = medication;
     }
 
     @Override
     public String toString() {
-        return "Prescriptions{" +
+        return "Prescription{" +
                 "prescriptionID=" + prescriptionID +
                 ", date=" + date +
-                ", physicians=" + physicians +
-                ", patients=" + patients +
-                ", medications=" + medications +
+                ", physician=" + physician +
+                ", patient=" + patient +
+                ", medication=" + medication +
                 '}';
     }
 }

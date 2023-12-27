@@ -9,18 +9,18 @@ public class Patient {
     private String lastName;
     private Date dateOfBirth;
     private String address;
-    private Physician physicians;
+    private Physician physician;
 
     public Patient() {
     }
 
-    public Patient(int patientID, String firstName, String lastName, Date dateOfBirth, String address, Physician physicians) {
+    public Patient(int patientID, String firstName, String lastName, Date dateOfBirth, String address, Physician physician) {
         this.patientID = patientID;
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
         this.address = address;
-        this.physicians = physicians;
+        this.physician = physician;
     }
 
     public int getPatientID() {
@@ -63,23 +63,23 @@ public class Patient {
         this.address = address;
     }
 
-    public Physician getPhysicians() {
-        return physicians;
+    public Physician getPhysician() {
+        return physician;
     }
 
-    public void setPhysicians(Physician physicians) {
-        this.physicians = physicians;
+    public void setPhysician(Physician physician) {
+        this.physician = physician;
     }
 
     @Override
     public String toString() {
-        return "Patients{" +
+        return "Patient{" +
                 "patientID=" + patientID +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", dateOfBirth=" + dateOfBirth +
                 ", address='" + address + '\'' +
-                ", physicians=" + physicians +
+                ", physician=" + physician +
                 '}';
     }
 }

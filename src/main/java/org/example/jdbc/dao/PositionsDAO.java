@@ -139,11 +139,12 @@ public class PositionsDAO implements IPositionsDAO {
     }
 
     @Override
-    public List<Position> getTopThree() {
+    public List<Position> getTopPosition(int limit) {
         Connection connection = connectionPool.getConnection();
-        String query = "SELECT * FROM positions LIMIT 3";
+        String query = "SELECT * FROM positions LIMIT ?";
         List<Position> positionsList = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, limit);
             statement.execute();
             try (ResultSet rs = statement.getResultSet()) {
                 while (rs.next()) {

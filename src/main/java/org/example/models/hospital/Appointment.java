@@ -6,35 +6,35 @@ import org.example.models.persons.Physician;
 
 public class Appointment {
 
-    private int appointmantID;
+    private int appointmentID;
     private String startTime;
     private String EndTime;
-    private Patient patients;
-    private Physician physicians;
-    private Nurse nurses;
-    private ExaminationRoom examinationRooms;
-    private Procedure procedures;
+    private Patient patient;
+    private Physician physician;
+    private Nurse nurse;
+    private ExaminationRoom examinationRoom;
+    private Procedure procedure;
 
     public Appointment() {
     }
 
-    public Appointment(int appointmantID, String startTime, String endTime, Patient patients, Physician physicians, Nurse nurses, ExaminationRoom examinationRooms, Procedure procedures) {
-        this.appointmantID = appointmantID;
+    public Appointment(int appointmentID, String startTime, String endTime, Patient patients, Physician physician, Nurse nurse, ExaminationRoom examinationRoom, Procedure procedure) {
+        this.appointmentID = appointmentID;
         this.startTime = startTime;
         EndTime = endTime;
-        this.patients = patients;
-        this.physicians = physicians;
-        this.nurses = nurses;
-        this.examinationRooms = examinationRooms;
-        this.procedures = procedures;
+        this.patient = patients;
+        this.physician = physician;
+        this.nurse = nurse;
+        this.examinationRoom = examinationRoom;
+        this.procedure = procedure;
     }
 
-    public int getAppointmantID() {
-        return appointmantID;
+    public int getAppointmentID() {
+        return appointmentID;
     }
 
-    public void setAppointmantID(int appointmantID) {
-        this.appointmantID = appointmantID;
+    public void setAppointmentID(int appointmentID) {
+        this.appointmentID = appointmentID;
     }
 
     public String getStartTime() {
@@ -53,57 +53,57 @@ public class Appointment {
         EndTime = endTime;
     }
 
-    public Patient getPatients() {
-        return patients;
+    public Patient getPatient() {
+        return patient;
     }
 
-    public void setPatients(Patient patients) {
-        this.patients = patients;
+    public void setPatient(Patient patient) {
+        this.patient = patient;
     }
 
-    public Physician getPhysicians() {
-        return physicians;
+    public Physician getPhysician() {
+        return physician;
     }
 
-    public void setPhysicians(Physician physicians) {
-        this.physicians = physicians;
+    public void setPhysician(Physician physician) {
+        this.physician = physician;
     }
 
-    public Nurse getNurses() {
-        return nurses;
+    public Nurse getNurse() {
+        return nurse;
     }
 
-    public void setNurses(Nurse nurses) {
-        this.nurses = nurses;
+    public void setNurse(Nurse nurse) {
+        this.nurse = nurse;
     }
 
-    public ExaminationRoom getExaminationRooms() {
-        return examinationRooms;
+    public ExaminationRoom getExaminationRoom() {
+        return examinationRoom;
     }
 
-    public void setExaminationRooms(ExaminationRoom examinationRooms) {
-        this.examinationRooms = examinationRooms;
+    public void setExaminationRoom(ExaminationRoom examinationRoom) {
+        this.examinationRoom = examinationRoom;
     }
 
-    public Procedure getProcedures() {
-        return procedures;
+    public Procedure getProcedure() {
+        return procedure;
     }
 
-    public void setProcedures(Procedure procedures) {
-        this.procedures = procedures;
+    public void setProcedure(Procedure procedure) {
+        this.procedure = procedure;
     }
 
     @Override
     public String toString() {
-        return "Appointments{" +
-                "appointmantID=" + appointmantID +
+        return "Appointment{" +
+                "appointmentID=" + appointmentID +
                 ", startTime='" + startTime + '\'' +
                 ", EndTime='" + EndTime + '\'' +
-                ", patients=" + patients +
-                ", physicians=" + physicians +
-                ", nurses=" + nurses +
-                ", examinationRooms=" + examinationRooms +
-                ", procedures=" + procedures +
+                ", patient=" + patient +
+                ", physician=" + physician +
+                ", nurse=" + nurse +
+                ", examinationRoom=" + examinationRoom +
+                ", procedure=" + procedure +
                 '}';
     }
 }

@@ -11,8 +11,8 @@ public class NursesService implements INursesDAO {
     private final NursesDAO nursesDAO = new NursesDAO();
 
     @Override
-    public void saveEntity(Nurse nurses) {
-        nursesDAO.saveEntity(nurses);
+    public void saveEntity(Nurse nurse) {
+        nursesDAO.saveEntity(nurse);
     }
 
     @Override
@@ -21,8 +21,8 @@ public class NursesService implements INursesDAO {
     }
 
     @Override
-    public void updateEntity(Nurse nurses) {
-        nursesDAO.updateEntity(nurses);
+    public void updateEntity(Nurse nurse) {
+        nursesDAO.updateEntity(nurse);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class NursesService implements INursesDAO {
     }
 
     @Override
-    public List<Nurse> getNurseByPositions(int positionID) {
-        return nursesDAO.getNurseByPositions(positionID);
+    public List<Nurse> getNurseByPositionID(int positionID) {
+        return nursesDAO.getNurseByPositionID(positionID);
     }
 }

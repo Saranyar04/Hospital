@@ -31,7 +31,7 @@ public class ExaminationRoom {
 
     @Override
     public String toString() {
-        return "ExaminationRooms{" +
+        return "ExaminationRoom{" +
                 "examinationRoomNo=" + examinationRoomNo +
                 ", roomType='" + roomType + '\'' +
                 '}';

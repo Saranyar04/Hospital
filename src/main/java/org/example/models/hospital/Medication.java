@@ -6,17 +6,17 @@ public class Medication {
     private String medicationName;
     private String details;
     private double amount;
-    private Manufacturer manufacturers;
+    private Manufacturer manufacturer;
 
     public Medication() {
     }
 
-    public Medication(int medicationID, String medicationName, String details, double amount, Manufacturer manufacturers) {
+    public Medication(int medicationID, String medicationName, String details, double amount, Manufacturer manufacturer) {
         this.medicationID = medicationID;
         this.medicationName = medicationName;
         this.details = details;
         this.amount = amount;
-        this.manufacturers = manufacturers;
+        this.manufacturer = manufacturer;
     }
 
     public int getMedicationID() {
@@ -51,22 +51,22 @@ public class Medication {
         this.amount = amount;
     }
 
-    public Manufacturer getManufacturers() {
-        return manufacturers;
+    public Manufacturer getManufacturer() {
+        return manufacturer;
     }
 
-    public void setManufacturers(Manufacturer manufacturers) {
-        this.manufacturers = manufacturers;
+    public void setManufacturer(Manufacturer manufacturer) {
+        this.manufacturer = manufacturer;
     }
 
     @Override
     public String toString() {
-        return "Medications{" +
+        return "Medication{" +
                 "medicationID=" + medicationID +
                 ", medicationName='" + medicationName + '\'' +
                 ", details='" + details + '\'' +
                 ", amount=" + amount +
-                ", manufacturers=" + manufacturers +
+                ", manufacturer=" + manufacturer +
                 '}';
     }
 }

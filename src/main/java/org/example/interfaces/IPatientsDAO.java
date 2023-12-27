@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface IPatientsDAO extends IBaseDAO<Patient> {
 
-    List<Patient> getPatientbyPysician(int patientID);
+    List<Patient> getPatientByPhysicianID(int physicianID);
 }

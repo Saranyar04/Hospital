@@ -35,7 +35,7 @@ public class DepartmentsService implements IDepartmentsDAO {
     }
 
     @Override
-    public List<Department> getDepartmentOrderByName() {
-        return departmentsDAO.getDepartmentOrderByName();
+    public List<Department> getDepartmentSortedByName() {
+        return departmentsDAO.getDepartmentSortedByName();
     }
 }

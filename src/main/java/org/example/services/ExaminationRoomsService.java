@@ -11,8 +11,8 @@ public class ExaminationRoomsService implements IExaminationRoomsDAO {
     private final ExaminationRoomsDAO examinationRoomsDAO = new ExaminationRoomsDAO();
 
     @Override
-    public void saveEntity(ExaminationRoom examinationRooms) {
-        examinationRoomsDAO.saveEntity(examinationRooms);
+    public void saveEntity(ExaminationRoom examinationRoom) {
+        examinationRoomsDAO.saveEntity(examinationRoom);
     }
 
     @Override
@@ -21,8 +21,8 @@ public class ExaminationRoomsService implements IExaminationRoomsDAO {
     }
 
     @Override
-    public void updateEntity(ExaminationRoom examinationRooms) {
-        examinationRoomsDAO.updateEntity(examinationRooms);
+    public void updateEntity(ExaminationRoom examinationRoom) {
+        examinationRoomsDAO.updateEntity(examinationRoom);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class ExaminationRoomsService implements IExaminationRoomsDAO {
     }
 
     @Override
-    public List<ExaminationRoom> getRoomsbyType(String roomType) {
-        return examinationRoomsDAO.getRoomsbyType(roomType);
+    public List<ExaminationRoom> getRoomsByType(String roomType) {
+        return examinationRoomsDAO.getRoomsByType(roomType);
     }
 }

@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface IPrescriptionsDAO extends IBaseDAO<Prescription> {
 
-    List<Prescription> getPrescriptionByPatient(int patientID);
+    List<Prescription> getPrescriptionByPatientID(int patientID);
 }

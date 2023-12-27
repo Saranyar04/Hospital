@@ -11,8 +11,8 @@ public class MedicationsService implements IMedicationsDAO {
     private final MedicationsDAO medicationsDAO = new MedicationsDAO();
 
     @Override
-    public void saveEntity(Medication medications) {
-        medicationsDAO.saveEntity(medications);
+    public void saveEntity(Medication medication) {
+        medicationsDAO.saveEntity(medication);
     }
 
     @Override
@@ -21,8 +21,8 @@ public class MedicationsService implements IMedicationsDAO {
     }
 
     @Override
-    public void updateEntity(Medication medications) {
-        medicationsDAO.updateEntity(medications);
+    public void updateEntity(Medication medication) {
+        medicationsDAO.updateEntity(medication);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class MedicationsService implements IMedicationsDAO {
     }
 
     @Override
-    public List<Medication> getMedicationsByManufacturer(int manufacturerID) {
-        return medicationsDAO.getMedicationsByManufacturer(manufacturerID);
+    public List<Medication> getMedicationsByManufacturerID(int manufacturerID) {
+        return medicationsDAO.getMedicationsByManufacturerID(manufacturerID);
     }
 }

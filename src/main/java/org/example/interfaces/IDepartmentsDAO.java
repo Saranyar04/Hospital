@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface IDepartmentsDAO extends IBaseDAO<Department> {
 
-    public List<Department> getDepartmentOrderByName();
+    public List<Department> getDepartmentSortedByName();
 }

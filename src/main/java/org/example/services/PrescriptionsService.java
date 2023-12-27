@@ -11,8 +11,8 @@ public class PrescriptionsService implements IPrescriptionsDAO {
     private final PrescriptionsDAO prescriptionsDAO = new PrescriptionsDAO();
 
     @Override
-    public void saveEntity(Prescription prescriptions) {
-        prescriptionsDAO.saveEntity(prescriptions);
+    public void saveEntity(Prescription prescription) {
+        prescriptionsDAO.saveEntity(prescription);
     }
 
     @Override
@@ -21,8 +21,8 @@ public class PrescriptionsService implements IPrescriptionsDAO {
     }
 
     @Override
-    public void updateEntity(Prescription prescriptions) {
-        prescriptionsDAO.updateEntity(prescriptions);
+    public void updateEntity(Prescription prescription) {
+        prescriptionsDAO.updateEntity(prescription);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class PrescriptionsService implements IPrescriptionsDAO {
     }
 
     @Override
-    public List<Prescription> getPrescriptionByPatient(int patientID) {
-        return prescriptionsDAO.getPrescriptionByPatient(patientID);
+    public List<Prescription> getPrescriptionByPatientID(int patientID) {
+        return prescriptionsDAO.getPrescriptionByPatientID(patientID);
     }
 }

@@ -11,8 +11,8 @@ public class ManufacturersService implements IManufacturersDAO {
     private final ManufacturersDAO manufacturersDAO = new ManufacturersDAO();
 
     @Override
-    public void saveEntity(Manufacturer manufacturers) {
-        manufacturersDAO.saveEntity(manufacturers);
+    public void saveEntity(Manufacturer manufacturer) {
+        manufacturersDAO.saveEntity(manufacturer);
     }
 
     @Override
@@ -21,8 +21,8 @@ public class ManufacturersService implements IManufacturersDAO {
     }
 
     @Override
-    public void updateEntity(Manufacturer manufacturers) {
-        manufacturersDAO.updateEntity(manufacturers);
+    public void updateEntity(Manufacturer manufacturer) {
+        manufacturersDAO.updateEntity(manufacturer);
     }
 
     @Override

@@ -51,7 +51,7 @@ public class Procedure {
 
     @Override
     public String toString() {
-        return "Procedures{" +
+        return "Procedure{" +
                 "procedureID=" + procedureID +
                 ", name='" + name + '\'' +
                 ", cost=" + cost +
