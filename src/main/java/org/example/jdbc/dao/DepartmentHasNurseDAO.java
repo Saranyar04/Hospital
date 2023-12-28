@@ -178,20 +178,16 @@ public class DepartmentHasNurseDAO implements IDepartmentHasNurseDAO {
     }
 
     @Override
-    public List<Nurse> getNursesByDepartment(Department department) {
+    public List<Nurse> getNursesByDepartment(int id) {
         Connection connection = connectionPool.getConnection();
-        String query = "SELECT * FROM Nurses WHERE nurse_id IN (Select nurse_id FROM department_has_nurse WHERE department_id = ?);";
+        String query = "SELECT nurse_id FROM department_has_nurse WHERE department_id = ?";
         List<Nurse> nursesList = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setInt(1, 3);
+            statement.setInt(1, id);
             statement.execute();
             try (ResultSet rs = statement.getResultSet()) {
                 while (rs.next()) {
-                    Nurse nurse = new Nurse();
-                    nurse.setNurseID(rs.getInt("nurse_id"));
-                    nurse.setFirstName(rs.getString("first_name"));
-                    nurse.setLastName(rs.getString("last_name"));
-                    nurse.setPosition(positionDAO.getEntityByID(rs.getInt("position_id")));
+                    Nurse nurse = nurseDAO.getEntityByID(rs.getInt("nurse_id"));
                     nursesList.add(nurse);
                 }
             }

@@ -18,7 +18,6 @@ public class DepartmentDAO implements IDepartmentDAO {
 
     private final static Logger LOGGER = (Logger) LogManager.getLogger(MethodHandles.lookup().lookupClass());
     private final ConnectionPool connectionPool = ConnectionPool.getInstance();
-    private static DepartmentHasNurseDAO departmentHasNurseDAO = new DepartmentHasNurseDAO();
 
     @Override
     public void saveEntity(Department departments) {
@@ -52,6 +51,7 @@ public class DepartmentDAO implements IDepartmentDAO {
                 while (rs.next()) {
                     department.setDepartmentID(rs.getInt("department_id"));
                     department.setName(rs.getString("name"));
+                    department.setNursesList(new DepartmentHasNurseDAO().getNursesByDepartment(id));
                 }
             }
         } catch (SQLException e) {
@@ -122,7 +122,7 @@ public class DepartmentDAO implements IDepartmentDAO {
                     Department department = new Department();
                     department.setDepartmentID(rs.getInt("department_id"));
                     department.setName(rs.getString("name"));
-                    department.setNursesList(departmentHasNurseDAO.getNursesByDepartment(department));
+                    department.setNursesList(new DepartmentHasNurseDAO().getNursesByDepartment(rs.getInt("department_id")));
                     departmentsList.add(department);
                 }
             }

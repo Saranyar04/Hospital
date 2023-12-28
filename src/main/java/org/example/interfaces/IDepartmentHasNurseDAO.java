@@ -9,5 +9,5 @@ import java.util.List;
 public interface IDepartmentHasNurseDAO extends IBaseDAO<DepartmentsHasNurse> {
 
     List<DepartmentsHasNurse> getDepartmentByNurseID(int nurseID);
-    List<Nurse> getNursesByDepartment(Department department);
+    List<Nurse> getNursesByDepartment(int id);
 }

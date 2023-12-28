@@ -24,8 +24,8 @@ public class Main {
         List<Department> departmentsList = departmentService.getAll();
         LOGGER.info(departmentsList);
         Department department = departmentService.getEntityByID(3);
-        department.setNursesList(departmentHasNurseService.getNursesByDepartment(department));
-        LOGGER.info(department.getNursesList());
+        LOGGER.info(department);
+
 
         ExaminationRoomService examinationRoomService = new ExaminationRoomService();
         List<ExaminationRoom> examinationRoomsList = examinationRoomService.getRoomsByType("private");
