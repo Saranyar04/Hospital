@@ -2,7 +2,7 @@ package org.example.jdbc.dao;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
-import org.example.interfaces.IPatientsDAO;
+import org.example.interfaces.IPatientDAO;
 import org.example.models.persons.Patient;
 import org.example.util.ConnectionPool;
 
@@ -14,17 +14,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PatientsDAO implements IPatientsDAO {
+public class PatientDAO implements IPatientDAO {
 
     private final static Logger LOGGER = (Logger) LogManager.getLogger(MethodHandles.lookup().lookupClass());
     private final ConnectionPool connectionPool = ConnectionPool.getInstance();
 
-    private final PhysiciansDAO physiciansDAO = new PhysiciansDAO();
+    private final PhysicianDAO physicianDAO = new PhysicianDAO();
 
     @Override
     public void saveEntity(Patient patients) {
         Connection connection = connectionPool.getConnection();
-        physiciansDAO.saveEntity(patients.getPhysician());
+        physicianDAO.saveEntity(patients.getPhysician());
         String query = "INSERT INTO patients (first_name, last_name, date_of_birth, address, physician_id) VALUES ((?), (?), (?), (?), (?))";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, patients.getFirstName());
@@ -62,7 +62,7 @@ public class PatientsDAO implements IPatientsDAO {
                     patients.setLastName(rs.getString("last_name"));
                     patients.setDateOfBirth(rs.getDate("date_of_birth"));
                     patients.setAddress(rs.getString("address"));
-                    patients.setPhysician(physiciansDAO.getEntityByID(rs.getInt("physician_id")));
+                    patients.setPhysician(physicianDAO.getEntityByID(rs.getInt("physician_id")));
                 }
             }
         } catch(SQLException e){
@@ -135,7 +135,7 @@ public class PatientsDAO implements IPatientsDAO {
                     patients.setPatientID(rs.getInt("patients_id"));
                     patients.setFirstName(rs.getString("first_name"));
                     patients.setLastName(rs.getString("last_name"));
-                    patients.setPhysician(physiciansDAO.getEntityByID(rs.getInt("physician_id")));
+                    patients.setPhysician(physicianDAO.getEntityByID(rs.getInt("physician_id")));
                     patientsList.add(patients);
                 }
             }
@@ -167,7 +167,7 @@ public class PatientsDAO implements IPatientsDAO {
                     patients.setPatientID(rs.getInt("patients_id"));
                     patients.setFirstName(rs.getString("first_name"));
                     patients.setLastName(rs.getString("last_name"));
-                    patients.setPhysician(physiciansDAO.getEntityByID(rs.getInt("physician_id")));
+                    patients.setPhysician(physicianDAO.getEntityByID(rs.getInt("physician_id")));
                     patientsList.add(patients);
                 }
             }
@@ -183,6 +183,5 @@ public class PatientsDAO implements IPatientsDAO {
             }
         }
         return patientsList;
-
     }
 }

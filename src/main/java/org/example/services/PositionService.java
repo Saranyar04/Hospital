@@ -1,41 +1,41 @@
 package org.example.services;
 
-import org.example.interfaces.IPositionsDAO;
-import org.example.jdbc.dao.PositionsDAO;
+import org.example.interfaces.IPositionDAO;
+import org.example.jdbc.dao.PositionDAO;
 import org.example.models.persons.Position;
 
 import java.util.List;
 
-public class PositionsService implements IPositionsDAO {
+public class PositionService implements IPositionDAO {
 
-    private final PositionsDAO positionsDAO = new PositionsDAO();
+    private final PositionDAO positionDAO = new PositionDAO();
     @Override
     public void saveEntity(Position position) {
-        positionsDAO.saveEntity(position);
+        positionDAO.saveEntity(position);
     }
 
     @Override
     public Position getEntityByID(int id) {
-        return positionsDAO.getEntityByID(id);
+        return positionDAO.getEntityByID(id);
     }
 
     @Override
     public void updateEntity(Position position) {
-        positionsDAO.updateEntity(position);
+        positionDAO.updateEntity(position);
     }
 
     @Override
     public void removeEntityByID(int id) {
-        positionsDAO.removeEntityByID(id);
+        positionDAO.removeEntityByID(id);
     }
 
     @Override
     public List<Position> getAll() {
-        return positionsDAO.getAll();
+        return positionDAO.getAll();
     }
 
     @Override
     public List<Position> getTopPosition(int limit) {
-        return positionsDAO.getTopPosition(limit);
+        return positionDAO.getTopPosition(limit);
     }
 }

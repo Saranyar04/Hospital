@@ -2,7 +2,7 @@ package org.example.jdbc.dao;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
-import org.example.interfaces.ISpecializationsDAO;
+import org.example.interfaces.ISpecializationDAO;
 import org.example.models.persons.Specialization;
 import org.example.util.ConnectionPool;
 
@@ -14,7 +14,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SpecializationsDAO implements ISpecializationsDAO {
+public class SpecializationDAO implements ISpecializationDAO {
 
     private final static Logger LOGGER = (Logger) LogManager.getLogger(MethodHandles.lookup( ).lookupClass( ));
     private final ConnectionPool connectionPool = ConnectionPool.getInstance( );

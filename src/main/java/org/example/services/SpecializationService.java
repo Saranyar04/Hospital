@@ -1,42 +1,42 @@
 package org.example.services;
 
-import org.example.interfaces.ISpecializationsDAO;
-import org.example.jdbc.dao.SpecializationsDAO;
+import org.example.interfaces.ISpecializationDAO;
+import org.example.jdbc.dao.SpecializationDAO;
 import org.example.models.persons.Specialization;
 
 import java.util.List;
 
-public class SpecializationsService implements ISpecializationsDAO {
+public class SpecializationService implements ISpecializationDAO {
 
-    private final SpecializationsDAO specializationsDAO = new SpecializationsDAO();
+    private final SpecializationDAO specializationDAO = new SpecializationDAO();
 
     @Override
     public void saveEntity(Specialization specialization) {
-        specializationsDAO.saveEntity(specialization);
+        specializationDAO.saveEntity(specialization);
     }
 
     @Override
     public Specialization getEntityByID(int id) {
-        return specializationsDAO.getEntityByID(id);
+        return specializationDAO.getEntityByID(id);
     }
 
     @Override
     public void updateEntity(Specialization specialization) {
-        specializationsDAO.updateEntity(specialization);
+        specializationDAO.updateEntity(specialization);
     }
 
     @Override
     public void removeEntityByID(int id) {
-        specializationsDAO.removeEntityByID(id);
+        specializationDAO.removeEntityByID(id);
     }
 
     @Override
     public List<Specialization> getAll() {
-        return specializationsDAO.getAll();
+        return specializationDAO.getAll();
     }
 
     @Override
     public int getCountOfSpecialization() {
-        return specializationsDAO.getCountOfSpecialization();
+        return specializationDAO.getCountOfSpecialization();
     }
 }

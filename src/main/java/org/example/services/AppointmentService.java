@@ -1,42 +1,42 @@
 package org.example.services;
 
 import org.example.interfaces.IAppointmentDAO;
-import org.example.jdbc.dao.AppointmentsDAO;
+import org.example.jdbc.dao.AppointmentDAO;
 import org.example.models.hospital.Appointment;
 
 import java.util.List;
 
-public class AppointmentsService implements IAppointmentDAO {
+public class AppointmentService implements IAppointmentDAO {
 
-    private final AppointmentsDAO appointmentsDAO = new AppointmentsDAO();
+    private final AppointmentDAO appointmentDAO = new AppointmentDAO();
 
     @Override
     public List<Appointment> getAppointmentByPhysicianID(int id) {
-        return appointmentsDAO.getAppointmentByPhysicianID(id);
+        return appointmentDAO.getAppointmentByPhysicianID(id);
     }
 
     @Override
     public void saveEntity(Appointment appointment) {
-        appointmentsDAO.saveEntity(appointment);
+        appointmentDAO.saveEntity(appointment);
     }
 
     @Override
     public Appointment getEntityByID(int id) {
-        return appointmentsDAO.getEntityByID(id);
+        return appointmentDAO.getEntityByID(id);
     }
 
     @Override
     public void updateEntity(Appointment appointment) {
-        appointmentsDAO.updateEntity(appointment);
+        appointmentDAO.updateEntity(appointment);
     }
 
     @Override
     public void removeEntityByID(int id) {
-        appointmentsDAO.removeEntityByID(id);
+        appointmentDAO.removeEntityByID(id);
     }
 
     @Override
     public List<Appointment> getAll() {
-        return appointmentsDAO.getAll();
+        return appointmentDAO.getAll();
     }
 }

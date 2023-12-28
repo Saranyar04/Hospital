@@ -2,7 +2,7 @@ package org.example.jdbc.dao;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
-import org.example.interfaces.INursesDAO;
+import org.example.interfaces.INurseDAO;
 import org.example.models.persons.Nurse;
 import org.example.util.ConnectionPool;
 
@@ -14,16 +14,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NursesDAO implements INursesDAO {
+public class NurseDAO implements INurseDAO {
 
     private final static Logger LOGGER = (Logger) LogManager.getLogger(MethodHandles.lookup().lookupClass());
     private final ConnectionPool connectionPool = ConnectionPool.getInstance();
-    private final PositionsDAO positionsDAO = new PositionsDAO();
+    private final PositionDAO positionDAO = new PositionDAO();
 
     @Override
     public void saveEntity(Nurse nurses) {
         Connection connection = connectionPool.getConnection();
-        positionsDAO.saveEntity(nurses.getPosition());
+        positionDAO.saveEntity(nurses.getPosition());
         String query = "INSERT INTO nurses (first_name, last_name, position_id) VALUES ((?), (?), (?))";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, nurses.getFirstName());
@@ -57,7 +57,7 @@ public class NursesDAO implements INursesDAO {
                     nurses.setNurseID(rs.getInt("nurse_id"));
                     nurses.setFirstName(rs.getString("first_name"));
                     nurses.setLastName(rs.getString("last_name"));
-                    nurses.setPosition(positionsDAO.getEntityByID(rs.getInt("position_id")));
+                    nurses.setPosition(positionDAO.getEntityByID(rs.getInt("position_id")));
                 }
             }
         } catch(SQLException e){
@@ -129,7 +129,7 @@ public class NursesDAO implements INursesDAO {
                     nurse.setNurseID(rs.getInt("nurse_id"));
                     nurse.setFirstName(rs.getString("first_name"));
                     nurse.setLastName(rs.getString("last_name"));
-                    nurse.setPosition(positionsDAO.getEntityByID(rs.getInt("position_id")));
+                    nurse.setPosition(positionDAO.getEntityByID(rs.getInt("position_id")));
                     nurseList.add(nurse);
                 }
             }
@@ -161,7 +161,7 @@ public class NursesDAO implements INursesDAO {
                     nurse.setNurseID(rs.getInt("nurse_id"));
                     nurse.setFirstName(rs.getString("first_name"));
                     nurse.setLastName(rs.getString("last_name"));
-                    nurse.setPosition(positionsDAO.getEntityByID(rs.getInt("position_id")));
+                    nurse.setPosition(positionDAO.getEntityByID(rs.getInt("position_id")));
                     nurseList.add(nurse);
                 }
             }

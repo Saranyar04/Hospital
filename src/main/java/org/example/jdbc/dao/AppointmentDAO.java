@@ -14,15 +14,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AppointmentsDAO implements IAppointmentDAO {
+public class AppointmentDAO implements IAppointmentDAO {
 
     private final static Logger LOGGER = (Logger) LogManager.getLogger(MethodHandles.lookup().lookupClass());
     private final ConnectionPool connectionPool = ConnectionPool.getInstance();
-    private final PatientsDAO patientsDAO = new PatientsDAO();
-    private final PhysiciansDAO physiciansDAO = new PhysiciansDAO();
-    private final NursesDAO nursesDAO = new NursesDAO();
-    private final ExaminationRoomsDAO examinationRoomsDAO = new ExaminationRoomsDAO();
-    private final ProceduresDAO proceduresDAO = new ProceduresDAO();
+    private final PatientDAO patientDAO = new PatientDAO();
+    private final PhysicianDAO physicianDAO = new PhysicianDAO();
+    private final NurseDAO nurseDAO = new NurseDAO();
+    private final ExaminationRoomDAO examinationRoomDAO = new ExaminationRoomDAO();
+    private final ProcedureDAO procedureDAO = new ProcedureDAO();
 
     @Override
     public List<Appointment> getAppointmentByPhysicianID(int id) {
@@ -38,11 +38,11 @@ public class AppointmentsDAO implements IAppointmentDAO {
                     appointments.setAppointmentID(rs.getInt("appointment_id"));
                     appointments.setStartTime(rs.getString("start_time"));
                     appointments.setEndTime(rs.getString("end_time"));
-                    appointments.setPatient(patientsDAO.getEntityByID(rs.getInt("patient_id")));
-                    appointments.setPhysician(physiciansDAO.getEntityByID(rs.getInt("physician_id")));
-                    appointments.setNurse(nursesDAO.getEntityByID(rs.getInt("nurse_id")));
-                    appointments.setExaminationRoom(examinationRoomsDAO.getEntityByID(rs.getInt("examination_room_no")));
-                    appointments.setProcedure(proceduresDAO.getEntityByID(rs.getInt("procedure_id")));
+                    appointments.setPatient(patientDAO.getEntityByID(rs.getInt("patient_id")));
+                    appointments.setPhysician(physicianDAO.getEntityByID(rs.getInt("physician_id")));
+                    appointments.setNurse(nurseDAO.getEntityByID(rs.getInt("nurse_id")));
+                    appointments.setExaminationRoom(examinationRoomDAO.getEntityByID(rs.getInt("examination_room_no")));
+                    appointments.setProcedure(procedureDAO.getEntityByID(rs.getInt("procedure_id")));
                     appointmentList.add(appointments);
                 }
             }
@@ -63,10 +63,10 @@ public class AppointmentsDAO implements IAppointmentDAO {
     @Override
     public void saveEntity(Appointment appointments) {
         Connection connection = connectionPool.getConnection();
-        patientsDAO.saveEntity(appointments.getPatient());
-        physiciansDAO.saveEntity(appointments.getPhysician());
-        nursesDAO.saveEntity(appointments.getNurse());
-        examinationRoomsDAO.saveEntity(appointments.getExaminationRoom());
+        patientDAO.saveEntity(appointments.getPatient());
+        physicianDAO.saveEntity(appointments.getPhysician());
+        nurseDAO.saveEntity(appointments.getNurse());
+        examinationRoomDAO.saveEntity(appointments.getExaminationRoom());
         String query = "INSERT INTO (start_time, end_time, patient_id, physician_id, nurse_id, examination_room_no, procedure_id) VALUES ('?', '?', '?', '?', '?', '?', '?')";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, appointments.getStartTime());
@@ -92,7 +92,7 @@ public class AppointmentsDAO implements IAppointmentDAO {
     @Override
     public Appointment getEntityByID(int id) {
         Connection connection = connectionPool.getConnection();
-        String query = "SELECT * FROM appointments WHERE apointment_id = (?)";
+        String query = "SELECT * FROM appointments WHERE appointment_id = (?)";
         Appointment appointments = new Appointment();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, id);
@@ -102,11 +102,11 @@ public class AppointmentsDAO implements IAppointmentDAO {
                     appointments.setAppointmentID(rs.getInt("appointment_id"));
                     appointments.setStartTime(rs.getString("start_time"));
                     appointments.setEndTime(rs.getString("end_time"));
-                    appointments.setPatient(patientsDAO.getEntityByID(rs.getInt("patient_id")));
-                    appointments.setPhysician(physiciansDAO.getEntityByID(rs.getInt("physician_id")));
-                    appointments.setNurse(nursesDAO.getEntityByID(rs.getInt("nurse_id")));
-                    appointments.setExaminationRoom(examinationRoomsDAO.getEntityByID(rs.getInt("examination_room_no")));
-                    appointments.setProcedure(proceduresDAO.getEntityByID(rs.getInt("procedure_id")));
+                    appointments.setPatient(patientDAO.getEntityByID(rs.getInt("patient_id")));
+                    appointments.setPhysician(physicianDAO.getEntityByID(rs.getInt("physician_id")));
+                    appointments.setNurse(nurseDAO.getEntityByID(rs.getInt("nurse_id")));
+                    appointments.setExaminationRoom(examinationRoomDAO.getEntityByID(rs.getInt("examination_room_no")));
+                    appointments.setProcedure(procedureDAO.getEntityByID(rs.getInt("procedure_id")));
                 }
             }
         } catch(SQLException e){
@@ -182,11 +182,11 @@ public class AppointmentsDAO implements IAppointmentDAO {
                     appointments.setAppointmentID(rs.getInt("appointment_id"));
                     appointments.setStartTime(rs.getString("start_time"));
                     appointments.setEndTime(rs.getString("end_time"));
-                    appointments.setPatient(patientsDAO.getEntityByID(rs.getInt("patient_id")));
-                    appointments.setPhysician(physiciansDAO.getEntityByID(rs.getInt("physician_id")));
-                    appointments.setNurse(nursesDAO.getEntityByID(rs.getInt("nurse_id")));
-                    appointments.setExaminationRoom(examinationRoomsDAO.getEntityByID(rs.getInt("examination_room_no")));
-                    appointments.setProcedure(proceduresDAO.getEntityByID(rs.getInt("procedure_id")));
+                    appointments.setPatient(patientDAO.getEntityByID(rs.getInt("patient_id")));
+                    appointments.setPhysician(physicianDAO.getEntityByID(rs.getInt("physician_id")));
+                    appointments.setNurse(nurseDAO.getEntityByID(rs.getInt("nurse_id")));
+                    appointments.setExaminationRoom(examinationRoomDAO.getEntityByID(rs.getInt("examination_room_no")));
+                    appointments.setProcedure(procedureDAO.getEntityByID(rs.getInt("procedure_id")));
                     appointmentList.add(appointments);
                 }
             }

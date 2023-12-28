@@ -1,42 +1,42 @@
 package org.example.services;
 
-import org.example.interfaces.IManufacturersDAO;
-import org.example.jdbc.dao.ManufacturersDAO;
+import org.example.interfaces.IManufacturerDAO;
+import org.example.jdbc.dao.ManufacturerDAO;
 import org.example.models.hospital.Manufacturer;
 
 import java.util.List;
 
-public class ManufacturersService implements IManufacturersDAO {
+public class ManufacturerService implements IManufacturerDAO {
 
-    private final ManufacturersDAO manufacturersDAO = new ManufacturersDAO();
+    private final ManufacturerDAO manufacturerDAO = new ManufacturerDAO();
 
     @Override
     public void saveEntity(Manufacturer manufacturer) {
-        manufacturersDAO.saveEntity(manufacturer);
+        manufacturerDAO.saveEntity(manufacturer);
     }
 
     @Override
     public Manufacturer getEntityByID(int id) {
-        return manufacturersDAO.getEntityByID(id);
+        return manufacturerDAO.getEntityByID(id);
     }
 
     @Override
     public void updateEntity(Manufacturer manufacturer) {
-        manufacturersDAO.updateEntity(manufacturer);
+        manufacturerDAO.updateEntity(manufacturer);
     }
 
     @Override
     public void removeEntityByID(int id) {
-        manufacturersDAO.removeEntityByID(id);
+        manufacturerDAO.removeEntityByID(id);
     }
 
     @Override
     public List<Manufacturer> getAll() {
-        return manufacturersDAO.getAll();
+        return manufacturerDAO.getAll();
     }
 
     @Override
     public String getManufacturerAddressByName(String name) {
-        return manufacturersDAO.getManufacturerAddressByName(name);
+        return manufacturerDAO.getManufacturerAddressByName(name);
     }
 }

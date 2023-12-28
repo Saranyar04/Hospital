@@ -1,42 +1,42 @@
 package org.example.services;
 
-import org.example.interfaces.INursesDAO;
-import org.example.jdbc.dao.NursesDAO;
+import org.example.interfaces.INurseDAO;
+import org.example.jdbc.dao.NurseDAO;
 import org.example.models.persons.Nurse;
 
 import java.util.List;
 
-public class NursesService implements INursesDAO {
+public class NurseService implements INurseDAO {
 
-    private final NursesDAO nursesDAO = new NursesDAO();
+    private final NurseDAO nurseDAO = new NurseDAO();
 
     @Override
     public void saveEntity(Nurse nurse) {
-        nursesDAO.saveEntity(nurse);
+        nurseDAO.saveEntity(nurse);
     }
 
     @Override
     public Nurse getEntityByID(int id) {
-        return nursesDAO.getEntityByID(id);
+        return nurseDAO.getEntityByID(id);
     }
 
     @Override
     public void updateEntity(Nurse nurse) {
-        nursesDAO.updateEntity(nurse);
+        nurseDAO.updateEntity(nurse);
     }
 
     @Override
     public void removeEntityByID(int id) {
-        nursesDAO.removeEntityByID(id);
+        nurseDAO.removeEntityByID(id);
     }
 
     @Override
     public List<Nurse> getAll() {
-        return nursesDAO.getAll();
+        return nurseDAO.getAll();
     }
 
     @Override
     public List<Nurse> getNurseByPositionID(int positionID) {
-        return nursesDAO.getNurseByPositionID(positionID);
+        return nurseDAO.getNurseByPositionID(positionID);
     }
 }

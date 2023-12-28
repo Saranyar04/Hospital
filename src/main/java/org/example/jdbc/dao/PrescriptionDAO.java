@@ -3,7 +3,7 @@ package org.example.jdbc.dao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 import org.example.models.hospital.Prescription;
-import org.example.interfaces.IPrescriptionsDAO;
+import org.example.interfaces.IPrescriptionDAO;
 import org.example.util.ConnectionPool;
 
 import java.lang.invoke.MethodHandles;
@@ -14,20 +14,20 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PrescriptionsDAO implements IPrescriptionsDAO {
+public class PrescriptionDAO implements IPrescriptionDAO {
 
     private final static Logger LOGGER = (Logger) LogManager.getLogger(MethodHandles.lookup().lookupClass());
     private final ConnectionPool connectionPool = ConnectionPool.getInstance();
-    private final PhysiciansDAO physiciansDAO = new PhysiciansDAO();
-    private final PatientsDAO patientsDAO = new PatientsDAO();
-    private final MedicationsDAO medicationsDAO = new MedicationsDAO();
+    private final PhysicianDAO physicianDAO = new PhysicianDAO();
+    private final PatientDAO patientDAO = new PatientDAO();
+    private final MedicationDAO medicationDAO = new MedicationDAO();
 
     @Override
     public void saveEntity(Prescription prescriptions) {
         Connection connection = connectionPool.getConnection();
-        physiciansDAO.saveEntity(prescriptions.getPhysician());
-        patientsDAO.saveEntity(prescriptions.getPatient());
-        medicationsDAO.saveEntity(prescriptions.getMedication());
+        physicianDAO.saveEntity(prescriptions.getPhysician());
+        patientDAO.saveEntity(prescriptions.getPatient());
+        medicationDAO.saveEntity(prescriptions.getMedication());
         String query = "INSERT INTO prescription (date, physician_id, patient_id, medication_id) VALUES ((?), (?), (?), (?))";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setDate(1, prescriptions.getDate());
@@ -48,7 +48,6 @@ public class PrescriptionsDAO implements IPrescriptionsDAO {
         }
     }
 
-
     @Override
     public Prescription getEntityByID(int id) {
         Connection connection = connectionPool.getConnection();
@@ -61,9 +60,9 @@ public class PrescriptionsDAO implements IPrescriptionsDAO {
                 while(rs.next()) {
                     prescriptions.setPrescriptionID(rs.getInt("prescription_id"));
                     prescriptions.setDate(rs.getDate("date"));
-                    prescriptions.setPhysician(physiciansDAO.getEntityByID(rs.getInt("physician_id")));
-                    prescriptions.setPatient(patientsDAO.getEntityByID(rs.getInt("patient_id")));
-                    prescriptions.setMedication(medicationsDAO.getEntityByID(rs.getInt("medication_id")));
+                    prescriptions.setPhysician(physicianDAO.getEntityByID(rs.getInt("physician_id")));
+                    prescriptions.setPatient(patientDAO.getEntityByID(rs.getInt("patient_id")));
+                    prescriptions.setMedication(medicationDAO.getEntityByID(rs.getInt("medication_id")));
                 }
             }
         } catch(SQLException e){
@@ -134,9 +133,9 @@ public class PrescriptionsDAO implements IPrescriptionsDAO {
                     Prescription prescriptions = new Prescription();
                     prescriptions.setPrescriptionID(rs.getInt("prescription_id"));
                     prescriptions.setDate(rs.getDate("date"));
-                    prescriptions.setPhysician(physiciansDAO.getEntityByID(rs.getInt("physician_id")));
-                    prescriptions.setPatient(patientsDAO.getEntityByID(rs.getInt("patient_id")));
-                    prescriptions.setMedication(medicationsDAO.getEntityByID(rs.getInt("medication_id")));
+                    prescriptions.setPhysician(physicianDAO.getEntityByID(rs.getInt("physician_id")));
+                    prescriptions.setPatient(patientDAO.getEntityByID(rs.getInt("patient_id")));
+                    prescriptions.setMedication(medicationDAO.getEntityByID(rs.getInt("medication_id")));
                     prescriptionsList.add(prescriptions);
                 }
             }
@@ -167,9 +166,9 @@ public class PrescriptionsDAO implements IPrescriptionsDAO {
                     Prescription prescriptions = new Prescription();
                     prescriptions.setPrescriptionID(rs.getInt("prescription_id"));
                     prescriptions.setDate(rs.getDate("date"));
-                    prescriptions.setPhysician(physiciansDAO.getEntityByID(rs.getInt("physician_id")));
-                    prescriptions.setPatient(patientsDAO.getEntityByID(rs.getInt("patient_id")));
-                    prescriptions.setMedication(medicationsDAO.getEntityByID(rs.getInt("medication_id")));
+                    prescriptions.setPhysician(physicianDAO.getEntityByID(rs.getInt("physician_id")));
+                    prescriptions.setPatient(patientDAO.getEntityByID(rs.getInt("patient_id")));
+                    prescriptions.setMedication(medicationDAO.getEntityByID(rs.getInt("medication_id")));
                     prescriptionsList.add(prescriptions);
                 }
             }

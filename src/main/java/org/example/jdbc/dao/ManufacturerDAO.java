@@ -3,7 +3,7 @@ package org.example.jdbc.dao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 import org.example.models.hospital.Manufacturer;
-import org.example.interfaces.IManufacturersDAO;
+import org.example.interfaces.IManufacturerDAO;
 import org.example.util.ConnectionPool;
 
 import java.lang.invoke.MethodHandles;
@@ -14,7 +14,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ManufacturersDAO implements IManufacturersDAO {
+public class ManufacturerDAO implements IManufacturerDAO {
 
     private final static Logger LOGGER = (Logger) LogManager.getLogger(MethodHandles.lookup().lookupClass());
     private final ConnectionPool connectionPool = ConnectionPool.getInstance();

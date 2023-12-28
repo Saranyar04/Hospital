@@ -3,7 +3,7 @@ package org.example.jdbc.dao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 import org.example.models.hospital.Department;
-import org.example.interfaces.IDepartmentsDAO;
+import org.example.interfaces.IDepartmentDAO;
 import org.example.util.ConnectionPool;
 
 import java.lang.invoke.MethodHandles;
@@ -14,10 +14,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DepartmentsDAO implements IDepartmentsDAO {
+public class DepartmentDAO implements IDepartmentDAO {
 
     private final static Logger LOGGER = (Logger) LogManager.getLogger(MethodHandles.lookup().lookupClass());
     private final ConnectionPool connectionPool = ConnectionPool.getInstance();
+    private static DepartmentHasNurseDAO departmentHasNurseDAO = new DepartmentHasNurseDAO();
 
     @Override
     public void saveEntity(Department departments) {
@@ -43,14 +44,14 @@ public class DepartmentsDAO implements IDepartmentsDAO {
     public Department getEntityByID(int id) {
         Connection connection = connectionPool.getConnection();
         String query = "SELECT * FROM departments WHERE department_id = (?)";
-        Department departments = new Department();
+        Department department = new Department();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, id);
             statement.execute();
             try (ResultSet rs = statement.getResultSet()) {
                 while (rs.next()) {
-                    departments.setDepartmentID(rs.getInt("department_id"));
-                    departments.setName(rs.getString("name"));
+                    department.setDepartmentID(rs.getInt("department_id"));
+                    department.setName(rs.getString("name"));
                 }
             }
         } catch (SQLException e) {
@@ -64,7 +65,7 @@ public class DepartmentsDAO implements IDepartmentsDAO {
                 }
             }
         }
-        return departments;
+        return department;
     }
 
     @Override
@@ -118,10 +119,11 @@ public class DepartmentsDAO implements IDepartmentsDAO {
             statement.execute();
             try (ResultSet rs = statement.getResultSet()) {
                 while (rs.next()) {
-                    Department departments = new Department();
-                    departments.setDepartmentID(rs.getInt("department_id"));
-                    departments.setName(rs.getString("name"));
-                    departmentsList.add(departments);
+                    Department department = new Department();
+                    department.setDepartmentID(rs.getInt("department_id"));
+                    department.setName(rs.getString("name"));
+                    department.setNursesList(departmentHasNurseDAO.getNursesByDepartment(department));
+                    departmentsList.add(department);
                 }
             }
         } catch (SQLException e) {
@@ -147,10 +149,10 @@ public class DepartmentsDAO implements IDepartmentsDAO {
             statement.execute();
             try (ResultSet rs = statement.getResultSet()) {
                 while (rs.next()) {
-                    Department departments = new Department();
-                    departments.setDepartmentID(rs.getInt("department_id"));
-                    departments.setName(rs.getString("name"));
-                    departmentsList.add(departments);
+                    Department department = new Department();
+                    department.setDepartmentID(rs.getInt("department_id"));
+                    department.setName(rs.getString("name"));
+                    departmentsList.add(department);
                 }
             }
         } catch (SQLException e) {

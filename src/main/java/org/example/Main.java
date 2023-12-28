@@ -12,42 +12,42 @@ public class Main {
     private static final Logger LOGGER = (Logger) LogManager.getLogger(Main.class);
 
     public static void main(String[] args) {
-        AppointmentsService appointmentsService = new AppointmentsService();
-        List<Appointment> appointmentsList = appointmentsService.getAppointmentByPhysicianID(14);
+        AppointmentService appointmentService = new AppointmentService();
+        List<Appointment> appointmentsList = appointmentService.getAppointmentByPhysicianID(14);
         LOGGER.info(appointmentsList);
 
         DepartmentHasNurseService departmentHasNurseService = new DepartmentHasNurseService();
         DepartmentsHasNurse departmentsHasNurse = departmentHasNurseService.getEntityByID(3);
         LOGGER.info(departmentsHasNurse);
 
-        DepartmentsService departmentsService = new DepartmentsService();
-        List<Department> departmentsList = departmentsService.getDepartmentSortedByName();
+        DepartmentService departmentService = new DepartmentService();
+        List<Department> departmentsList = departmentService.getAll();
         LOGGER.info(departmentsList);
-        Department department = departmentsService.getEntityByID(3);
-        department.setNursesList(departmentHasNurseService.addNursesToDepartment(department));
+        Department department = departmentService.getEntityByID(3);
+        department.setNursesList(departmentHasNurseService.getNursesByDepartment(department));
         LOGGER.info(department.getNursesList());
 
-        ExaminationRoomsService examinationRoomsService = new ExaminationRoomsService();
-        List<ExaminationRoom> examinationRoomsList = examinationRoomsService.getRoomsByType("private");
+        ExaminationRoomService examinationRoomService = new ExaminationRoomService();
+        List<ExaminationRoom> examinationRoomsList = examinationRoomService.getRoomsByType("private");
         LOGGER.info(examinationRoomsList);
 
-        ManufacturersService manufacturersService = new ManufacturersService();
-        String address = manufacturersService.getManufacturerAddressByName("Biocon");
+        ManufacturerService manufacturerService = new ManufacturerService();
+        String address = manufacturerService.getManufacturerAddressByName("Biocon");
         LOGGER.info(address);
 
-        ProceduresService proceduresService = new ProceduresService();
-        Procedure procedure = proceduresService.getTopProcedure();
+        ProcedureService procedureService = new ProcedureService();
+        Procedure procedure = procedureService.getTopProcedure();
         LOGGER.info("Top Procedure : " + procedure);
 
-        SpecializationsService specializationsService = new SpecializationsService();
-        int count = specializationsService.getCountOfSpecialization();
+        SpecializationService specializationService = new SpecializationService();
+        int count = specializationService.getCountOfSpecialization();
         LOGGER.info("No of Specializations : " + count);
 
-        PositionsService positionsService = new PositionsService();
-        LOGGER.info("Top positions : " + positionsService.getTopPosition(3));
-        Position position = positionsService.getEntityByID(4);
+        PositionService positionService = new PositionService();
+        LOGGER.info("Top positions : " + positionService.getTopPosition(3));
+        Position position = positionService.getEntityByID(4);
         position.setName("Mid-Level");
-        positionsService.updateEntity(position);
+        positionService.updateEntity(position);
 
     }
 }

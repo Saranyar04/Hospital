@@ -1,41 +1,41 @@
 package org.example.services;
 
-import org.example.interfaces.IDepartmentsDAO;
-import org.example.jdbc.dao.DepartmentsDAO;
+import org.example.interfaces.IDepartmentDAO;
+import org.example.jdbc.dao.DepartmentDAO;
 import org.example.models.hospital.Department;
 
 import java.util.List;
 
-public class DepartmentsService implements IDepartmentsDAO {
+public class DepartmentService implements IDepartmentDAO {
 
-    private final DepartmentsDAO departmentsDAO = new DepartmentsDAO();
+    private final DepartmentDAO departmentDAO = new DepartmentDAO();
     @Override
     public void saveEntity(Department departments) {
-        departmentsDAO.saveEntity(departments);
+        departmentDAO.saveEntity(departments);
     }
 
     @Override
     public Department getEntityByID(int id) {
-        return departmentsDAO.getEntityByID(id);
+        return departmentDAO.getEntityByID(id);
     }
 
     @Override
     public void updateEntity(Department departments) {
-        departmentsDAO.updateEntity(departments);
+        departmentDAO.updateEntity(departments);
     }
 
     @Override
     public void removeEntityByID(int id) {
-        departmentsDAO.removeEntityByID(id);
+        departmentDAO.removeEntityByID(id);
     }
 
     @Override
     public List<Department> getAll() {
-        return departmentsDAO.getAll();
+        return departmentDAO.getAll();
     }
 
     @Override
     public List<Department> getDepartmentSortedByName() {
-        return departmentsDAO.getDepartmentSortedByName();
+        return departmentDAO.getDepartmentSortedByName();
     }
 }

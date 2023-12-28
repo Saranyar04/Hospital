@@ -1,42 +1,42 @@
 package org.example.services;
 
-import org.example.interfaces.IProceduresDAO;
-import org.example.jdbc.dao.ProceduresDAO;
+import org.example.interfaces.IProcedureDAO;
+import org.example.jdbc.dao.ProcedureDAO;
 import org.example.models.hospital.Procedure;
 
 import java.util.List;
 
-public class ProceduresService implements IProceduresDAO {
+public class ProcedureService implements IProcedureDAO {
 
-    private final ProceduresDAO proceduresDAO = new ProceduresDAO();
+    private final ProcedureDAO procedureDAO = new ProcedureDAO();
 
     @Override
     public void saveEntity(Procedure procedure) {
-        proceduresDAO.saveEntity(procedure);
+        procedureDAO.saveEntity(procedure);
     }
 
     @Override
     public Procedure getEntityByID(int id) {
-        return proceduresDAO.getEntityByID(id);
+        return procedureDAO.getEntityByID(id);
     }
 
     @Override
     public void updateEntity(Procedure procedure) {
-        proceduresDAO.updateEntity(procedure);
+        procedureDAO.updateEntity(procedure);
     }
 
     @Override
     public void removeEntityByID(int id) {
-        proceduresDAO.removeEntityByID(id);
+        procedureDAO.removeEntityByID(id);
     }
 
     @Override
     public List<Procedure> getAll() {
-        return proceduresDAO.getAll();
+        return procedureDAO.getAll();
     }
 
     @Override
     public Procedure getTopProcedure() {
-        return proceduresDAO.getTopProcedure();
+        return procedureDAO.getTopProcedure();
     }
 }

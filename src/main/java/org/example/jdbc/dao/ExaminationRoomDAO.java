@@ -3,7 +3,7 @@ package org.example.jdbc.dao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 import org.example.models.hospital.ExaminationRoom;
-import org.example.interfaces.IExaminationRoomsDAO;
+import org.example.interfaces.IExaminationRoomDAO;
 import org.example.util.ConnectionPool;
 
 import java.lang.invoke.MethodHandles;
@@ -14,7 +14,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExaminationRoomsDAO implements IExaminationRoomsDAO {
+public class ExaminationRoomDAO implements IExaminationRoomDAO {
 
     private final static Logger LOGGER = (Logger) LogManager.getLogger(MethodHandles.lookup().lookupClass());
     private final ConnectionPool connectionPool = ConnectionPool.getInstance();
@@ -138,6 +138,7 @@ public class ExaminationRoomsDAO implements IExaminationRoomsDAO {
         }
         return examinationRoomsList;
     }
+
     @Override
     public List<ExaminationRoom> getRoomsByType(String roomType) {
         Connection connection = connectionPool.getConnection();

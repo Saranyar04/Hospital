@@ -43,7 +43,7 @@ public class DepartmentHasNurseService implements IDepartmentHasNurseDAO {
     }
 
     @Override
-    public List<Nurse> addNursesToDepartment(Department department) {
-        return departmentHasNurseDAO.addNursesToDepartment(department);
+    public List<Nurse> getNursesByDepartment(Department department) {
+        return departmentHasNurseDAO.getNursesByDepartment(department);
     }
 }

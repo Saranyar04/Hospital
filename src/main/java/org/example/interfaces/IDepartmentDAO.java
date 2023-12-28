@@ -4,7 +4,7 @@ import org.example.models.hospital.Department;
 
 import java.util.List;
 
-public interface IDepartmentsDAO extends IBaseDAO<Department> {
+public interface IDepartmentDAO extends IBaseDAO<Department> {
 
     public List<Department> getDepartmentSortedByName();
 }

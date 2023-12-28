@@ -4,7 +4,7 @@ import org.example.models.persons.Position;
 
 import java.util.List;
 
-public interface IPositionsDAO extends IBaseDAO<Position>{
+public interface IPositionDAO extends IBaseDAO<Position>{
 
     List<Position> getTopPosition(int limit);
 }

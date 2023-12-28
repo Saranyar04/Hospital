@@ -3,7 +3,7 @@ package org.example.jdbc.dao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 import org.example.models.hospital.Procedure;
-import org.example.interfaces.IProceduresDAO;
+import org.example.interfaces.IProcedureDAO;
 import org.example.util.ConnectionPool;
 
 import java.lang.invoke.MethodHandles;
@@ -14,7 +14,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProceduresDAO implements IProceduresDAO {
+public class ProcedureDAO implements IProcedureDAO {
 
     private final static Logger LOGGER = (Logger) LogManager.getLogger(MethodHandles.lookup().lookupClass());
     private final ConnectionPool connectionPool = ConnectionPool.getInstance();
@@ -142,6 +142,7 @@ public class ProceduresDAO implements IProceduresDAO {
         }
         return proceduresList;
     }
+
     @Override
     public Procedure getTopProcedure() {
         Connection connection = connectionPool.getConnection();

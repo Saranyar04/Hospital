@@ -4,7 +4,7 @@ import org.example.models.persons.Patient;
 
 import java.util.List;
 
-public interface IPatientsDAO extends IBaseDAO<Patient> {
+public interface IPatientDAO extends IBaseDAO<Patient> {
 
     List<Patient> getPatientByPhysicianID(int physicianID);
 }

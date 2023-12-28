@@ -1,42 +1,42 @@
 package org.example.services;
 
-import org.example.interfaces.IPatientsDAO;
-import org.example.jdbc.dao.PatientsDAO;
+import org.example.interfaces.IPatientDAO;
+import org.example.jdbc.dao.PatientDAO;
 import org.example.models.persons.Patient;
 
 import java.util.List;
 
-public class PatientsService implements IPatientsDAO {
+public class PatientService implements IPatientDAO {
 
-    private final PatientsDAO patientsDAO = new PatientsDAO();
+    private final PatientDAO patientDAO = new PatientDAO();
 
     @Override
     public void saveEntity(Patient patient) {
-        patientsDAO.saveEntity(patient);
+        patientDAO.saveEntity(patient);
     }
 
     @Override
     public Patient getEntityByID(int id) {
-        return patientsDAO.getEntityByID(id);
+        return patientDAO.getEntityByID(id);
     }
 
     @Override
     public void updateEntity(Patient patient) {
-        patientsDAO.updateEntity(patient);
+        patientDAO.updateEntity(patient);
     }
 
     @Override
     public void removeEntityByID(int id) {
-        patientsDAO.removeEntityByID(id);
+        patientDAO.removeEntityByID(id);
     }
 
     @Override
     public List<Patient> getAll() {
-        return patientsDAO.getAll();
+        return patientDAO.getAll();
     }
 
     @Override
     public List<Patient> getPatientByPhysicianID(int physicianID) {
-        return patientsDAO.getPatientByPhysicianID(physicianID);
+        return patientDAO.getPatientByPhysicianID(physicianID);
     }
 }

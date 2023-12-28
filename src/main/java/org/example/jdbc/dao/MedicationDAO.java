@@ -3,7 +3,7 @@ package org.example.jdbc.dao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 import org.example.models.hospital.Medication;
-import org.example.interfaces.IMedicationsDAO;
+import org.example.interfaces.IMedicationDAO;
 import org.example.util.ConnectionPool;
 
 import java.lang.invoke.MethodHandles;
@@ -14,16 +14,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MedicationsDAO implements IMedicationsDAO {
+public class MedicationDAO implements IMedicationDAO {
 
     private final static Logger LOGGER = (Logger) LogManager.getLogger(MethodHandles.lookup().lookupClass());
     private final ConnectionPool connectionPool = ConnectionPool.getInstance();
-    private final ManufacturersDAO manufacturersDAO = new ManufacturersDAO();
+    private final ManufacturerDAO manufacturerDAO = new ManufacturerDAO();
 
     @Override
     public void saveEntity(Medication medications) {
         Connection connection = connectionPool.getConnection();
-        manufacturersDAO.saveEntity(medications.getManufacturer());
+        manufacturerDAO.saveEntity(medications.getManufacturer());
         String query = "INSERT INTO manufacturers (medication_name, details, amount, manufacturer_id) VALUES ((?), (?), (?), (?))";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, medications.getMedicationName());
@@ -59,7 +59,7 @@ public class MedicationsDAO implements IMedicationsDAO {
                     medications.setMedicationName(rs.getString("medication_name"));
                     medications.setDetails(rs.getString("details"));
                     medications.setAmount(rs.getDouble("amount"));
-                    medications.setManufacturer(manufacturersDAO.getEntityByID(rs.getInt("manufacturer_id")));
+                    medications.setManufacturer(manufacturerDAO.getEntityByID(rs.getInt("manufacturer_id")));
                 }
             }
         } catch(SQLException e){
@@ -133,7 +133,7 @@ public class MedicationsDAO implements IMedicationsDAO {
                     medications.setMedicationName(rs.getString("medication_name"));
                     medications.setDetails(rs.getString("details"));
                     medications.setAmount(rs.getDouble("amount"));
-                    medications.setManufacturer(manufacturersDAO.getEntityByID(rs.getInt("manufacturer_id")));
+                    medications.setManufacturer(manufacturerDAO.getEntityByID(rs.getInt("manufacturer_id")));
                     medicationsList.add(medications);
                 }
             }
@@ -166,7 +166,7 @@ public class MedicationsDAO implements IMedicationsDAO {
                     medications.setMedicationName(rs.getString("medication_name"));
                     medications.setDetails(rs.getString("details"));
                     medications.setAmount(rs.getDouble("amount"));
-                    medications.setManufacturer(manufacturersDAO.getEntityByID(rs.getInt("manufacturer_id")));
+                    medications.setManufacturer(manufacturerDAO.getEntityByID(rs.getInt("manufacturer_id")));
                     medicationsList.add(medications);
                 }
             }

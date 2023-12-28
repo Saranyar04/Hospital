@@ -4,7 +4,7 @@ import org.example.models.persons.Nurse;
 
 import java.util.List;
 
-public interface INursesDAO extends IBaseDAO<Nurse>{
+public interface INurseDAO extends IBaseDAO<Nurse>{
 
     List<Nurse> getNurseByPositionID(int positionID);
 }
