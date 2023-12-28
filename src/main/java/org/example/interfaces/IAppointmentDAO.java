@@ -1,10 +1,10 @@
 package org.example.interfaces;
 
-import org.example.models.hospital.Appointments;
+import org.example.models.hospital.Appointment;
 
 import java.util.List;
 
-public interface IAppointmentDAO extends IBaseDAO<Appointments> {
+public interface IAppointmentDAO extends IBaseDAO<Appointment> {
 
-    List<Appointments> getAppointmentByPhysician(int id);
+    List<Appointment> getAppointmentByPhysicianID(int id);
 }

@@ -2,10 +2,8 @@ package org.example.jdbc.dao;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
-import org.example.models.hospital.Department;
-import org.example.models.hospital.DepartmentsHasNurse;
-import org.example.interfaces.IDepartmentHasNurseDAO;
-import org.example.models.persons.Nurse;
+import org.example.models.hospital.Prescription;
+import org.example.interfaces.IPrescriptionDAO;
 import org.example.util.ConnectionPool;
 
 import java.lang.invoke.MethodHandles;
@@ -16,23 +14,26 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DepartmentHasNurseDAO implements IDepartmentHasNurseDAO {
+public class PrescriptionDAO implements IPrescriptionDAO {
 
     private final static Logger LOGGER = (Logger) LogManager.getLogger(MethodHandles.lookup().lookupClass());
     private final ConnectionPool connectionPool = ConnectionPool.getInstance();
-    private final NurseDAO nurseDAO = new NurseDAO();
-    private final DepartmentDAO departmentDAO = new DepartmentDAO();
-    private final PositionDAO positionDAO = new PositionDAO();
+    private final PhysicianDAO physicianDAO = new PhysicianDAO();
+    private final PatientDAO patientDAO = new PatientDAO();
+    private final MedicationDAO medicationDAO = new MedicationDAO();
 
     @Override
-    public void saveEntity(DepartmentsHasNurse departmentsHasNurse) {
+    public void saveEntity(Prescription prescriptions) {
         Connection connection = connectionPool.getConnection();
-        nurseDAO.saveEntity(departmentsHasNurse.getNurse());
-        departmentDAO.saveEntity(departmentsHasNurse.getDepartment());
-        String query = "INSERT INTO department_has_nurse (department_id, nurse_id) VALUES ((?), (?))";
+        physicianDAO.saveEntity(prescriptions.getPhysician());
+        patientDAO.saveEntity(prescriptions.getPatient());
+        medicationDAO.saveEntity(prescriptions.getMedication());
+        String query = "INSERT INTO prescription (date, physician_id, patient_id, medication_id) VALUES ((?), (?), (?), (?))";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setInt(1, departmentsHasNurse.getDepartment().getDepartmentID());
-            statement.setInt(2, departmentsHasNurse.getNurse().getNurseID());
+            statement.setDate(1, prescriptions.getDate());
+            statement.setInt(2, prescriptions.getPhysician().getPhysicianID());
+            statement.setInt(3, prescriptions.getPatient().getPatientID());
+            statement.setInt(4, prescriptions.getMedication().getMedicationID());
             statement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.error(e);
@@ -47,19 +48,21 @@ public class DepartmentHasNurseDAO implements IDepartmentHasNurseDAO {
         }
     }
 
-
     @Override
-    public DepartmentsHasNurse getEntityByID(int id) {
+    public Prescription getEntityByID(int id) {
         Connection connection = connectionPool.getConnection();
-        String query = "SELECT * FROM department_has_nurse WHERE department_id = (?)";
-        DepartmentsHasNurse departmentsHasNurse = new DepartmentsHasNurse();
+        String query = "SELECT * FROM prescriptions WHERE prescription_id = (?)";
+        Prescription prescriptions = new Prescription();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, id);
             statement.execute();
             try (ResultSet rs = statement.getResultSet()) {
                 while(rs.next()) {
-                    departmentsHasNurse.setDepartment(departmentDAO.getEntityByID(rs.getInt("department_id")));
-                    departmentsHasNurse.setNurse(nurseDAO.getEntityByID(rs.getInt("nurse_id")));
+                    prescriptions.setPrescriptionID(rs.getInt("prescription_id"));
+                    prescriptions.setDate(rs.getDate("date"));
+                    prescriptions.setPhysician(physicianDAO.getEntityByID(rs.getInt("physician_id")));
+                    prescriptions.setPatient(patientDAO.getEntityByID(rs.getInt("patient_id")));
+                    prescriptions.setMedication(medicationDAO.getEntityByID(rs.getInt("medication_id")));
                 }
             }
         } catch(SQLException e){
@@ -73,16 +76,16 @@ public class DepartmentHasNurseDAO implements IDepartmentHasNurseDAO {
                 }
             }
         }
-        return departmentsHasNurse;
+        return prescriptions;
     }
 
     @Override
-    public void updateEntity(DepartmentsHasNurse departmentsHasNurse) {
+    public void updateEntity(Prescription prescriptions) {
         Connection connection = connectionPool.getConnection();
-        String query = "UPDATE department_has_nurse SET nurse_id = (?) WHERE department_id = (?)";
+        String query = "UPDATE prescriptions SET medication_id = (?) WHERE prescription_id = (?)";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setInt(1, departmentsHasNurse.getDepartment().getDepartmentID());
-            statement.setInt(2, departmentsHasNurse.getNurse().getNurseID());
+            statement.setInt(1, prescriptions.getMedication().getMedicationID());
+            statement.setInt(2, prescriptions.getPrescriptionID());
             statement.executeUpdate();
         } catch(SQLException e){
             LOGGER.error(e);
@@ -100,7 +103,7 @@ public class DepartmentHasNurseDAO implements IDepartmentHasNurseDAO {
     @Override
     public void removeEntityByID(int id) {
         Connection connection = connectionPool.getConnection();
-        String query = "DELETE FROM department_has_nurse WHERE department_id = (?)";
+        String query = "DELETE FROM prescriptions WHERE prescription_id = (?)";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, id);
             statement.execute();
@@ -119,18 +122,21 @@ public class DepartmentHasNurseDAO implements IDepartmentHasNurseDAO {
     }
 
     @Override
-    public List<DepartmentsHasNurse> getAll() {
+    public List<Prescription> getAll() {
         Connection connection = connectionPool.getConnection();
-        String query = "SELECT * FROM department_has_nurse";
-        List<DepartmentsHasNurse> departmentsHasNursesList = new ArrayList<>();
+        String query = "SELECT * FROM prescriptions";
+        List<Prescription> prescriptionsList = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.execute();
             try (ResultSet rs = statement.getResultSet()) {
                 while (rs.next()) {
-                    DepartmentsHasNurse departmentsHasNurse = new DepartmentsHasNurse();
-                    departmentsHasNurse.setDepartment(departmentDAO.getEntityByID(rs.getInt("department_id")));
-                    departmentsHasNurse.setNurse(nurseDAO.getEntityByID(rs.getInt("nurse_id")));
-                    departmentsHasNursesList.add(departmentsHasNurse);
+                    Prescription prescriptions = new Prescription();
+                    prescriptions.setPrescriptionID(rs.getInt("prescription_id"));
+                    prescriptions.setDate(rs.getDate("date"));
+                    prescriptions.setPhysician(physicianDAO.getEntityByID(rs.getInt("physician_id")));
+                    prescriptions.setPatient(patientDAO.getEntityByID(rs.getInt("patient_id")));
+                    prescriptions.setMedication(medicationDAO.getEntityByID(rs.getInt("medication_id")));
+                    prescriptionsList.add(prescriptions);
                 }
             }
         } catch(SQLException e){
@@ -144,23 +150,26 @@ public class DepartmentHasNurseDAO implements IDepartmentHasNurseDAO {
                 }
             }
         }
-        return departmentsHasNursesList;
+        return prescriptionsList;
     }
 
     @Override
-    public List<DepartmentsHasNurse> getDepartmentByNurseID(int nurseID) {
+    public List<Prescription> getPrescriptionByPatientID(int patientID) {
         Connection connection = connectionPool.getConnection();
-        String query = "SELECT * FROM department_has_nurse WHERE nurse_id = (?)";
-        List<DepartmentsHasNurse> departmentsHasNursesList = new ArrayList<>();
+        String query = "SELECT * FROM prescriptions WHERE patient_id = (?)";
+        List<Prescription> prescriptionsList = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setInt(1, nurseID);
+            statement.setInt(1, patientID);
             statement.execute();
             try (ResultSet rs = statement.getResultSet()) {
                 while (rs.next()) {
-                    DepartmentsHasNurse departmentsHasNurse = new DepartmentsHasNurse();
-                    departmentsHasNurse.setDepartment(departmentDAO.getEntityByID(rs.getInt("department_id")));
-                    departmentsHasNurse.setNurse(nurseDAO.getEntityByID(rs.getInt("nurse_id")));
-                    departmentsHasNursesList.add(departmentsHasNurse);
+                    Prescription prescriptions = new Prescription();
+                    prescriptions.setPrescriptionID(rs.getInt("prescription_id"));
+                    prescriptions.setDate(rs.getDate("date"));
+                    prescriptions.setPhysician(physicianDAO.getEntityByID(rs.getInt("physician_id")));
+                    prescriptions.setPatient(patientDAO.getEntityByID(rs.getInt("patient_id")));
+                    prescriptions.setMedication(medicationDAO.getEntityByID(rs.getInt("medication_id")));
+                    prescriptionsList.add(prescriptions);
                 }
             }
         } catch(SQLException e){
@@ -174,34 +183,6 @@ public class DepartmentHasNurseDAO implements IDepartmentHasNurseDAO {
                 }
             }
         }
-        return departmentsHasNursesList;
-    }
-
-    @Override
-    public List<Nurse> getNursesByDepartment(int id) {
-        Connection connection = connectionPool.getConnection();
-        String query = "SELECT nurse_id FROM department_has_nurse WHERE department_id = ?";
-        List<Nurse> nursesList = new ArrayList<>();
-        try (PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setInt(1, id);
-            statement.execute();
-            try (ResultSet rs = statement.getResultSet()) {
-                while (rs.next()) {
-                    Nurse nurse = nurseDAO.getEntityByID(rs.getInt("nurse_id"));
-                    nursesList.add(nurse);
-                }
-            }
-        } catch(SQLException e){
-            LOGGER.error(e);
-        } finally {
-            if (connection != null) {
-                try {
-                    connectionPool.releaseConnection(connection);
-                } catch (SQLException e) {
-                    LOGGER.info(e);
-                }
-            }
-        }
-        return nursesList;
+        return prescriptionsList;
     }
 }

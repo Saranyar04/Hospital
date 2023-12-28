@@ -1,42 +1,41 @@
 package org.example.models.hospital;
 
-import org.example.models.hospital.Departments;
-import org.example.models.persons.Nurses;
+import org.example.models.persons.Nurse;
 
 public class DepartmentsHasNurse {
 
-    private Departments departments;
-    private Nurses nurses;
+    private Department department;
+    private Nurse nurse;
 
     public DepartmentsHasNurse() {
     }
 
-    public DepartmentsHasNurse(Departments departments, Nurses nurses) {
-        this.departments = departments;
-        this.nurses = nurses;
+    public DepartmentsHasNurse(Department departments, Nurse nurses) {
+        this.department = departments;
+        this.nurse = nurses;
     }
 
-    public Departments getDepartments() {
-        return departments;
+    public Department getDepartment() {
+        return department;
     }
 
-    public void setDepartments(Departments departments) {
-        this.departments = departments;
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
-    public Nurses getNurses() {
-        return nurses;
+    public Nurse getNurse() {
+        return nurse;
     }
 
-    public void setNurses(Nurses nurses) {
-        this.nurses = nurses;
+    public void setNurse(Nurse nurse) {
+        this.nurse = nurse;
     }
 
     @Override
     public String toString() {
         return "DepartmentsHasNurse{" +
-                "departments=" + departments +
-                ", nurses=" + nurses +
+                "department=" + department +
+                ", nurse=" + nurse +
                 '}';
     }
 }

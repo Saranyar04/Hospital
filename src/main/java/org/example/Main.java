@@ -3,7 +3,7 @@ package org.example;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 import org.example.models.hospital.*;
-import org.example.models.persons.Positions;
+import org.example.models.persons.Position;
 import org.example.services.*;
 
 import java.util.List;
@@ -12,38 +12,42 @@ public class Main {
     private static final Logger LOGGER = (Logger) LogManager.getLogger(Main.class);
 
     public static void main(String[] args) {
-        AppointmentsService appointmentsService = new AppointmentsService();
-        List<Appointments> appointmentsList = appointmentsService.getAppointmentByPhysician(14);
+        AppointmentService appointmentService = new AppointmentService();
+        List<Appointment> appointmentsList = appointmentService.getAppointmentByPhysicianID(14);
         LOGGER.info(appointmentsList);
 
-        DepartmentHasNurseSrevice departmentHasNurseSrevice = new DepartmentHasNurseSrevice();
-        DepartmentsHasNurse departmentsHasNurse = departmentHasNurseSrevice.getEntityByID(3);
+        DepartmentHasNurseService departmentHasNurseService = new DepartmentHasNurseService();
+        DepartmentsHasNurse departmentsHasNurse = departmentHasNurseService.getEntityByID(3);
         LOGGER.info(departmentsHasNurse);
 
-        DepartmentsService departmentsService = new DepartmentsService();
-        List<Departments> departmentsList = departmentsService.getDepartmentOrderByName();
+        DepartmentService departmentService = new DepartmentService();
+        List<Department> departmentsList = departmentService.getAll();
         LOGGER.info(departmentsList);
+        Department department = departmentService.getEntityByID(3);
+        LOGGER.info(department);
 
-        ExaminationRoomsService examinationRoomsService = new ExaminationRoomsService();
-        List<ExaminationRooms> examinationRoomsList = examinationRoomsService.getRoomsbyType("private");
+
+        ExaminationRoomService examinationRoomService = new ExaminationRoomService();
+        List<ExaminationRoom> examinationRoomsList = examinationRoomService.getRoomsByType("private");
         LOGGER.info(examinationRoomsList);
 
-        ManufacturersService manufacturersService = new ManufacturersService();
-        String address = manufacturersService.getManufacturerAddressByName("Biocon");
+        ManufacturerService manufacturerService = new ManufacturerService();
+        String address = manufacturerService.getManufacturerAddressByName("Biocon");
         LOGGER.info(address);
 
-        ProceduresService proceduresService = new ProceduresService();
-        Procedures procedures = proceduresService.getTopProcedure();
-        LOGGER.info("Top Procedure : " + procedures);
+        ProcedureService procedureService = new ProcedureService();
+        Procedure procedure = procedureService.getTopProcedure();
+        LOGGER.info("Top Procedure : " + procedure);
 
-        SpecializationsService specializationsService = new SpecializationsService();
-        int count = specializationsService.getCountOfSpecialization();
+        SpecializationService specializationService = new SpecializationService();
+        int count = specializationService.getCountOfSpecialization();
         LOGGER.info("No of Specializations : " + count);
 
-        PositionsService positionsService = new PositionsService();
-        LOGGER.info("Top 3 positions : " + positionsService.getTopThree());
-        Positions positions = positionsService.getEntityByID(4);
-        positions.setName("Mid-Level");
-        positionsService.updateEntity(positions);
+        PositionService positionService = new PositionService();
+        LOGGER.info("Top positions : " + positionService.getTopPosition(3));
+        Position position = positionService.getEntityByID(4);
+        position.setName("Mid-Level");
+        positionService.updateEntity(position);
+
     }
 }

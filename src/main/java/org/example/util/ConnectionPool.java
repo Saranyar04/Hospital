@@ -13,7 +13,7 @@ public class ConnectionPool {
 
     private final static Logger LOGGER = (Logger) LogManager.getLogger(MethodHandles.lookup().lookupClass());
     private static ConnectionPool instance = null;
-    private static final int INITIAL_POOL_SIZE = 5;
+    private static final int INITIAL_POOL_SIZE = 10;
     private static final Vector<Connection> freeConnection = new Vector<>();
     private static final Vector<Connection> usedConnection = new Vector<>();
 
