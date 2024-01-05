@@ -3,8 +3,8 @@ package org.example;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 import org.example.models.hospital.*;
-import org.example.models.persons.Position;
-import org.example.services.*;
+import org.example.models.persons.*;
+import org.example.mybatis.dao.*;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ public class Main {
     private static final Logger LOGGER = (Logger) LogManager.getLogger(Main.class);
 
     public static void main(String[] args) {
-        AppointmentService appointmentService = new AppointmentService();
+        /*AppointmentService appointmentService = new AppointmentService();
         List<Appointment> appointmentsList = appointmentService.getAppointmentByPhysicianID(14);
         LOGGER.info(appointmentsList);
 
@@ -47,7 +47,34 @@ public class Main {
         LOGGER.info("Top positions : " + positionService.getTopPosition(3));
         Position position = positionService.getEntityByID(4);
         position.setName("Mid-Level");
-        positionService.updateEntity(position);
+        positionService.updateEntity(position);*/
 
+        PositionDAO positionDAO = new PositionDAO();
+        List<Position> positionList = positionDAO.getAll();
+        LOGGER.info(positionList);
+
+        ExaminationRoomDAO examinationRoomDAO = new ExaminationRoomDAO();
+        List<ExaminationRoom> examinationRoomList = examinationRoomDAO.getAll();
+        LOGGER.info(examinationRoomList);
+
+        SpecializationDAO specializationDAO = new SpecializationDAO();
+        Specialization specialization = specializationDAO.getEntityByID(3);
+        LOGGER.info(specialization);
+
+        DepartmentDAO departmentDAO = new DepartmentDAO();
+        Department department = departmentDAO.getEntityByID(3);
+        LOGGER.info(department);
+
+        PhysicianDAO physicianDAO = new PhysicianDAO();
+        List<Physician> physicianList = physicianDAO.getAll();
+        LOGGER.info(physicianList);
+
+        PatientDAO patientDAO = new PatientDAO();
+        Patient patient = patientDAO.getEntityByID(5);
+        LOGGER.info(patient);
+
+        ManufacturerDAO manufacturerDAO = new ManufacturerDAO();
+        String manufacturer = manufacturerDAO.getManufacturerAddressByName("Alcon");
+        LOGGER.info(manufacturer);
     }
 }

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "org.example.interfaces.IExaminationRoomDAO">
+    <resultMap id="ExaminationRoomResultMap" type="ExaminationRoom">
+        <result property="examinationRoomNo" column="examination_room_no"/>
+        <result property="roomType" column="room_type"/>
+    </resultMap>
+    <insert id="saveEntity" keyProperty="examination_room_no">
+        INSERT INTO examination_rooms (examination_room_no, room_type) VALUES (#{examination_room_no}, #{room_tpe})
+    </insert>
+    <update id="updateEntity" parameterType="ExaminationRoom">
+        UPDATE examination_rooms SET room_type = #{room_type} WHERE examination_room_no = #{examination_room_no}
+    </update>
+    <delete id="removeEntityByID" parameterType="int">
+        DELETE FROM examination_rooms WHERE examination_room_no = #{examination_room_no}
+    </delete>
+    <select id="getEntityByID" parameterType="int" resultMap="ExaminationRoomResultMap">
+        SELECT * FROM examination_rooms WHERE examination_room_no = #{examination_room_no}
+    </select>
+    <select id="getAll" resultMap="ExaminationRoomResultMap">
+        SELECT * FROM examination_rooms
+    </select>
+    <select id="getRoomsByType" resultMap="ExaminationRoomResultMap">
+        SELECT * FROM Examination_rooms WHERE room_type = #{room_type}
+    </select>
+</mapper>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "org.example.interfaces.ISpecializationDAO">
+    <resultMap id="SpecializationResultMap" type="Specialization">
+        <result property="specializationID" column="specialization_id"/>
+        <result property="name" column="name"/>
+    </resultMap>
+    <insert id="saveEntity" keyProperty="specialization_id">
+        INSERT INTO specializations (name) VALUES (#{name})
+    </insert>
+    <update id="updateEntity" parameterType="Specialization">
+        UPDATE specializations SET name = #{name} WHERE specialization_id = #{specialization_id}
+    </update>
+    <delete id="removeEntityByID" parameterType="int">
+        DELETE FROM specializations WHERE specialization_id = #{specialization_id}
+    </delete>
+    <select id="getEntityByID" parameterType="int" resultMap="SpecializationResultMap">
+        SELECT * FROM specializations WHERE specialization_id = #{specialization_id}
+    </select>
+    <select id="getAll" resultMap="SpecializationResultMap">
+        SELECT * FROM specializations
+    </select>
+    <select id="getCountOfSpecialization" resultType="int">
+        SELECT COUNT(*) from Specializations
+    </select>
+</mapper>

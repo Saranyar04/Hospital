@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "org.example.interfaces.IMedicationDAO">
+    <resultMap id="MedicationResultMap" type="Medication">
+        <result property="medicationID" column="medication_id"/>
+        <result property="medicationName" column="medication_name"/>
+        <result property="details" column="details"/>
+        <result property="amount" column="amount"/>
+        <association property="manufacturerID" column="manufacturer_id"
+                     javaType="Manufacturer"
+                     select="org.example.interfaces.IManufacturerDAO.getEntityByID"/>
+    </resultMap>
+    <insert id="saveEntity" keyProperty="medication_id">
+        INSERT INTO medications (medication_name, details, amount, manufacturer_id) VALUES (#{medication_name}, #{details}, #{amount}, #{manufacturer.manufacturer_id})
+    </insert>
+    <update id="updateEntity" parameterType="Medication">
+        UPDATE medications SET medication_name = #{medication_name}, details = #{details}, amount = #{amount}, manufacturer_id = #{manufacturer.manufacturer_id}
+    </update>
+    <delete id="removeEntityByID" parameterType="int">
+        DELETE FROM medications WHERE medication_id = #{medication_id}
+    </delete>
+    <select id="getEntityByID" parameterType="int" resultMap="MedicationResultMap">
+        SELECT * FROM medications WHERE medication_id = #{medication_id}
+    </select>
+    <select id="getAll" resultMap="MedicationResultMap">
+        SELECT * FROM medications
+    </select>
+    <select id="getMedicationsByManufacturerID" parameterType="int" resultMap="MedicationResultMap">
+        SELECT * FROM medications WHERE manufacturer_id = #{manufacturer.manufacturer_id}
+    </select>
+</mapper>
