@@ -1,4 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace = "org.example.interfaces.IPhysicianDAO">
     <resultMap id="PhysicianResultMap" type="Physician">
         <result property="physicianID" column="physician_id"/>
@@ -16,21 +18,27 @@
                      select="org.example.interfaces.ISpecializationDAO.getEntityByID"/>
     </resultMap>
     <insert id="saveEntity" keyProperty="physician_id">
-        INSERT INTO physicians (first_name, last_name, address, department_id, position_id, specialization_id) VALUES ((#{first_name}), (#{last_name}), (#{address}), (#{department.department_id}), (#{position.position_id}), (#{specialization.specialization_id}))";
+        INSERT INTO physicians (first_name, last_name, address, department_id, position_id, specialization_id)
+        VALUES ((#{first_name}), (#{last_name}), (#{address}), (#{department.department_id}), (#{position.position_id}), (#{specialization.specialization_id}))";
     </insert>
     <update id="updateEntity" parameterType="Physician">
-        UPDATE physicians SET first_name = #{first_name}, last_name = #{last_name} WHERE physician_id = #{physician_id}
+        UPDATE physicians
+        SET first_name = #{first_name}, last_name = #{last_name}
+        WHERE physician_id = #{physician_id}
     </update>
     <delete id="removeEntityByID" parameterType="int">
-        DELETE FROM physicians WHERE physician_id = #{physician_id}
+        DELETE FROM physicians
+        WHERE physician_id = #{physician_id}
     </delete>
     <select id="getEntityByID" parameterType="int" resultMap="PhysicianResultMap">
-        SELECT * FROM physicians WHERE physician_id = #{physician_id}
+        SELECT * FROM physicians
+        WHERE physician_id = #{physician_id}
     </select>
     <select id="getAll" resultMap="PhysicianResultMap">
         SELECT * FROM physicians
     </select>
     <select id="getAddressByID" parameterType="int" resultType="String">
-        SELECT address FROM physicians WHERE physician_id = #{physician_id}
+        SELECT address FROM physicians
+        WHERE physician_id = #{physician_id}
     </select>
 </mapper>

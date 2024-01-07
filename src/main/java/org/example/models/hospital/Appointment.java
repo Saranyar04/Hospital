@@ -8,7 +8,7 @@ public class Appointment {
 
     private int appointmentID;
     private String startTime;
-    private String EndTime;
+    private String endTime;
     private Patient patient;
     private Physician physician;
     private Nurse nurse;
@@ -21,7 +21,7 @@ public class Appointment {
     public Appointment(int appointmentID, String startTime, String endTime, Patient patients, Physician physician, Nurse nurse, ExaminationRoom examinationRoom, Procedure procedure) {
         this.appointmentID = appointmentID;
         this.startTime = startTime;
-        EndTime = endTime;
+        this.endTime = endTime;
         this.patient = patients;
         this.physician = physician;
         this.nurse = nurse;
@@ -46,11 +46,11 @@ public class Appointment {
     }
 
     public String getEndTime() {
-        return EndTime;
+        return endTime;
     }
 
     public void setEndTime(String endTime) {
-        EndTime = endTime;
+        this.endTime = endTime;
     }
 
     public Patient getPatient() {
@@ -98,7 +98,7 @@ public class Appointment {
         return "Appointment{" +
                 "appointmentID=" + appointmentID +
                 ", startTime='" + startTime + '\'' +
-                ", EndTime='" + EndTime + '\'' +
+                ", EndTime='" + endTime + '\'' +
                 ", patient=" + patient +
                 ", physician=" + physician +
                 ", nurse=" + nurse +

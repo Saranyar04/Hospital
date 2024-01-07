@@ -10,9 +10,9 @@ import java.util.List;
 
 public class AppointmentDAO implements IAppointmentDAO {
 
-    private static SqlSessionFactory sqlSessionFactory;
+    private SqlSessionFactory sqlSessionFactory = MyBatisSqlFactory.getSqlSessionFactory();
     public AppointmentDAO() {
-        sqlSessionFactory = MyBatisSqlFactory.getSqlSessionFactory();
+
     }
 
     @Override

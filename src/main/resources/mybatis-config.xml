@@ -32,18 +32,18 @@
         </environment>
     </environments>
     <mappers>
-        <mapper resource="mapper\PositionMapper.xml"/>
-        <mapper resource="mapper\ProcedureMapper.xml"/>
-        <mapper resource="mapper\ExaminationRoomMapper.xml"/>
-        <mapper resource="mapper\SpecializationMapper.xml"/>
-        <mapper resource="mapper\NurseMapper.xml"/>
-        <mapper resource="mapper\DepartmentMapper.xml"/>
-        <mapper resource="mapper\PhysicianMapper.xml"/>
-        <mapper resource="mapper\PatientMapper.xml"/>
-        <mapper resource="mapper\DepartmentHasNurseMapper.xml"/>
-        <mapper resource="mapper\ManufacturerMapper.xml"/>
-        <mapper resource="mapper\MedicationMapper.xml"/>
-        <mapper resource="mapper\AppointmentMapper.xml"/>
-        <mapper resource="mapper\PrescriptionMapper.xml"/>
+        <mapper resource="mapper\position-mapper.xml"/>
+        <mapper resource="mapper\procedure-mapper.xml"/>
+        <mapper resource="mapper\examination-room-Mapper.xml"/>
+        <mapper resource="mapper\specialization-mapper.xml"/>
+        <mapper resource="mapper\nurse-mapper.xml"/>
+        <mapper resource="mapper\department-mapper.xml"/>
+        <mapper resource="mapper\physician-mapper.xml"/>
+        <mapper resource="mapper\patient-mapper.xml"/>
+        <mapper resource="mapper\department-has-nurse-mapper.xml"/>
+        <mapper resource="mapper\manufacturer-mapper.xml"/>
+        <mapper resource="mapper\medication-mapper.xml"/>
+        <mapper resource="mapper\appointment-mapper.xml"/>
+        <mapper resource="mapper\prescription-mapper.xml"/>
     </mappers>
 </configuration>

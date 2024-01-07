@@ -2,6 +2,10 @@ package org.example;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
+import org.example.factory.ConnectionDAOFactory;
+import org.example.factory.DBConnectionType;
+import org.example.factory.IBaseDAOFactory;
+import org.example.interfaces.IBaseDAO;
 import org.example.models.hospital.*;
 import org.example.models.persons.*;
 import org.example.mybatis.dao.*;
@@ -12,6 +16,15 @@ public class Main {
     private static final Logger LOGGER = (Logger) LogManager.getLogger(Main.class);
 
     public static void main(String[] args) {
+        ConnectionDAOFactory connectionDAOFactory = new ConnectionDAOFactory();
+        IBaseDAOFactory daoFactory = connectionDAOFactory.getDAOFactory(DBConnectionType.MYBATIS);
+        IBaseDAO baseDAO = daoFactory.getDAO("appointments");
+        List<Appointment> appointmentList;
+        appointmentList= baseDAO.getAll();
+        LOGGER.info(appointmentList);
+
+
+
         /*AppointmentService appointmentService = new AppointmentService();
         List<Appointment> appointmentsList = appointmentService.getAppointmentByPhysicianID(14);
         LOGGER.info(appointmentsList);
@@ -47,7 +60,7 @@ public class Main {
         LOGGER.info("Top positions : " + positionService.getTopPosition(3));
         Position position = positionService.getEntityByID(4);
         position.setName("Mid-Level");
-        positionService.updateEntity(position);*/
+        positionService.updateEntity(position);
 
         PositionDAO positionDAO = new PositionDAO();
         List<Position> positionList = positionDAO.getAll();
@@ -75,6 +88,6 @@ public class Main {
 
         ManufacturerDAO manufacturerDAO = new ManufacturerDAO();
         String manufacturer = manufacturerDAO.getManufacturerAddressByName("Alcon");
-        LOGGER.info(manufacturer);
+        LOGGER.info(manufacturer);*/
     }
 }

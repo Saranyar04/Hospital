@@ -146,7 +146,7 @@ public class SpecializationDAO implements ISpecializationDAO {
             statement.execute( );
             try (ResultSet rs = statement.getResultSet()) {
                 while(rs.next())
-                count = rs.getInt(1);
+                    count = rs.getInt(1);
             }
         }catch (SQLException e) {
                 LOGGER.error(e);

@@ -142,7 +142,7 @@ public class ExaminationRoomDAO implements IExaminationRoomDAO {
     @Override
     public List<ExaminationRoom> getRoomsByType(String roomType) {
         Connection connection = connectionPool.getConnection();
-        String query = "SELECT * FROM Examination_rooms WHERE room_type = (?)";
+        String query = "SELECT * FROM examination_rooms WHERE room_type = (?)";
         List<ExaminationRoom> examinationRoomsList = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, roomType);

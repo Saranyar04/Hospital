@@ -151,7 +151,7 @@ public class AppointmentDAO implements IAppointmentDAO {
     @Override
     public void removeEntityByID(int id) {
         Connection connection = connectionPool.getConnection();
-        String query = "DELETE FROM appointments WHERE appoinment_id = (?)";
+        String query = "DELETE FROM appointments WHERE appointment_id = (?)";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, id);
             statement.execute();

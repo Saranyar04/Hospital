@@ -143,7 +143,7 @@ public class ManufacturerDAO implements IManufacturerDAO {
     @Override
     public String getManufacturerAddressByName(String name) {
         Connection connection = connectionPool.getConnection();
-        String query = "SELECT address from manufacturers WHERE name = (?)";
+        String query = "SELECT address FROM manufacturers WHERE name = (?)";
         String address = null;
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, name);

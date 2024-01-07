@@ -1,26 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace = "org.example.interfaces.IDepartmentDAO">
     <resultMap id="DepartmentResultMap" type="Department">
         <result property="departmentID" column="department_id"/>
         <result property="name" column="name"/>
     </resultMap>
     <insert id="saveEntity" keyProperty="department_id">
-        INSERT INTO departments (department_id, name) VALUES (#{department_id}, #{name})
+        INSERT INTO departments (department_id, name)
+        VALUES (#{department_id}, #{name})
     </insert>
     <update id="updateEntity" parameterType="Department">
-        UPDATE departments SET name = #{name} WHERE department_id = #{department_id}
+        UPDATE departments
+        SET name = #{name}
+        WHERE department_id = #{department_id}
     </update>
     <delete id="removeEntityByID" parameterType="int">
-        DELETE FROM departments WHERE department_id = #{department_id}
+        DELETE FROM departments
+        WHERE department_id = #{department_id}
     </delete>
     <select id="getEntityByID" parameterType="int" resultMap="DepartmentResultMap">
-        SELECT * FROM departments WHERE department_id = #{department_id}
+        SELECT * FROM departments
+        WHERE department_id = #{department_id}
     </select>
     <select id="getAll" resultMap="DepartmentResultMap">
         SELECT * FROM departments
     </select>
     <select id="getDepartmentSortedByName" resultMap="DepartmentResultMap">
-        SELECT * FROM departments ORDER BY name
+        SELECT * FROM departments
+        ORDER BY name
     </select>
 </mapper>

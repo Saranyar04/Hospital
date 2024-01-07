@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace = "org.example.interfaces.IProcedureDAO">
     <resultMap id="ProcedureResultMap" type="Procedure">
         <result property="procedureID" column="procedure_id"/>
@@ -8,21 +9,27 @@
         <result property="description" column="description"/>
     </resultMap>
     <insert id="saveEntity" keyProperty="procedure_id">
-        INSERT INTO procedures (name, cost, description) VALUES (#{name}, #{cost}, #{description})
+        INSERT INTO procedures (name, cost, description)
+        VALUES (#{name}, #{cost}, #{description})
     </insert>
     <update id="updateEntity" parameterType="Procedure">
-        UPDATE procedures SET cost = #{cost} WHERE procedure_id = #{procedure_id}
+        UPDATE procedures
+        SET cost = #{cost}
+        WHERE procedure_id = #{procedure_id}
     </update>
     <delete id="removeEntityByID" parameterType="int">
-        DELETE FROM procedures WHERE procedure_id = #{procedure_id}
+        DELETE FROM procedures
+        WHERE procedure_id = #{procedure_id}
     </delete>
     <select id="getEntityByID" parameterType="int" resultMap="ProcedureResultMap">
-        SELECT * FROM procedures WHERE procedure_id = #{procedure_id}
+        SELECT * FROM procedures
+        WHERE procedure_id = #{procedure_id}
     </select>
     <select id="getAll" resultMap="ProcedureResultMap">
         SELECT * FROM procedures
     </select>
     <select id="getTopProcedure" resultMap="ProcedureResultMap">
-        SELECT * FROM procedures ORDER BY cost DESC LIMIT 1
+        SELECT * FROM procedures
+        ORDER BY cost DESC LIMIT 1
     </select>
 </mapper>

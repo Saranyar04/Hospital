@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace = "org.example.interfaces.IPrescriptionDAO">
     <resultMap id="PrescriptionResultMap" type="Prescription">
         <result property="prescriptionID" column="prescription_id"/>
@@ -15,21 +16,27 @@
                      select="org.example.interfaces.IMedicationDAO.getEntityByID"/>
     </resultMap>
     <insert id="saveEntity" keyProperty="prescription_id">
-        INSERT INTO prescriptions (date, physician_id, patient_id, medication_id) VALUES (#{date}, #{physician.physician_id}, #{patient.patient_id}, #{medication.medication_id})
+        INSERT INTO prescriptions (date, physician_id, patient_id, medication_id)
+        VALUES (#{date}, #{physician.physician_id}, #{patient.patient_id}, #{medication.medication_id})
     </insert>
     <update id="updateEntity" parameterType="Prescription">
-        UPDATE prescriptions SET medication_id = #{medication_id} WHERE prescription_id = #{prescription_id}"
+        UPDATE prescriptions
+        SET medication_id = #{medication_id}
+        WHERE prescription_id = #{prescription_id}"
     </update>
     <delete id="removeEntityByID" parameterType="int">
-        DELETE FROM prescriptions WHERE medication_id = #{medication_id}
+        DELETE FROM prescriptions
+        WHERE medication_id = #{medication_id}
     </delete>
     <select id="getEntityByID" parameterType="int" resultMap="PrescriptionResultMap">
-        SELECT * FROM prescriptions WHERE medication_id = #{medication_id}
+        SELECT * FROM prescriptions
+        WHERE medication_id = #{medication_id}
     </select>
     <select id="getAll" resultMap="PrescriptionResultMap">
         SELECT * FROM prescriptions
     </select>
     <select id="getPrescriptionByPatientID" parameterType="int" resultMap="PrescriptionResultMap">
-        SELECT * FROM prescriptions WHERE patient_id = #{patient_id}
+        SELECT * FROM prescriptions
+        WHERE patient_id = #{patient_id}
     </select>
 </mapper>

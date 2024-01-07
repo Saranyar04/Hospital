@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace = "org.example.interfaces.IPatientDAO">
     <resultMap id="PatientResultMap" type="Patient">
         <result property="patientID" column="patient_id"/>
@@ -12,13 +13,16 @@
                      select="org.example.interfaces.IPhysicianDAO.getEntityByID"/>
     </resultMap>
     <insert id="saveEntity" keyProperty="patient_id">
-        INSERT INTO patients (first_name, last_name, date_of_birth, address, physician_id) VALUES (#{first_name}, #{last_name}, #{date_of_birth}, #{address}, #{physician.physician_id}
+        INSERT INTO patients (first_name, last_name, date_of_birth, address, physician_id)
+        VALUES (#{first_name}, #{last_name}, #{date_of_birth}, #{address}, #{physician.physician_id}
     </insert>
     <update id="updateEntity" parameterType="Nurse">
-        UPDATE patients SET first_name = #{first_name}, last_name = #{last_name} WHERE patient_id = #{patient_id}
+        UPDATE patients SET first_name = #{first_name}, last_name = #{last_name}
+        WHERE patient_id = #{patient_id}
     </update>
     <delete id="removeEntityByID" parameterType="int">
-        DELETE FROM patients WHERE patient_id = #{patient_id}
+        DELETE FROM patients
+        WHERE patient_id = #{patient_id}
     </delete>
     <select id="getEntityByID" parameterType="int" resultMap="PatientResultMap">
         SELECT * FROM patients WHERE patient_id = #{patient_id}
@@ -27,6 +31,7 @@
         SELECT * FROM patients
     </select>
     <select id="getPatientByPhysicianID" parameterType="int" resultMap="PatientResultMap">
-        SELECT * FROM patients WHERE physician_id = #{physician.physician_id}
+        SELECT * FROM patients
+        WHERE physician_id = #{physician.physician_id}
     </select>
 </mapper>

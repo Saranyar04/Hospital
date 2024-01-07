@@ -22,7 +22,6 @@ public class DepartmentHasNurseDAO implements IDepartmentHasNurseDAO {
     private final ConnectionPool connectionPool = ConnectionPool.getInstance();
     private final NurseDAO nurseDAO = new NurseDAO();
     private final DepartmentDAO departmentDAO = new DepartmentDAO();
-    private final PositionDAO positionDAO = new PositionDAO();
 
     @Override
     public void saveEntity(DepartmentsHasNurse departmentsHasNurse) {
