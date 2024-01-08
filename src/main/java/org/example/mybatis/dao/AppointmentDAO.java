@@ -11,9 +11,6 @@ import java.util.List;
 public class AppointmentDAO implements IAppointmentDAO {
 
     private SqlSessionFactory sqlSessionFactory = MyBatisSqlFactory.getSqlSessionFactory();
-    public AppointmentDAO() {
-
-    }
 
     @Override
     public void saveEntity(Appointment appointment) {

@@ -29,6 +29,11 @@
         </xs:all>
         <xs:attribute name="id" type="xs:int" use="required"/>
     </xs:complexType>
-
         <xs:element name="physician" type="PhysicianType"/>
+    <xs:complexType name="PhysiciansType">
+        <xs:all>
+            <xs:element name="physician" type="PhysicianType"/>
+        </xs:all>
+    </xs:complexType>
+    <xs:element name="physicians" type="PhysiciansType"/>
 </xs:schema>

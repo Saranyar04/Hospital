@@ -77,12 +77,6 @@ public class Main {
 
         ProcedureDAO procedureDAO = new ProcedureDAO();
         procedureDAO.removeEntityByID(9);
-        /*Procedure procedure = new Procedure();
-        procedure.setProcedureID(10);
-        procedure.setName("Coronary Artery Bypass");
-        procedure.setCost(2330.00);
-        procedure.setDescription("Treat coronary artery disease");
-        procedureDAO.saveEntity(procedure);*/
         LOGGER.info(procedureDAO.getAll());
 
         PrescriptionDAO prescriptionDAO = new PrescriptionDAO();

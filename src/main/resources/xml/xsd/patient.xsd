@@ -40,4 +40,10 @@
     <xs:attribute name="id" type="xs:int" use="required"/>
 </xs:complexType>
     <xs:element name="patient" type="PatientType"/>
+    <xs:complexType name="PatientsType">
+        <xs:all>
+            <xs:element name="patient" type="PatientType"/>
+        </xs:all>
+    </xs:complexType>
+    <xs:element name="patients" type="PatientsType"/>
 </xs:schema>
