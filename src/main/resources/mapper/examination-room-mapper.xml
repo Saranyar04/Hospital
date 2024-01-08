@@ -12,8 +12,8 @@
     </insert>
     <update id="updateEntity" parameterType="ExaminationRoom">
         UPDATE examination_rooms
-        SET room_type = #{room_type}
-        WHERE examination_room_no = #{examination_room_no}
+        SET room_type = #{roomType}
+        WHERE examination_room_no = #{examinationRoomNo}
     </update>
     <delete id="removeEntityByID" parameterType="int">
         DELETE FROM examination_rooms

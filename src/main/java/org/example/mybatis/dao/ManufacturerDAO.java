@@ -64,7 +64,7 @@ public class ManufacturerDAO implements IManufacturerDAO {
         String address;
         try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
             IManufacturerDAO manufacturerDAO = sqlSession.getMapper(IManufacturerDAO.class);
-            address = manufacturerDAO.getManufacturerAddressByName("ALCON");
+            address = manufacturerDAO.getManufacturerAddressByName(name);
         }
         return address;
     }

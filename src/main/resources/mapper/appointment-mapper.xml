@@ -28,8 +28,8 @@
     </insert>
     <update id="updateEntity" parameterType="Appointment">
         UPDATE appointments
-        SET start_time = #{start_time}, end_time = #{end_time}, patient_id = #{patient.patient_id}, physician_id = #{physician.physician_id}, nurse_id = #{nurse.nurse_id}, examination_room_no = #{examination_room.examination_room_no}, procedure_id = #{procedure.procedure_id}
-        WHERE appointment_id = #{appointment.appointment_id}
+        SET start_time = #{startTime}, end_time = #{endTime}, patient_id = #{patient.patientID}, physician_id = #{physician.physicianID}, nurse_id = #{nurse.nurseID}, examination_room_no = #{examinationRoom.examinationRoomNo}, procedure_id = #{procedure.procedureID}
+        WHERE appointment_id = #{appointment.appointmentID}
     </update>
     <delete id="removeEntityByID" parameterType="int">
         DELETE FROM appointments

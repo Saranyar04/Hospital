@@ -14,7 +14,7 @@
     <update id="updateEntity" parameterType="Manufacturer">
         UPDATE manufacturer
         SET name = #{name}, address = #{address}
-        WHERE manufacturer_id = #{manufacturer_id}
+        WHERE manufacturer_id = #{manufacturerID}
     </update>
     <delete id="removeEntityByID" parameterType="int">
         DELETE FROM manufacturers

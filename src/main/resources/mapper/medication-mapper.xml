@@ -7,7 +7,7 @@
         <result property="medicationName" column="medication_name"/>
         <result property="details" column="details"/>
         <result property="amount" column="amount"/>
-        <association property="manufacturerID" column="manufacturer_id"
+        <association property="manufacturer" column="manufacturer_id"
                      javaType="Manufacturer"
                      select="org.example.interfaces.IManufacturerDAO.getEntityByID"/>
     </resultMap>
@@ -17,8 +17,8 @@
     </insert>
     <update id="updateEntity" parameterType="Medication">
         UPDATE medications
-        SET medication_name = #{medication_name}, details = #{details}, amount = #{amount}, manufacturer_id = #{manufacturer.manufacturer_id}
-        WHERE medication_id = #{medication_id}
+        SET medication_name = #{medicationName}, details = #{details}, amount = #{amount}, manufacturer_id = #{manufacturer.manufacturerID}
+        WHERE medication_id = #{medicationID}
     </update>
     <delete id="removeEntityByID" parameterType="int">
         DELETE FROM medications

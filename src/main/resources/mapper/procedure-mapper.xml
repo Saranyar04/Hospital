@@ -15,7 +15,7 @@
     <update id="updateEntity" parameterType="Procedure">
         UPDATE procedures
         SET cost = #{cost}
-        WHERE procedure_id = #{procedure_id}
+        WHERE procedure_id = #{procedureID}
     </update>
     <delete id="removeEntityByID" parameterType="int">
         DELETE FROM procedures

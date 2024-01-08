@@ -21,8 +21,8 @@
     </insert>
     <update id="updateEntity" parameterType="Prescription">
         UPDATE prescriptions
-        SET medication_id = #{medication_id}
-        WHERE prescription_id = #{prescription_id}"
+        SET medication_id = #{medicationID}
+        WHERE prescription_id = #{prescriptionID}"
     </update>
     <delete id="removeEntityByID" parameterType="int">
         DELETE FROM prescriptions
@@ -37,6 +37,6 @@
     </select>
     <select id="getPrescriptionByPatientID" parameterType="int" resultMap="PrescriptionResultMap">
         SELECT * FROM prescriptions
-        WHERE patient_id = #{patient_id}
+        WHERE patient_id = #{patient.patientID}
     </select>
 </mapper>

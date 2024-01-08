@@ -24,8 +24,8 @@
     </insert>
     <update id="updateEntity" parameterType="DepartmentsHasNurse">
         UPDATE department_has_nurse
-        SET nurse_id = #{nurse_id}
-        WHERE department_id = #{department_id}
+        SET nurse_id = #{nurseID}
+        WHERE department_id = #{departmentID}
     </update>
     <delete id="removeEntityByID" parameterType="int">
         DELETE FROM department_has_nurse

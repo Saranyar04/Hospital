@@ -17,8 +17,8 @@
         VALUES (#{first_name}, #{last_name}, #{date_of_birth}, #{address}, #{physician.physician_id}
     </insert>
     <update id="updateEntity" parameterType="Nurse">
-        UPDATE patients SET first_name = #{first_name}, last_name = #{last_name}
-        WHERE patient_id = #{patient_id}
+        UPDATE patients SET first_name = #{firstName}, last_name = #{lastName}
+        WHERE patient_id = #{patientID}
     </update>
     <delete id="removeEntityByID" parameterType="int">
         DELETE FROM patients

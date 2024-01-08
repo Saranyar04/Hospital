@@ -13,7 +13,7 @@
     <update id="updateEntity" parameterType="Department">
         UPDATE departments
         SET name = #{name}
-        WHERE department_id = #{department_id}
+        WHERE department_id = #{departmentID}
     </update>
     <delete id="removeEntityByID" parameterType="int">
         DELETE FROM departments

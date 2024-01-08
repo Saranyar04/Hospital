@@ -13,7 +13,7 @@
     <update id="updateEntity" parameterType="Specialization">
         UPDATE specializations
         SET name = #{name}
-        WHERE specialization_id = #{specialization_id}
+        WHERE specialization_id = #{specializationID}
     </update>
     <delete id="removeEntityByID" parameterType="int">
         DELETE FROM specializations

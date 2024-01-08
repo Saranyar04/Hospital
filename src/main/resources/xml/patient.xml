@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<patient id="1">
+    <firstName>Dan</firstName>
+    <lastName>Jefferson</lastName>
+    <dateOfBirth>1999-08-01</dateOfBirth>
+    <address>342 ELM street</address>
+    <physician id="1">
+        <firstName>Richard</firstName>
+        <lastName>Seegol</lastName>
+        <address>234 Main Street</address>
+        <department id="1">
+            <name>Cardiology</name>
+        </department>
+        <position id="1">
+            <name>Senior</name>
+        </position>
+        <specialization id="1">
+            <name>Surgeon</name>
+        </specialization>
+    </physician>
+</patient>
