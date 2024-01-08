@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<physicians>
 <physician id="1"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:noNamespaceSchemaLocation="xsd/physician.xsd">
     <firstName>Richard</firstName>
@@ -15,3 +16,4 @@
         <name>Surgeon</name>
     </specialization>
 </physician>
+</physicians>
