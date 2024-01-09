@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "org.example.interfaces.INurseDAO">
+    <resultMap id="NurseResultMap" type="Nurse">
+        <result property="nurseID" column="nurse_id"/>
+        <result property="firstName" column="first_name"/>
+        <result property="lastName" column="last_name"/>
+        <association property="position" column="position_id"
+                     javaType="Position"
+                     select="org.example.interfaces.IPositionDAO.getEntityByID"/>
+    </resultMap>
+    <insert id="saveEntity" keyProperty="nurse_id">
+        INSERT INTO nurses (first_name, last_name, position_id)
+        VALUES (#{first_name}, #{last_name}, #{position.position_id}
+    </insert>
+    <update id="updateEntity" parameterType="Nurse">
+        UPDATE nurses
+        SET first_name = #{firstName}, last_name = #{lastName}
+        WHERE nurse_id = #{nurseID}
+    </update>
+    <delete id="removeEntityByID" parameterType="int">
+        DELETE FROM nurses
+        WHERE nurse_id = #{nurse_id}
+    </delete>
+    <select id="getEntityByID" parameterType="int" resultMap="NurseResultMap">
+        SELECT * FROM nurses
+        WHERE nurse_id = #{nurse_id}
+    </select>
+    <select id="getAll" resultMap="NurseResultMap">
+        SELECT * FROM nurses
+    </select>
+    <select id="getNurseByPositionID" parameterType="int" resultMap="NurseResultMap">
+        SELECT * FROM nurses
+        WHERE position_id = #{position.position_id}
+    </select>
+</mapper>

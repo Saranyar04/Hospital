@@ -2,9 +2,13 @@ package org.example;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
+import org.example.factory.ConnectionDAOFactory;
+import org.example.factory.DBConnectionType;
+import org.example.factory.IBaseDAOFactory;
+import org.example.interfaces.IBaseDAO;
 import org.example.models.hospital.*;
-import org.example.models.persons.Position;
-import org.example.services.*;
+import org.example.models.persons.*;
+import org.example.mybatis.dao.*;
 
 import java.util.List;
 
@@ -12,42 +16,78 @@ public class Main {
     private static final Logger LOGGER = (Logger) LogManager.getLogger(Main.class);
 
     public static void main(String[] args) {
-        AppointmentService appointmentService = new AppointmentService();
-        List<Appointment> appointmentsList = appointmentService.getAppointmentByPhysicianID(14);
-        LOGGER.info(appointmentsList);
-
-        DepartmentHasNurseService departmentHasNurseService = new DepartmentHasNurseService();
-        DepartmentsHasNurse departmentsHasNurse = departmentHasNurseService.getEntityByID(3);
-        LOGGER.info(departmentsHasNurse);
-
-        DepartmentService departmentService = new DepartmentService();
-        List<Department> departmentsList = departmentService.getAll();
-        LOGGER.info(departmentsList);
-        Department department = departmentService.getEntityByID(3);
-        LOGGER.info(department);
+        ConnectionDAOFactory connectionDAOFactory = new ConnectionDAOFactory();
+        IBaseDAOFactory daoFactory = connectionDAOFactory.getDAOFactory(DBConnectionType.MYBATIS);
+        IBaseDAO baseDAO = daoFactory.getDAO("appointments");
+        List<Appointment> appointmentList;
+        appointmentList= baseDAO.getAll();
+        LOGGER.info(appointmentList);
 
 
-        ExaminationRoomService examinationRoomService = new ExaminationRoomService();
-        List<ExaminationRoom> examinationRoomsList = examinationRoomService.getRoomsByType("private");
-        LOGGER.info(examinationRoomsList);
-
-        ManufacturerService manufacturerService = new ManufacturerService();
-        String address = manufacturerService.getManufacturerAddressByName("Biocon");
-        LOGGER.info(address);
-
-        ProcedureService procedureService = new ProcedureService();
-        Procedure procedure = procedureService.getTopProcedure();
-        LOGGER.info("Top Procedure : " + procedure);
-
-        SpecializationService specializationService = new SpecializationService();
-        int count = specializationService.getCountOfSpecialization();
-        LOGGER.info("No of Specializations : " + count);
-
-        PositionService positionService = new PositionService();
-        LOGGER.info("Top positions : " + positionService.getTopPosition(3));
-        Position position = positionService.getEntityByID(4);
+        PositionDAO positionDAO = new PositionDAO();
+        List<Position> positionList = positionDAO.getAll();
+        LOGGER.info(positionList);
+        Position position = positionDAO.getEntityByID(3);
         position.setName("Mid-Level");
-        positionService.updateEntity(position);
+        positionDAO.updateEntity(position);
+        LOGGER.info(position);
 
+
+        ExaminationRoomDAO examinationRoomDAO = new ExaminationRoomDAO();
+        List<ExaminationRoom> examinationRoomList = examinationRoomDAO.getAll();
+        LOGGER.info(examinationRoomList);
+        examinationRoomList = examinationRoomDAO.getRoomsByType("private");
+        LOGGER.info(examinationRoomList);
+
+        SpecializationDAO specializationDAO = new SpecializationDAO();
+        Specialization specialization = specializationDAO.getEntityByID(3);
+        LOGGER.info(specialization);
+        LOGGER.info("Specialization count : " + specializationDAO.getCountOfSpecialization());
+
+        DepartmentDAO departmentDAO = new DepartmentDAO();
+        Department department = departmentDAO.getEntityByID(3);
+        LOGGER.info(department);
+        List<Department> departmentList = departmentDAO.getDepartmentSortedByName();
+        LOGGER.info(departmentList);
+
+        PhysicianDAO physicianDAO = new PhysicianDAO();
+        List<Physician> physicianList = physicianDAO.getAll();
+        LOGGER.info(physicianList);
+        LOGGER.info(physicianDAO.getAddressByID(3));
+
+        PatientDAO patientDAO = new PatientDAO();
+        Patient patient = patientDAO.getEntityByID(5);
+        patient.setFirstName("Laura");
+        patientDAO.updateEntity(patient);
+        LOGGER.info(patient);
+        List<Patient> patientList = patientDAO.getPatientByPhysicianID(2);
+        LOGGER.info(patientList);
+
+        ManufacturerDAO manufacturerDAO = new ManufacturerDAO();
+        String address = manufacturerDAO.getManufacturerAddressByName("Biocon");
+        LOGGER.info(address);
+        manufacturerDAO.removeEntityByID(7);
+        Manufacturer manufacturer = manufacturerDAO.getEntityByID(4);
+        LOGGER.info(manufacturer);
+
+        DepartmentHasNurseDAO departmentHasNurseDAO = new DepartmentHasNurseDAO();
+        List<DepartmentsHasNurse> departmentsHasNurseList = departmentHasNurseDAO.getDepartmentByNurseID(1);
+        LOGGER.info(departmentsHasNurseList);
+        LOGGER.info(departmentHasNurseDAO.getNursesByDepartment(3));
+
+        ProcedureDAO procedureDAO = new ProcedureDAO();
+        procedureDAO.removeEntityByID(9);
+        LOGGER.info(procedureDAO.getAll());
+
+        PrescriptionDAO prescriptionDAO = new PrescriptionDAO();
+        List<Prescription> prescriptionList = prescriptionDAO.getAll();
+        LOGGER.info(prescriptionList);
+        prescriptionList = prescriptionDAO.getPrescriptionByPatientID(19);
+
+        MedicationDAO medicationDAO = new MedicationDAO();
+        Medication medication = medicationDAO.getEntityByID(2);
+        LOGGER.info(medication);
+        List<Medication> medicationList = medicationDAO.getMedicationsByManufacturerID(2);
+        LOGGER.info(medicationList);
     }
 }

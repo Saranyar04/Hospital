@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:complexType name="DepartmentType">
+    <xs:sequence>
+        <xs:element name="name" type="xs:string"/>
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:int" use="required"/>
+</xs:complexType>
+<xs:complexType name="PositionType">
+<xs:sequence>
+    <xs:element name="name" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:int" use="required"/>
+</xs:complexType>
+<xs:complexType name="SpecializationType">
+<xs:sequence>
+    <xs:element name="name" type="xs:string"/>
+</xs:sequence>
+<xs:attribute name="id" type="xs:int" use="required"/>
+</xs:complexType>
+<xs:complexType name="PhysicianType">
+<xs:all>
+    <xs:element name="firstName" type="xs:string"/>
+    <xs:element name="lastName" type="xs:string"/>
+    <xs:element name="address" type="xs:string"/>
+    <xs:element name="department" type="DepartmentType"/>
+    <xs:element name="position" type="PositionType"/>
+    <xs:element name="specialization" type="SpecializationType"/>
+</xs:all>
+<xs:attribute name="id" type="xs:int" use="required"/>
+</xs:complexType>
+<xs:complexType name="PatientType" mixed = "true">
+    <xs:all>
+        <xs:element name="firstName" type="xs:string"/>
+        <xs:element name="lastName" type="xs:string"/>
+        <xs:element name="dateOfBirth" type="xs:date"/>
+        <xs:element name="address" type="xs:string"/>
+        <xs:element name="physician" type="PhysicianType"/>
+    </xs:all>
+    <xs:attribute name="id" type="xs:int" use="required"/>
+</xs:complexType>
+    <xs:element name="patient" type="PatientType"/>
+    <xs:complexType name="PatientsType">
+        <xs:all>
+            <xs:element name="patient" type="PatientType"/>
+        </xs:all>
+    </xs:complexType>
+    <xs:element name="patients" type="PatientsType"/>
+</xs:schema>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "org.example.interfaces.IPositionDAO">
+    <resultMap id="positionResultMap" type="Position" autoMapping="false">
+        <result property="positionID" column="position_id"/>
+        <result property="name" column="name"/>
+    </resultMap>
+    <insert id="saveEntity" keyProperty="position_id">
+        INSERT INTO positions (name)
+        VALUES (#{name})
+    </insert>
+    <update id="updateEntity" parameterType="Position">
+        UPDATE positions
+        SET name = #{name}
+        WHERE position_id = #{positionID}
+    </update>
+    <delete id="removeEntityByID" parameterType="int">
+        DELETE FROM positions
+        WHERE position_id = #{position_id}
+    </delete>
+    <select id="getEntityByID" parameterType="int" resultMap="positionResultMap">
+        SELECT * FROM positions
+        WHERE position_id = #{position_id}
+    </select>
+    <select id="getAll" resultMap="positionResultMap">
+        SELECT * FROM positions
+    </select>
+    <select id="getTopPosition" parameterType="int" resultMap="positionResultMap">
+        SELECT * FROM positions
+        LIMIT #{limit}
+    </select>
+</mapper>

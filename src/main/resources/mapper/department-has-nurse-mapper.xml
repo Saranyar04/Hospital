@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "org.example.interfaces.IDepartmentHasNurseDAO">
+    <resultMap id="DepartmentHasNurseResultMap" type="DepartmentsHasNurse">
+        <association property="department" column="department_id"
+                     javaType="Department"
+                     select="org.example.interfaces.IDepartmentDAO.getEntityByID"/>
+        <association property="nurse" column="nurse_id"
+                     javaType="Nurse"
+                     select="org.example.interfaces.INurseDAO.getEntityByID"/>
+    </resultMap>
+    <resultMap id="NurseResultMap" type="Nurse">
+        <result property="nurseID" column="nurse_id"/>
+        <result property="firstName" column="first_name"/>
+        <result property="lastName" column="last_name"/>
+        <association property="position" column="position_id"
+                     javaType="Position"
+                     select="org.example.interfaces.IPositionDAO.getEntityByID"/>
+    </resultMap>
+    <insert id="saveEntity" parameterType="DepartmentsHasNurse">
+        INSERT INTO department_has_nurse (department_id, nurse_id)
+        VALUES (#{department_id}, #{nurse_id})
+    </insert>
+    <update id="updateEntity" parameterType="DepartmentsHasNurse">
+        UPDATE department_has_nurse
+        SET nurse_id = #{nurseID}
+        WHERE department_id = #{departmentID}
+    </update>
+    <delete id="removeEntityByID" parameterType="int">
+        DELETE FROM department_has_nurse
+        WHERE department_id = #{department_id}
+    </delete>
+    <select id="getEntityByID" parameterType="int" resultMap="DepartmentHasNurseResultMap">
+        SELECT * FROM department_has_nurse
+        WHERE department_id = #{department_id}
+    </select>
+    <select id="getAll" resultMap="DepartmentHasNurseResultMap">
+        SELECT * FROM department_has_nurse
+    </select>
+    <select id="getNursesByDepartment" parameterType="int" resultMap="DepartmentHasNurseResultMap">
+        SELECT nurse_id
+        FROM department_has_nurse
+        WHERE department_id = #{department_id}
+    </select>
+    <select id="getDepartmentByNurseID" parameterType="int" resultMap="NurseResultMap">
+        SELECT *
+        FROM department_has_nurse
+        WHERE nurse_id = #{nurse_id};
+    </select>
+</mapper>

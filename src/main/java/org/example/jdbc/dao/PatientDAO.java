@@ -18,7 +18,6 @@ public class PatientDAO implements IPatientDAO {
 
     private final static Logger LOGGER = (Logger) LogManager.getLogger(MethodHandles.lookup().lookupClass());
     private final ConnectionPool connectionPool = ConnectionPool.getInstance();
-
     private final PhysicianDAO physicianDAO = new PhysicianDAO();
 
     @Override

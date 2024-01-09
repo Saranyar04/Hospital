@@ -24,7 +24,7 @@ public class MedicationDAO implements IMedicationDAO {
     public void saveEntity(Medication medications) {
         Connection connection = connectionPool.getConnection();
         manufacturerDAO.saveEntity(medications.getManufacturer());
-        String query = "INSERT INTO manufacturers (medication_name, details, amount, manufacturer_id) VALUES ((?), (?), (?), (?))";
+        String query = "INSERT INTO medications (medication_name, details, amount, manufacturer_id) VALUES ((?), (?), (?), (?))";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, medications.getMedicationName());
             statement.setString(2, medications.getDetails());

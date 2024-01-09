@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<physicians>
+<physician id="1"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:noNamespaceSchemaLocation="xsd/physician.xsd">
+    <firstName>Richard</firstName>
+    <lastName>Seegol</lastName>
+    <address>234 Main Street</address>
+    <department id="1">
+        <name>Cardiology</name>
+    </department>
+    <position id="1">
+        <name>Senior</name>
+    </position>
+    <specialization id="1">
+        <name>Surgeon</name>
+    </specialization>
+</physician>
+</physicians>

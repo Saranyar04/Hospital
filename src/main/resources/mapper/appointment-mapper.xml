@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "org.example.interfaces.IAppointmentDAO">
+    <resultMap id="AppointmentResultMap" type="org.example.models.hospital.Appointment">
+        <id property="appointmentID" column="appointment_id"/>
+        <result property="startTime" column="start_time"/>
+        <result property="endTime" column="end_time"/>
+        <association property="patient" column="patient_id"
+                     javaType="Patient"
+                     select="org.example.interfaces.IPatientDAO.getEntityByID"/>
+        <association property="physician" column="physician_id"
+                     javaType="Physician"
+                     select="org.example.interfaces.IPhysicianDAO.getEntityByID"/>
+        <association property="nurse" column="nurse_id"
+                     javaType="Nurse"
+                     select="org.example.interfaces.INurseDAO.getEntityByID"/>
+        <association property="examinationRoom" column="examination_room_no"
+                     javaType="ExaminationRoom"
+                     select="org.example.interfaces.IExaminationRoomDAO.getEntityByID"/>
+        <association property="procedure" column="procedure_id"
+                     javaType="Procedure"
+                     select="org.example.interfaces.IProcedureDAO.getEntityByID"/>
+    </resultMap>
+    <insert id="saveEntity" keyProperty="appointment_id">
+        INSERT INTO appointments (start_time, end_time, patient_id, physician_id, nurse_id, examination_room_no, procedure_id)
+        VALUES (#{start_time}, #{end_time}, #{patient.patient_id}, #{physician.physician_id}, #{nurse.nurse_id}, #{examination_room.examination_room_no}, #{procedure.procedure_id})
+    </insert>
+    <update id="updateEntity" parameterType="Appointment">
+        UPDATE appointments
+        SET start_time = #{startTime}, end_time = #{endTime}, patient_id = #{patient.patientID}, physician_id = #{physician.physicianID}, nurse_id = #{nurse.nurseID}, examination_room_no = #{examinationRoom.examinationRoomNo}, procedure_id = #{procedure.procedureID}
+        WHERE appointment_id = #{appointment.appointmentID}
+    </update>
+    <delete id="removeEntityByID" parameterType="int">
+        DELETE FROM appointments
+        WHERE appointment_id = #{appointment_id}
+    </delete>
+    <select id="getEntityByID" parameterType="int" resultMap="AppointmentResultMap">
+        SELECT * FROM appointments
+        WHERE appointment_id = #{appointment_id}
+    </select>
+    <select id="getAll" resultMap="AppointmentResultMap">
+        SELECT * FROM appointments
+    </select>
+    <select id="getAppointmentByPhysicianID" parameterType="int" resultMap="AppointmentResultMap">
+        SELECT * FROM appointments
+        WHERE physician_id = #{physician.physician_id}
+    </select>
+</mapper>
