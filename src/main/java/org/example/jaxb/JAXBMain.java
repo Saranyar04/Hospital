@@ -48,8 +48,11 @@ public class JAXBMain {
         Date date = new SimpleDateFormat("yyyy-MM-dd").parse("2000-10-10");
         java.sql.Date date1 = new java.sql.Date(date.getTime());
         patient.setDateOfBirth(date1);
-
         JAXBMarshaller<Patient> patientJAXBMarshaller = new JAXBMarshaller<>();
         patientJAXBMarshaller.marshal(patient, "src/main/resources/marshal-xml/patient.xml");
+
+        Patient patient1 = new Patient();
+        patient1 = patientJAXBMarshaller.unmarshal("src/main/resources/marshal-xml/patient.xml", Patient.class);
+        LOGGER.info(patient1);
     }
 }
