@@ -1,0 +1,21 @@
+{
+  "departmentID" : 2,
+  "name" : "Orthopedics",
+  "nursesList" : [ {
+    "nurseID" : 3,
+    "firstName" : "Wilden",
+    "lastName" : "Norres",
+    "position" : {
+      "positionID" : 2,
+      "name" : "Junior"
+    }
+  }, {
+    "nurseID" : 8,
+    "firstName" : "Reema",
+    "lastName" : "Candy",
+    "position" : {
+      "positionID" : 2,
+      "name" : "Junior"
+    }
+  } ]
+}

@@ -1,5 +1,7 @@
 package org.example.models.persons;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -9,9 +11,12 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(propOrder = {"positionID", "name"})
 public class Position {
 
+    @JsonProperty
     private int positionID;
 
+    @JsonProperty
     private String name;
+
 
     public Position() {
     }

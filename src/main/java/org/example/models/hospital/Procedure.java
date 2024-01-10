@@ -1,5 +1,7 @@
 package org.example.models.hospital;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -9,9 +11,16 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(propOrder = {"procedureID", "name", "cost", "description"})
 public class Procedure {
 
+    @JsonProperty
     private int procedureID;
+
+    @JsonProperty
     private String name;
+
+    @JsonProperty
     private Double cost;
+
+    @JsonProperty
     private String description;
 
     public Procedure() {
