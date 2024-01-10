@@ -1,0 +1,18 @@
+{
+  "physicianID" : 12,
+  "firstName" : "Elbert",
+  "lastName" : "Schiementz",
+  "department" : {
+    "departmentID" : 2,
+    "name" : "Orthopedics",
+    "nursesList" : null
+  },
+  "position" : {
+    "positionID" : 2,
+    "name" : "Junior"
+  },
+  "specialization" : {
+    "specializationID" : 2,
+    "name" : "Dermatology"
+  }
+}

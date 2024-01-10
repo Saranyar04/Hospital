@@ -1,5 +1,7 @@
 package org.example.models.persons;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.example.jaxb.DateAdapter;
 
 import javax.xml.bind.annotation.XmlAttribute;
@@ -13,11 +15,18 @@ import java.util.Date;
 @XmlType(propOrder = {"patientID", "firstName", "lastName", "dateOfBirth", "address", "physician"})
 public class Patient {
 
+    @JsonProperty
     private int patientID;
+    @JsonProperty
     private String firstName;
+    @JsonProperty
     private String lastName;
+    @JsonProperty
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date dateOfBirth;
+    @JsonProperty
     private String address;
+    @JsonProperty
     private Physician physician;
 
     public Patient() {

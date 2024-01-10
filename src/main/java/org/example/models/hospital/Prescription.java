@@ -1,5 +1,7 @@
 package org.example.models.hospital;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.example.models.persons.Patient;
 import org.example.models.persons.Physician;
 
@@ -13,10 +15,16 @@ import java.util.Date;
 @XmlType(propOrder = {"prescriptionID", "date", "physician", "patient", "medication"})
 public class Prescription {
 
+    @JsonProperty
     private int prescriptionID;
+    @JsonProperty
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-mm-dd")
     private Date date;
+    @JsonProperty
     private Physician physician;
+    @JsonProperty
     private Patient patient;
+    @JsonProperty
     private Medication medication;
 
     public Prescription() {

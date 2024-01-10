@@ -32,7 +32,7 @@ public class JAXBMarshaller<T> {
     public static <T> T unmarshal(String path, Class<T> type) {
         try {
             JAXBContext context = JAXBContext.newInstance(type);
-            return (T) context.createUnmarshaller( ).unmarshal(new FileReader(path));
+            return (T) context.createUnmarshaller().unmarshal(new FileReader(path));
         } catch (JAXBException | RuntimeException | FileNotFoundException e) {
             LOGGER.info(e);
         }

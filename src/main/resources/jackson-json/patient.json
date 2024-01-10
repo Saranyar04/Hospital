@@ -1,0 +1,25 @@
+{
+  "patientID" : 12,
+  "firstName" : "Zilvia",
+  "lastName" : "Gourlie",
+  "dateOfBirth" : "1997-07-15",
+  "address" : "Suite 68",
+  "physician" : {
+    "physicianID" : 15,
+    "firstName" : "Barbara",
+    "lastName" : "Jehaes",
+    "department" : {
+      "departmentID" : 3,
+      "name" : "Neurology",
+      "nursesList" : null
+    },
+    "position" : {
+      "positionID" : 2,
+      "name" : "Junior"
+    },
+    "specialization" : {
+      "specializationID" : 2,
+      "name" : "Dermatology"
+    }
+  }
+}
