@@ -1,7 +1,5 @@
 package org.example.jackson;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
 import org.example.models.hospital.Department;
@@ -21,7 +19,6 @@ public class JacksonMain {
     public static void main(String[] args) {
         PositionDAO positionDAO = new PositionDAO();
         Position position = positionDAO.getEntityByID(2);
-        ObjectMapper objectMapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
         writeFile(position, "src/main/resources/jackson-json/position.json");
 
         NurseDAO nurseDAO = new NurseDAO();
