@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<patient patientID="12">
+    <firstName>Zilvia</firstName>
+    <lastName>Gourlie</lastName>
+    <dateOfBirth>2000-10-10</dateOfBirth>
+    <address>Suite 68</address>
+    <physician physicianID="15">
+        <firstName>Barbara</firstName>
+        <lastName>Jehaes</lastName>
+        <address>Suite 13</address>
+        <department departmentID="3">
+            <name>Neurology</name>
+        </department>
+        <position positionID="2">
+            <name>Junior</name>
+        </position>
+        <specialization specializationID="2">
+            <name>Dermatology</name>
+        </specialization>
+    </physician>
+</patient>

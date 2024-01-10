@@ -4,6 +4,11 @@ import org.example.models.persons.Nurse;
 import org.example.models.persons.Patient;
 import org.example.models.persons.Physician;
 
+import javax.xml.bind.annotation.*;
+
+
+@XmlRootElement(name = "appointment")
+@XmlType(propOrder = {"appointmentID", "startTime", "endTime", "patient", "physician", "nurse", "examinationRoom", "procedure"})
 public class Appointment {
 
     private int appointmentID;
@@ -16,6 +21,7 @@ public class Appointment {
     private Procedure procedure;
 
     public Appointment() {
+
     }
 
     public Appointment(int appointmentID, String startTime, String endTime, Patient patients, Physician physician, Nurse nurse, ExaminationRoom examinationRoom, Procedure procedure) {
@@ -33,6 +39,7 @@ public class Appointment {
         return appointmentID;
     }
 
+    @XmlAttribute(name = "appointmentID")
     public void setAppointmentID(int appointmentID) {
         this.appointmentID = appointmentID;
     }
@@ -41,6 +48,7 @@ public class Appointment {
         return startTime;
     }
 
+    @XmlElement(name = "startTime")
     public void setStartTime(String startTime) {
         this.startTime = startTime;
     }
@@ -49,6 +57,7 @@ public class Appointment {
         return endTime;
     }
 
+    @XmlElement(name = "endTime")
     public void setEndTime(String endTime) {
         this.endTime = endTime;
     }
@@ -57,6 +66,7 @@ public class Appointment {
         return patient;
     }
 
+    @XmlElement(name = "patient")
     public void setPatient(Patient patient) {
         this.patient = patient;
     }
@@ -65,6 +75,7 @@ public class Appointment {
         return physician;
     }
 
+    @XmlElement(name = "physician")
     public void setPhysician(Physician physician) {
         this.physician = physician;
     }
@@ -73,6 +84,7 @@ public class Appointment {
         return nurse;
     }
 
+    @XmlElement(name = "nurse")
     public void setNurse(Nurse nurse) {
         this.nurse = nurse;
     }
@@ -81,6 +93,7 @@ public class Appointment {
         return examinationRoom;
     }
 
+    @XmlElement(name = "examinationRoom")
     public void setExaminationRoom(ExaminationRoom examinationRoom) {
         this.examinationRoom = examinationRoom;
     }
@@ -89,6 +102,7 @@ public class Appointment {
         return procedure;
     }
 
+    @XmlElement(name = "procedure")
     public void setProcedure(Procedure procedure) {
         this.procedure = procedure;
     }

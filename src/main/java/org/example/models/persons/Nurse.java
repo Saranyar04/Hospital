@@ -1,5 +1,12 @@
 package org.example.models.persons;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlRootElement(name = "nurse")
+@XmlType(propOrder = {"nurseID", "firstName", "lastName", "position"})
 public class Nurse {
 
     private int nurseID;
@@ -21,6 +28,7 @@ public class Nurse {
         return nurseID;
     }
 
+    @XmlAttribute(name = "nurseID")
     public void setNurseID(int nurseID) {
         this.nurseID = nurseID;
     }
@@ -29,6 +37,7 @@ public class Nurse {
         return firstName;
     }
 
+    @XmlElement(name = "firstName")
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -37,6 +46,7 @@ public class Nurse {
         return lastName;
     }
 
+    @XmlElement(name = "lastName")
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
@@ -45,6 +55,7 @@ public class Nurse {
         return position;
     }
 
+    @XmlElement(name = "position")
     public void setPosition(Position position) {
         this.position = position;
     }

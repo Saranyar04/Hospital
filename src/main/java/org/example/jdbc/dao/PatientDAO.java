@@ -7,10 +7,7 @@ import org.example.models.persons.Patient;
 import org.example.util.ConnectionPool;
 
 import java.lang.invoke.MethodHandles;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +25,7 @@ public class PatientDAO implements IPatientDAO {
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, patients.getFirstName());
             statement.setString(2, patients.getLastName());
-            statement.setDate(3, patients.getDateOfBirth());
+            statement.setDate(3, (Date) patients.getDateOfBirth());
             statement.setString(4, patients.getAddress());
             statement.setInt(5, patients.getPhysician().getPhysicianID());
             statement.executeUpdate();

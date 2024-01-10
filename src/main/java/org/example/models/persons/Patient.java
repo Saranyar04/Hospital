@@ -1,7 +1,16 @@
 package org.example.models.persons;
 
+import org.example.jaxb.DateAdapter;
+
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.Date;
 
+@XmlRootElement(name = "patient")
+@XmlType(propOrder = {"patientID", "firstName", "lastName", "dateOfBirth", "address", "physician"})
 public class Patient {
 
     private int patientID;
@@ -27,6 +36,7 @@ public class Patient {
         return patientID;
     }
 
+    @XmlAttribute(name = "patientID")
     public void setPatientID(int patientID) {
         this.patientID = patientID;
     }
@@ -35,6 +45,7 @@ public class Patient {
         return firstName;
     }
 
+    @XmlElement(name = "firstName")
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -43,14 +54,17 @@ public class Patient {
         return lastName;
     }
 
+    @XmlElement(name = "lastName")
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-    public java.sql.Date getDateOfBirth() {
-        return (java.sql.Date) dateOfBirth;
+    public Date getDateOfBirth() {
+        return dateOfBirth;
     }
 
+    @XmlElement(name = "dateOfBirth")
+    @XmlJavaTypeAdapter(DateAdapter.class)
     public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
@@ -59,6 +73,7 @@ public class Patient {
         return address;
     }
 
+    @XmlElement(name = "address")
     public void setAddress(String address) {
         this.address = address;
     }
@@ -67,6 +82,7 @@ public class Patient {
         return physician;
     }
 
+    @XmlElement(name = "physician")
     public void setPhysician(Physician physician) {
         this.physician = physician;
     }

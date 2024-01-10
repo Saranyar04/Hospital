@@ -1,8 +1,16 @@
 package org.example.models.persons;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlRootElement(name = "position")
+@XmlType(propOrder = {"positionID", "name"})
 public class Position {
 
     private int positionID;
+
     private String name;
 
     public Position() {
@@ -17,6 +25,7 @@ public class Position {
         return positionID;
     }
 
+    @XmlAttribute(name = "positionID")
     public void setPositionID(int positionID) {
         this.positionID = positionID;
     }
@@ -25,6 +34,7 @@ public class Position {
         return name;
     }
 
+    @XmlElement(name = "name")
     public void setName(String name) {
         this.name = name;
     }
