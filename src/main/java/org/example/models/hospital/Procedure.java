@@ -1,6 +1,7 @@
 package org.example.models.hospital;
 
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -36,7 +37,7 @@ public class Procedure {
         return name;
     }
 
-    @XmlAttribute(name = "name")
+    @XmlElement(name = "name")
     public void setName(String name) {
         this.name = name;
     }
@@ -45,7 +46,7 @@ public class Procedure {
         return cost;
     }
 
-    @XmlAttribute(name = "cost")
+    @XmlElement(name = "cost")
     public void setCost(Double cost) {
         this.cost = cost;
     }
@@ -54,7 +55,7 @@ public class Procedure {
         return description;
     }
 
-    @XmlAttribute(name = "description")
+    @XmlElement(name = "description")
     public void setDescription(String description) {
         this.description = description;
     }
