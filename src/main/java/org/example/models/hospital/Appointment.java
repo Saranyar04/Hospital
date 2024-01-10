@@ -14,18 +14,25 @@ public class Appointment {
 
     @JsonProperty
     private int appointmentID;
+
     @JsonProperty
     private String startTime;
+
     @JsonProperty
     private String endTime;
+
     @JsonProperty
     private Patient patient;
+
     @JsonProperty
     private Physician physician;
+
     @JsonProperty
     private Nurse nurse;
+
     @JsonProperty
     private ExaminationRoom examinationRoom;
+
     @JsonProperty
     private Procedure procedure;
 

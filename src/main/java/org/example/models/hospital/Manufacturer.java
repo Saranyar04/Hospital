@@ -13,8 +13,10 @@ public class Manufacturer {
 
     @JsonProperty
     private int manufacturerID;
+
     @JsonProperty
     private String name;
+
     @JsonProperty
     private String address;
 

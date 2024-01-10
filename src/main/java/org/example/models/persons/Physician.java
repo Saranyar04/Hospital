@@ -15,16 +15,22 @@ public class Physician {
 
     @JsonProperty
     private int physicianID;
+
     @JsonProperty
     private String firstName;
+
     @JsonProperty
     private String lastName;
+
     @JsonIgnore
     private String address;
+
     @JsonProperty
     private Department department;
+
     @JsonProperty
     private Position position;
+
     @JsonProperty
     private Specialization specialization;
 

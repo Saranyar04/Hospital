@@ -1,4 +1,4 @@
-package org.example;
+package org.example.jackson;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -8,25 +8,21 @@ import org.example.models.hospital.Department;
 import org.example.models.persons.*;
 import org.example.mybatis.dao.*;
 
-import java.io.File;
-import java.io.IOException;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.example.jackson.JacksonMarshaller.readValue;
+import static org.example.jackson.JacksonMarshaller.writeFile;
 
 public class JacksonMain {
 
     private static final Logger LOGGER = (Logger) LogManager.getLogger(JacksonMain.class);
-    public static void main(String[] args) throws ParseException {
+
+    public static void main(String[] args) {
         PositionDAO positionDAO = new PositionDAO();
         Position position = positionDAO.getEntityByID(2);
         ObjectMapper objectMapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
-        File file = new File("src/main/resources/jackson-json/position.json");
-        try {
-            objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, position);
-        } catch (IOException e) {
-            LOGGER.error(e);
-        }
+        writeFile(position, "src/main/resources/jackson-json/position.json");
 
         NurseDAO nurseDAO = new NurseDAO();
         Nurse nurse1 = nurseDAO.getEntityByID(3);
@@ -37,49 +33,22 @@ public class JacksonMain {
         DepartmentDAO departmentDAO = new DepartmentDAO();
         Department department = departmentDAO.getEntityByID(2);
         department.setNursesList(nurseList);
-        file = new File("src/main/resources/jackson-json/department.json");
-        try {
-            objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, department);
-        } catch (IOException e) {
-            LOGGER.error(e);
-        }
-
+        writeFile(department, "src/main/resources/jackson-json/department.json");
 
         SpecializationDAO specializationDAO = new SpecializationDAO();
         Specialization specialization = specializationDAO.getEntityByID(2);
-        file = new File("src/main/resources/jackson-json/specialization.json");
-        try {
-            objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, specialization);
-        } catch (IOException e) {
-            LOGGER.error(e);
-        }
-
+        writeFile(specialization, "src/main/resources/jackson-json/specialization.json");
 
         PhysicianDAO physicianDAO = new PhysicianDAO();
         Physician physician = physicianDAO.getEntityByID(12);
-        file = new File("src/main/resources/jackson-json/physician.json");
-        try {
-            objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, physician);
-        } catch (IOException e) {
-            LOGGER.error(e);
-        }
+        writeFile(physician, "src/main/resources/jackson-json/physician.json");
 
         PatientDAO patientDAO = new PatientDAO();
         Patient patient = patientDAO.getEntityByID(12);
-        file = new File("src/main/resources/jackson-json/patient.json");
-        try {
-            objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, patient);
-        } catch (IOException e) {
-            LOGGER.error(e);
-        }
-
+        writeFile(patient, "src/main/resources/jackson-json/patient.json");
 
         Patient patient1 = new Patient();
-        try {
-            patient1 = objectMapper.readValue(file, Patient.class);
-        } catch (IOException e) {
-            LOGGER.error(e);
-        }
+        patient1 = readValue("src/main/resources/jackson-json/patient.json", Patient.class);
         LOGGER.info(patient1);
     }
 }

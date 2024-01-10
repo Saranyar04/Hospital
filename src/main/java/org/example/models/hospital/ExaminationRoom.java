@@ -13,6 +13,7 @@ public class ExaminationRoom {
 
     @JsonProperty
     private int examinationRoomNo;
+
     @JsonProperty
     private String roomType;
 

@@ -13,10 +13,13 @@ public class Procedure {
 
     @JsonProperty
     private int procedureID;
+
     @JsonProperty
     private String name;
+
     @JsonProperty
     private Double cost;
+
     @JsonProperty
     private String description;
 

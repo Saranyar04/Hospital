@@ -13,12 +13,16 @@ public class Medication {
 
     @JsonProperty
     private int medicationID;
+
     @JsonProperty
     private String medicationName;
+
     @JsonProperty
     private String details;
+
     @JsonProperty
     private double amount;
+
     @JsonProperty
     private Manufacturer manufacturer;
 

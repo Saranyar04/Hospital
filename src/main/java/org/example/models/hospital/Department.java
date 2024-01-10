@@ -12,8 +12,10 @@ public class Department {
 
     @JsonProperty
     private int departmentID;
+
     @JsonProperty
     private String name;
+
     @JsonProperty
     private List<Nurse> nursesList;
 

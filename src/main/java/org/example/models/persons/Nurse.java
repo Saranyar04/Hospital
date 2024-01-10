@@ -13,10 +13,13 @@ public class Nurse {
 
     @JsonProperty
     private int nurseID;
+
     @JsonProperty
     private String firstName;
+
     @JsonProperty
     private String lastName;
+
     @JsonProperty
     private Position position;
 

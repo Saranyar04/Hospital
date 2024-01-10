@@ -17,13 +17,17 @@ public class Prescription {
 
     @JsonProperty
     private int prescriptionID;
+
     @JsonProperty
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-mm-dd")
     private Date date;
+
     @JsonProperty
     private Physician physician;
+
     @JsonProperty
     private Patient patient;
+
     @JsonProperty
     private Medication medication;
 

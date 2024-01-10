@@ -17,15 +17,19 @@ public class Patient {
 
     @JsonProperty
     private int patientID;
+
     @JsonProperty
     private String firstName;
+
     @JsonProperty
     private String lastName;
     @JsonProperty
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date dateOfBirth;
+
     @JsonProperty
     private String address;
+
     @JsonProperty
     private Physician physician;
 

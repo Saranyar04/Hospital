@@ -13,6 +13,7 @@ public class DepartmentsHasNurse {
 
     @JsonProperty
     private Department department;
+
     @JsonProperty
     private Nurse nurse;
 

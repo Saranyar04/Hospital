@@ -13,8 +13,10 @@ public class Position {
 
     @JsonProperty
     private int positionID;
+
     @JsonProperty
     private String name;
+
 
     public Position() {
     }

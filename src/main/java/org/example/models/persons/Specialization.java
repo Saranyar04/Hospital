@@ -13,6 +13,7 @@ public class Specialization {
 
     @JsonProperty
     private int specializationID;
+
     @JsonProperty
     private String name;
 
