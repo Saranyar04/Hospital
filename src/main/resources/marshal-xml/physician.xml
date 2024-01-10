@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<physician physicianID="12">
+    <firstName>Elbert</firstName>
+    <lastName>Schiementz</lastName>
+    <address>Room 915</address>
+    <department departmentID="2">
+        <name>Orthopedics</name>
+    </department>
+    <position positionID="2">
+        <name>Junior</name>
+    </position>
+    <specialization specializationID="2">
+        <name>Dermatology</name>
+    </specialization>
+</physician>

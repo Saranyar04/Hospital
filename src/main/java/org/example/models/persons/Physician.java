@@ -2,6 +2,13 @@ package org.example.models.persons;
 
 import org.example.models.hospital.Department;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlRootElement(name = "physician")
+@XmlType(propOrder = {"physicianID", "firstName", "lastName", "address", "department", "position", "specialization"})
 public class Physician {
 
     private int physicianID;
@@ -29,6 +36,7 @@ public class Physician {
         return physicianID;
     }
 
+    @XmlAttribute(name = "physicianID")
     public void setPhysicianID(int physicianID) {
         this.physicianID = physicianID;
     }
@@ -37,6 +45,7 @@ public class Physician {
         return firstName;
     }
 
+    @XmlElement(name = "firstName")
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -45,6 +54,7 @@ public class Physician {
         return lastName;
     }
 
+    @XmlElement(name = "lastName")
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
@@ -53,6 +63,7 @@ public class Physician {
         return address;
     }
 
+    @XmlElement(name = "address")
     public void setAddress(String address) {
         this.address = address;
     }
@@ -61,6 +72,7 @@ public class Physician {
         return department;
     }
 
+    @XmlElement(name = "department")
     public void setDepartment(Department department) {
         this.department = department;
     }
@@ -69,6 +81,7 @@ public class Physician {
         return position;
     }
 
+    @XmlElement(name = "position")
     public void setPosition(Position position) {
         this.position = position;
     }
@@ -77,6 +90,7 @@ public class Physician {
         return specialization;
     }
 
+    @XmlElement(name = "specialization")
     public void setSpecialization(Specialization specialization) {
         this.specialization = specialization;
     }

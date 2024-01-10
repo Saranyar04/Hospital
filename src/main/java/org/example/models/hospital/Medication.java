@@ -1,5 +1,12 @@
 package org.example.models.hospital;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlRootElement(name = "medication")
+@XmlType(propOrder = {"medicationID", "medicationName", "details", "amount", "manufacturer"})
 public class Medication {
 
     private int medicationID;
@@ -23,6 +30,7 @@ public class Medication {
         return medicationID;
     }
 
+    @XmlAttribute(name = "medicationID")
     public void setMedicationID(int medicationID) {
         this.medicationID = medicationID;
     }
@@ -30,7 +38,7 @@ public class Medication {
     public String getMedicationName() {
         return medicationName;
     }
-
+    @XmlElement(name = "medicationName")
     public void setMedicationName(String medicationName) {
         this.medicationName = medicationName;
     }
@@ -39,6 +47,7 @@ public class Medication {
         return details;
     }
 
+    @XmlElement(name = "details")
     public void setDetails(String details) {
         this.details = details;
     }
@@ -47,6 +56,7 @@ public class Medication {
         return amount;
     }
 
+    @XmlElement(name = "amount")
     public void setAmount(double amount) {
         this.amount = amount;
     }
@@ -55,6 +65,7 @@ public class Medication {
         return manufacturer;
     }
 
+    @XmlElement(name = "manufacturer")
     public void setManufacturer(Manufacturer manufacturer) {
         this.manufacturer = manufacturer;
     }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<department departmentID="2">
+    <name>Orthopedics</name>
+    <nursesList>
+        <nurse nurseID="3">
+            <firstName>Wilden</firstName>
+            <lastName>Norres</lastName>
+            <position positionID="2">
+                <name>Junior</name>
+            </position>
+        </nurse>
+        <nurse nurseID="8">
+            <firstName>Reema</firstName>
+            <lastName>Candy</lastName>
+            <position positionID="2">
+                <name>Junior</name>
+            </position>
+        </nurse>
+    </nursesList>
+</department>

@@ -3,8 +3,14 @@ package org.example.models.hospital;
 import org.example.models.persons.Patient;
 import org.example.models.persons.Physician;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 import java.util.Date;
 
+@XmlRootElement(name = "prescription")
+@XmlType(propOrder = {"prescriptionID", "date", "physician", "patient", "medication"})
 public class Prescription {
 
     private int prescriptionID;
@@ -28,6 +34,7 @@ public class Prescription {
         return prescriptionID;
     }
 
+    @XmlAttribute(name = "prescriptionID")
     public void setPrescriptionID(int prescriptionID) {
         this.prescriptionID = prescriptionID;
     }
@@ -36,6 +43,7 @@ public class Prescription {
         return (java.sql.Date) date;
     }
 
+    @XmlElement(name = "date")
     public void setDate(Date date) {
         this.date = date;
     }
@@ -44,6 +52,7 @@ public class Prescription {
         return physician;
     }
 
+    @XmlElement(name = "physician")
     public void setPhysician(Physician physician) {
         this.physician = physician;
     }
@@ -52,6 +61,7 @@ public class Prescription {
         return patient;
     }
 
+    @XmlElement(name = "patient")
     public void setPatient(Patient patient) {
         this.patient = patient;
     }
@@ -60,6 +70,7 @@ public class Prescription {
         return medication;
     }
 
+    @XmlElement(name = "medication")
     public void setMedication(Medication medication) {
         this.medication = medication;
     }
