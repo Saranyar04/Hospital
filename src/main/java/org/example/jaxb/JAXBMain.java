@@ -34,9 +34,9 @@ public class JAXBMain {
         department.setNursesList(nurseList);
         marshal(department, "src/main/resources/marshal-xml/department.xml");
 
-        SpecializationDAO specializationDAO = new SpecializationDAO();
-        Specialization specialization = specializationDAO.getEntityByID(2);
-        marshal(specialization, "src/main/resources/marshal-xml/specialization.xml");
+        Specialization specialization1 = new Specialization.Builder(12).setName("Family Medicine").build();
+        marshal(specialization1, "src/main/resources/marshal-xml/specialization.xml");
+
 
         PhysicianDAO physicianDAO = new PhysicianDAO();
         Physician physician = physicianDAO.getEntityByID(12);

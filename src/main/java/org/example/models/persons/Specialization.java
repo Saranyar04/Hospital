@@ -12,35 +12,48 @@ import javax.xml.bind.annotation.XmlType;
 public class Specialization {
 
     @JsonProperty
+    @XmlAttribute(name = "specializationID")
     private int specializationID;
 
     @JsonProperty
+    @XmlElement(name = "name")
     private String name;
 
-    public Specialization() {
+    public  Specialization() {
     }
 
-    public Specialization(int specializationID, String name) {
-        this.specializationID = specializationID;
-        this.name = name;
+    public Specialization(int specializationId, String name) {
+    }
+
+    public Specialization(Builder builder) {
+        this.specializationID = builder.specializationID;
+        this.name = builder.name;
+    }
+
+    public static class Builder {
+        private int specializationID;
+        private String name;
+
+        public Builder(int specializationID) {
+            this.specializationID = specializationID;
+        }
+
+        public Builder setName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Specialization build() {
+            return new Specialization(this);
+        }
     }
 
     public int getSpecializationID() {
         return specializationID;
     }
 
-    @XmlAttribute(name = "specializationID")
-    public void setSpecializationID(int specializationID) {
-        this.specializationID = specializationID;
-    }
-
     public String getName() {
         return name;
-    }
-
-    @XmlElement(name = "name")
-    public void setName(String name) {
-        this.name = name;
     }
 
     @Override
