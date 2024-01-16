@@ -43,12 +43,11 @@ public class SpecializationDAO implements ISpecializationDAO {
     public Specialization getEntityByID(int id) {
         Connection connection = connectionPool.getConnection( );
         String query = "SELECT * FROM specializations WHERE specialization_id = (?)";
-        //Specialization specializations = new Specialization(rs.getInt("specialization_id"), rs.getString("name"));
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setInt(1, id);
-            statement.execute( );
+            statement.execute();
             try (ResultSet rs = statement.getResultSet( )) {
-                while (rs.next( )) {va
+                while (rs.next()) {
                     return new Specialization(rs.getInt("specialization_id"), rs.getString("name"));
                 }
             }
@@ -113,7 +112,7 @@ public class SpecializationDAO implements ISpecializationDAO {
         String query = "SELECT * FROM specializations";
         List<Specialization> specializationsList = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.execute( );
+            statement.execute();
             try (ResultSet rs = statement.getResultSet()) {
                 while (rs.next()) {
                     Specialization specializations = new Specialization(rs.getInt("specialization_id"), rs.getString("name"));

@@ -19,7 +19,7 @@ public class Specialization {
     @XmlElement(name = "name")
     private String name;
 
-    public  Specialization() {
+    public Specialization() {
     }
 
     public Specialization(int specializationId, String name) {
